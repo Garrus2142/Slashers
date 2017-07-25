@@ -1,0 +1,7 @@
+"slashers"
+{
+	"base"		"base"
+	"title"		"Slashers"
+	"maps"		"^slash_"
+	"menusystem"	"1"
+}
