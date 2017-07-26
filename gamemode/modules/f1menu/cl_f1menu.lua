@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:50:55+02:00
 -- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-26T15:16:06+02:00
+-- @Last Modified time: 2017-07-26 22:46:31
 
 
 
@@ -12,20 +12,20 @@ local GM = GAMEMODE or GM
 
 function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Time,isOpen,active)
 	active = true
-	local BGPanel = vgui.Create( "DPanel" )
-	BGPanel:SetSize( ScrW(),ScrH() )
-	BGPanel:Dock(FILL)
-	BGPanel:SetDrawBackground( true )
+	local BackGroundPanel = vgui.Create( "DPanel" )
+	BackGroundPanel:SetSize( ScrW(),ScrH() )
+	BackGroundPanel:Dock(FILL)
+	BackGroundPanel:SetDrawBackground( true )
 
-	local PersoPANEL = vgui.Create("DPanel",BGPanel)
+	local PersoPANEL = vgui.Create("DPanel",BackGroundPanel)
 	PersoPANEL:SetPaintBackground( true )
-	BGPanel:SetBackgroundColor(Color( 0, 0, 0, 140 ))
+	BackGroundPanel:SetBackgroundColor(Color( 0, 0, 0, 140 ))
 	PersoPANEL:SetBackgroundColor(Color( 0, 0, 0, 150 ))
 	PersoPANEL:SetSize(ScrW(),0)
 	PersoPANEL:Center()
 
 	local img_charac = vgui.Create( "DImage", PersoPANEL )
-	--img_charac:SetSize( (1/1.5)*ScrH(),((1/1.5)*ScrH())*1.0932 )
+	
 
 	img_charac:SetImage( ImageCharac )
 	img_charac:SetTall((1/1.5)*ScrH())
@@ -46,7 +46,7 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 			DescriptionBox:SetPaintBackground( false )
 
 
-			local TitleSpe = vgui.Create("DLabel",DescriptionBox)
+			local TitleSpe = vgui.Create("DtitleLabel",DescriptionBox)
 			TitleSpe:SetText("You are "..CharacName)
 			TitleSpe:SetFont( "Bohemian typewriter TITLE" )
 			TitleSpe:SetColor(Color(168,0,0,255))
@@ -55,7 +55,7 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 			TitleSpe:SetAutoStretchVertical( true )
 			TitleSpe:SetWidth((1/1.45)*ScrH())
 
-			local SpecificDescription = vgui.Create("DLabel",DescriptionBox)
+			local SpecificDescription = vgui.Create("DtitleLabel",DescriptionBox)
 			SpecificDescription:SetText(CharacText)
 			SpecificDescription:SetFont( "Bohemian typewriter SA" )
 			SpecificDescription:MoveBelow( TitleSpe, 5 )
@@ -65,7 +65,7 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 			SpecificDescription:SetAutoStretchVertical( true )
 
 
-			local TitleGen = vgui.Create("DLabel",DescriptionBox)
+			local TitleGen = vgui.Create("DtitleLabel",DescriptionBox)
 			--Title1:Dock(TOP)
 			TitleGen:SetText("You are " .. TeamName)
 			TitleGen:MoveBelow( SpecificDescription, 1/4*ScrH() )
@@ -76,7 +76,7 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 			TitleGen:SetAutoStretchVertical( true )
 			TitleGen:SetWidth((1/1.45)*ScrH())
 
-			local GenericDescription = vgui.Create("DLabel",DescriptionBox)
+			local GenericDescription = vgui.Create("DtitleLabel",DescriptionBox)
 			GenericDescription:SetText(TeamText)
 			GenericDescription:SetFont( "Bohemian typewriter SA" )
 			GenericDescription:MoveBelow( TitleGen, 5 )
@@ -96,7 +96,7 @@ if Time ~= 0 then
 			PersoPANEL:MoveBy(0,PersoPANEL:GetTall() /2,0.5,0.1,1)
 			PersoPANEL:SizeTo(PersoPANEL:GetWide(),0,0.5,0.1,1)
 			img_charac:MoveBy(0,-(PersoPANEL:GetTall()/2),0.5,0.1,1,function()
-				BGPanel:Remove()
+				BackGroundPanel:Remove()
 				isOpen = false
 			end)
 		end)
@@ -119,7 +119,7 @@ if Time == 0 then
 		DescriptionBox:SizeTo( 0, DescriptionBox:GetTall(), 0.4, 0, -1,  function ()
 			PersoPANEL:MoveBy(0,PersoPANEL:GetTall() /2,0.5,0.1,1)
 			PersoPANEL:SizeTo(PersoPANEL:GetWide(),0,0.5,0.1,1)
-			img_charac:MoveBy(0,-(PersoPANEL:GetTall()/2),0.5,0.1,1,function() BGPanel:Remove() end)
+			img_charac:MoveBy(0,-(PersoPANEL:GetTall()/2),0.5,0.1,1,function() BackGroundPanel:Remove() end)
 		end)
 		CloseB:Remove()
 		active = false
@@ -157,29 +157,29 @@ net.Receive( "sls_f1_menu", function ()
 end)
 
 function ShowTitle(Title,Second)
-	local BGPanel = vgui.Create( "DPanel" )
-	BGPanel:SetSize( ScrW(),ScrH() )
+	local BackGroundPanel = vgui.Create( "DPanel" )
+	BackGroundPanel:SetSize( ScrW(),ScrH() )
 
-	BGPanel:Dock(FILL)
-	BGPanel:SetDrawBackground( true )
-	BGPanel:SetBackgroundColor(Color( 0, 0, 0, 250 ))
-	BGPanel:SetTerm( 5.5 )
+	BackGroundPanel:Dock(FILL)
+	BackGroundPanel:SetDrawBackground( true )
+	BackGroundPanel:SetBackgroundColor(Color( 0, 0, 0, 250 ))
+	BackGroundPanel:SetTerm( 5.5 )
 	surface.PlaySound( "/slashers/effects/notif_2.wav" )
-	BGPanel:Center()
+	BackGroundPanel:Center()
 
-	local LABEL = vgui.Create("DLabel",BGPanel)
-	LABEL:Center()
-	LABEL:SetFont( "Friday13" )
-	LABEL:Dock(FILL)
-	LABEL:SetContentAlignment( 5 )
+	local titleLabel = vgui.Create("DtitleLabel",BackGroundPanel)
+	titleLabel:Center()
+	titleLabel:SetFont( "Friday13" )
+	titleLabel:Dock(FILL)
+	titleLabel:SetContentAlignment( 5 )
 
-	LABEL:SetText( Title )
+	titleLabel:SetText( Title )
 
 	timer.Simple( Second-0.3, function()
 
-		LABEL:SlideUp( 0.2 )
+		titleLabel:SlideUp( 0.2 )
 		timer.Simple( 0.3, function()
-			BGPanel:Remove()
+			BackGroundPanel:Remove()
 		end)
 	end )
 end

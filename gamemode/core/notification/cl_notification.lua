@@ -1,9 +1,9 @@
 -- Utopia Games - Slashers
 --
 -- @Author: Guilhem PECH
--- @Date:   2017-07-26T13:50:55+02:00
+-- @Date:   2017-07-26T15:18:58+02:00
 -- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-26T15:16:08+02:00
+-- @Last Modified time: 2017-07-26 22:32:05
 
 
 
@@ -32,12 +32,12 @@ function notificationPanel(notifText,notificationType)
 	end
 
 	-- Container panel
-	local BGPanel = vgui.Create( "DPanel" )
-	BGPanel:SetSize( 512, 128 )
-	BGPanel:AlignBottom(-128)
-	BGPanel:AlignRight(250)
-	BGPanel:SetDrawBackground( false )
-	BGPanel:SetTerm( 4.7 )
+	local BackGroundPanel = vgui.Create( "DPanel" )
+	BackGroundPanel:SetSize( 512, 128 )
+	BackGroundPanel:AlignBottom(-128)
+	BackGroundPanel:AlignRight(250)
+	BackGroundPanel:SetDrawBackground( false )
+	BackGroundPanel:SetTerm( 4.7 )
 	if (!CounterActiveNotif || CounterActiveNotif == 0)  then
 		CounterActiveNotif = 1
 	else
@@ -45,18 +45,18 @@ function notificationPanel(notifText,notificationType)
 	end
 
 	-- Blood background
-	local img_bg = vgui.Create( "DImage", BGPanel )
-	img_bg:SetSize( BGPanel:GetSize() )
+	local img_bg = vgui.Create( "DImage", BackGroundPanel )
+	img_bg:SetSize( BackGroundPanel:GetSize() )
 	img_bg:SetImage( "materials/icons/scoreboard_line.png" )
 
 	--- Check image
-	local img_check = vgui.Create( "DImage", BGPanel )
+	local img_check = vgui.Create( "DImage", BackGroundPanel )
 	img_check:SetSize( 50,50 )
 	img_check:SetPos(40,10)
 	img_check:SetImage( iconPath )
 
 	--- Text
-	local Text = vgui.Create( "DLabel", BGPanel )
+	local Text = vgui.Create( "DLabel", BackGroundPanel )
 	Text:SetText( notifText )
 	Text:SetTextColor( Color( 255, 255, 255 ) )
 	Text:SetPos( 95, -30 )
@@ -66,12 +66,12 @@ function notificationPanel(notifText,notificationType)
 
 	---
 
-	ToThisPosUp = BGPanel.y - (CounterActiveNotif * 100)
-	ToThisPosDown = BGPanel.y + (CounterActiveNotif * 100)
+	ToThisPosUp = BackGroundPanel.y - (CounterActiveNotif * 100)
+	ToThisPosDown = BackGroundPanel.y + (CounterActiveNotif * 100) 
 
 	-- Animation
-	BGPanel:MoveTo( BGPanel.x, ToThisPosUp, 1, 0) -- Slide up
-	BGPanel:MoveTo(BGPanel.x,ToThisPosDown, 0.7, 4, -1)   -- Slide Down
+	BackGroundPanel:MoveTo( BackGroundPanel.x, ToThisPosUp, 1, 0) -- Slide up
+	BackGroundPanel:MoveTo(BackGroundPanel.x,ToThisPosDown, 0.7, 4, -1)   -- Slide Down
 
 	if notificationType == "cross" then
 		surface.PlaySound( "slashers/effects/invalid.wav" )

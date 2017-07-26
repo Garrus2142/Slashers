@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
 -- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-26T15:16:14+02:00
+-- @Last Modified time: 2017-07-26T22:25:43+02:00
 
 
 
@@ -23,7 +23,7 @@ sound.Add( {
 } )
 
 function ENT:Initialize()
-	-- self.Entity:SetCollisionGroup( COLLISION_GROUP_WEAPON )
+	
 	self.Active = false
 	self:SetModel("models/props_lab/citizenradio.mdl")
 	self:PhysicsInit(SOLID_NONE)

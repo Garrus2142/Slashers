@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
 -- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-26T15:16:17+02:00
+-- @Last Modified time: 2017-07-26 22:32:02
 
 
 
@@ -262,7 +262,7 @@ local function Spawn_SlashGen()
 				w = table.Random(v)
 
 				if !w.spw then
-					--get the type of entity, or default to a physics prop
+					--get the type of entity
 					local entType = w.type
 					--spawn it
 					local newEnt = ents.Create(entType)
@@ -292,26 +292,3 @@ hook.Add( "sls_round_PreStart", "sls_ReinitObjectives", function( ply, text, pub
 		end
 	end
 end )
-
-
-/* Hook list
-
-<14:07:27> "Garrus": sls_round_PreStart
-<14:07:33> "Garrus": sls_round_PostStart
-<14:07:40> "Garrus": sls_round_StartEscape
-<14:08:17> "Garrus": sls_round_OnTeamWin "winTeam{TEAM_KILLER, TEAM_SURVIVORS}"
-<14:08:28> "Garrus": sls_round_End
-<14:09:54> "Garrus": PostPlayerDeath
-<14:10:16> "Garrus": sls_round_WaitingPlayers
-<14:10:20> "Garrus": sls_round_End
-
-/ Autre
-
-<21:28:04> "Garrus": GM.ROUND:StartEscape()
-<21:29:19> "Garrus": GM.ROUND.EndTime // 'Heure' Fin de la partie
-<21:28:50> "Garrus": GM.ROUND.Active
-<21:29:10> "Garrus": GM.ROUND.Count // Nombre de round
-<21:30:40> "Garrus": GM.ROUND.Survivors //[table] Liste des survivants
-<21:30:58> "Garrus": GM.ROUND.Killer
-<21:31:16> "Garrus": GM.ROUND.WaitingPlayers (true si joueur en attente)
-*/
