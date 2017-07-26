@@ -1,3 +1,10 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Vyn
+-- @Date:   2017-07-26 01:06:51
+-- @Last Modified by:   Vyn
+-- @Last Modified time: 2017-07-26 15:21:34
+
 if CLIENT then
 	hook.Add( "HUDPaint", "slashers_trap_hud", function()
 		if LocalPlayer():Team() != TEAM_KILLER || !LocalPlayer():Alive() || !IsValid(LocalPlayer():GetActiveWeapon()) then return end

@@ -1,3 +1,10 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Vyn
+-- @Date:   2017-07-26 14:09:54
+-- @Last Modified by:   Vyn
+-- @Last Modified time: 2017-07-26 15:21:11
+
 include("shared.lua")
 
 SWEP.Slot = 1

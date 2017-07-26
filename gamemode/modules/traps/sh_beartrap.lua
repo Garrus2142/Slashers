@@ -1,3 +1,10 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Vyn
+-- @Date:   2017-07-26 00:55:25
+-- @Last Modified by:   Vyn
+-- @Last Modified time: 2017-07-26 15:21:35
+
 if CLIENT then
 	local button_E_last = CurTime()
 	local button_E_current = 0
