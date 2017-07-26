@@ -8,6 +8,8 @@ SWEP.DrawCrosshair = false
  
 language.Add("Undone_alertropes","Undone Alert Ropes")
 
+SWEP.Instructions = "Left click to place it on a closed door"
+
 local pulleywheel_holo = nil;
 local axe_holo = nil;
 

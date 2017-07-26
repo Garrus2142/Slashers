@@ -8,6 +8,8 @@ SWEP.DrawCrosshair = false
  
 language.Add("Undone_beartrap","Undone Beartrap")
 
+SWEP.Instructions = "Left click to place it on the floor"
+
 local beartrap_holo = nil;
 
 function SWEP:Deploy()
