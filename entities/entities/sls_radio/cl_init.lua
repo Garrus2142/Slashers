@@ -1,3 +1,12 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Guilhem PECH
+-- @Date:   2017-07-26T13:54:42+02:00
+-- @Last Modified by:   Guilhem PECH
+-- @Last Modified time: 2017-07-26T15:16:13+02:00
+
+
+
 include("shared.lua")
 
 function ENT:Initialize()

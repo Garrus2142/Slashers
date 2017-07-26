@@ -1,3 +1,12 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Guilhem PECH
+-- @Date:   2017-07-26T13:50:55+02:00
+-- @Last Modified by:   Guilhem PECH
+-- @Last Modified time: 2017-07-26T15:16:07+02:00
+
+
+
 util.AddNetworkString("sls_f1_menu")
 
 local function F1Menu(ply)

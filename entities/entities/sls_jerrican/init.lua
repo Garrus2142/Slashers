@@ -1,3 +1,12 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Guilhem PECH
+-- @Date:   2017-07-26T13:54:42+02:00
+-- @Last Modified by:   Guilhem PECH
+-- @Last Modified time: 2017-07-26T15:16:15+02:00
+
+
+
 local GM = GAMEMODE
 
 AddCSLuaFile( "cl_init.lua" )
@@ -6,14 +15,14 @@ include('shared.lua')
 
 function ENT:Initialize()
 	-- self.Entity:SetCollisionGroup( COLLISION_GROUP_WEAPON )
-	self.Active = false 
+	self.Active = false
 	self:SetModel("models/props_junk/gascan001a.mdl")
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_VPHYSICS)
 	self:SetUseType( SIMPLE_USE )
 	local phys = self:GetPhysicsObject()
-	if phys:IsValid() then 
+	if phys:IsValid() then
 		phys:EnableMotion(false)
 	end
 
@@ -56,7 +65,7 @@ function ENT:Use(ply)
 							 net.SendOmit(GM.ROUND.Killer)
 
 			hook.Call("sls_NextObjective")
-			
+
 		end
 		self:EmitSound("player/shove_01.wav",100,100,1,CHAN_AUTO)
 		self:Remove()

@@ -1,3 +1,12 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Guilhem PECH
+-- @Date:   2017-07-26T13:54:42+02:00
+-- @Last Modified by:   Guilhem PECH
+-- @Last Modified time: 2017-07-26T15:16:14+02:00
+
+
+
 local GM = GAMEMODE
 
 AddCSLuaFile( "cl_init.lua" )
@@ -15,7 +24,7 @@ sound.Add( {
 
 function ENT:Initialize()
 	-- self.Entity:SetCollisionGroup( COLLISION_GROUP_WEAPON )
-	self.Active = false 
+	self.Active = false
 	self:SetModel("models/props_lab/citizenradio.mdl")
 	self:PhysicsInit(SOLID_NONE)
 	self:SetMoveType(MOVETYPE_NONE)
@@ -24,7 +33,7 @@ function ENT:Initialize()
 	self:SetUseType( SIMPLE_USE )
 
 	local phys = self:GetPhysicsObject()
-	if phys:IsValid() then 
+	if phys:IsValid() then
 		phys:EnableMotion(false)
 	end
 end
@@ -56,7 +65,7 @@ function ENT:Use(ply)
 						 net.SendOmit(GM.ROUND.Killer)
 
 		hook.Call("sls_NextObjective")
-		self.Active = true 
+		self.Active = true
 		self:EmitSound("slashers_radio")
 	else
 		if (!self:GetNWBool( 'activated')) then

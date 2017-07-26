@@ -1,3 +1,12 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Guilhem PECH
+-- @Date:   2017-07-26T13:54:42+02:00
+-- @Last Modified by:   Guilhem PECH
+-- @Last Modified time: 2017-07-26T15:16:08+02:00
+
+
+
 sound.Add( {
 	name = "Breathing",
 	channel = CHAN_AUTO,
@@ -66,7 +75,7 @@ if CLIENT then
 			end
 
 			if cmd:KeyDown(IN_JUMP) and ply:OnGround() and !ply:InVehicle() then
-				
+
 				if not AlreadyBreathing and ply.Stamina<=30 then
 
 					net.Start("wantedSound")
@@ -75,7 +84,7 @@ if CLIENT then
 					-- ply:EmitSound("Breathing")
 					AlreadyBreathing = true
 				end
-				
+
 				if ply.Stamina <= 5 then
 					NewButtons = NewButtons - IN_JUMP
 				end
@@ -141,7 +150,7 @@ if CLIENT then
 		ply.MaxStamina = GAMEMODE.CLASS.Survivors[ply.ClassID].stamina
 		ply.DecayMul = 1
 		ply.RegenMul = 1.5
-		
+
 		ply.NextRegen = 0
 		ply.WaterTick = 0
 	end
@@ -152,14 +161,14 @@ if CLIENT then
 		-- Verify that we recieved all arguments
 		if not( x && y && w && h && partx && party && partw && parth && texw && texh ) then
 			ErrorNoHalt("surface.DrawPartialTexturedRect: Missing argument!");
-			
+
 			return;
 		end;
-		
+
 		-- Get the positions and sizes as percentages / 100
 		local percX, percY = partx / texw, party / texh;
 		local percW, percH = partw / texw, parth / texh;
-		
+
 		-- Process the data
 		local vertexData = {
 			{
@@ -187,7 +196,7 @@ if CLIENT then
 				v = percY + percH
 			}
 		};
-			
+
 		surface.DrawPoly( vertexData );
 	end;
 

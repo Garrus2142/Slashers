@@ -1,3 +1,10 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Vyn
+-- @Date:   2017-07-26 12:09:24
+-- @Last Modified by:   Vyn
+-- @Last Modified time: 2017-07-26 15:19:51
+
  
 AddCSLuaFile( "cl_init.lua" ) -- Make sure clientside
 AddCSLuaFile( "shared.lua" )  -- and shared scripts are sent.

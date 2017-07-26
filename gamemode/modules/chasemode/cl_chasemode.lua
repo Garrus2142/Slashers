@@ -1,3 +1,11 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Guilhem PECH
+-- @Date:   2017-07-26T13:54:42+02:00
+-- @Last Modified by:   Guilhem PECH
+
+
+
 local Timer1 = 0
 local localplayer = LocalPlayer()
 
