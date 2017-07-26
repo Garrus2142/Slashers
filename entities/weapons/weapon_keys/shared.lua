@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
 -- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-26 23:35:25
+-- @Last Modified time: 2017-07-26 23:38:33
 
 
 
@@ -145,15 +145,18 @@ function SWEP:Succeed()
 			trace.Entity:Fire("Close", "", .0)
 			trace.Entity:SetNWBool( "LockedByUser", true )
 
-			self.KeysLeft = self.KeysLeft - 1
+      if self.KeysLeft > 0 then
+			     self.KeysLeft = self.KeysLeft - 1
+      end
 			-- GAMEMODE.CLASS.Survivors[self.Owner:GetNWInt("ClassID")].keysNumber = self.KeysLeft
 			self:CallOnClient( "RemoveKeys")
 		else
 			trace.Entity:Fire("Unlock", "", .0)
 			trace.Entity:Fire("setanimation", "Unlock", .0)
 			trace.Entity:SetNWBool( "LockedByUser", false )
-
-			self.KeysLeft = self.KeysLeft + 1
+      if self.KeysLeft < 3 then   
+			     self.KeysLeft = self.KeysLeft + 1
+      end
 			-- GAMEMODE.CLASS.Survivors[self.Owner:GetNWInt("ClassID")].keysNumber = self.KeysLeft
 			self:CallOnClient( "AddKeys")
 
