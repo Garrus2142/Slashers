@@ -1,5 +1,5 @@
 local Timer1 = 0 
-
+local Ply
 
 local function HaveASurvivorInSight()		
 	local killer = team.GetPlayers(TEAM_KILLER)[1]	
@@ -34,6 +34,7 @@ end
 hook.Add("Think", "sls_SurvivorInView", HaveASurvivorInSight)
 local ChaseSound
 local function InitValue()
+	if !IsValid(Ply) then return end
 	ChaseSound = CreateSound( LocalPlayer(), GAMEMODE.CONFIG["chase_musics"][game.GetMap()])
 	LocalPlayer().LastViewByKillerTime = 0
 	Ply.ChaseSoundPlaying = false 

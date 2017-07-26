@@ -106,7 +106,7 @@ GM.CLASS.Survivors[CLASS_SURV_BLACK].stamina = 130
 GM.CLASS.Survivors[CLASS_SURV_BLACK].model = "models/player/spike/lamar.mdl"
 GM.CLASS.Survivors[CLASS_SURV_BLACK].icon = Material("icons/icon_black.png")
 GM.CLASS.Survivors[CLASS_SURV_BLACK].die_sound = "slashers/effects/scream_man_1.wav"
-GM.CLASS.Survivors[CLASS_SURV_BLACK].weapons = {"slashers_keys"}
+GM.CLASS.Survivors[CLASS_SURV_BLACK].weapons = {"weapon_keys"}
 GM.CLASS.Survivors[CLASS_SURV_BLACK].keysNumber = 3
 
 GM.CLASS.Survivors[CLASS_SURV_SHERIF] = {}
