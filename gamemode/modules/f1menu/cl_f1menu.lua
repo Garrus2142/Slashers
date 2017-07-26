@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:50:55+02:00
 -- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-26 22:46:31
+-- @Last Modified time: 2017-07-26 23:40:58
 
 
 
@@ -25,7 +25,7 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 	PersoPANEL:Center()
 
 	local img_charac = vgui.Create( "DImage", PersoPANEL )
-	
+
 
 	img_charac:SetImage( ImageCharac )
 	img_charac:SetTall((1/1.5)*ScrH())
@@ -167,7 +167,7 @@ function ShowTitle(Title,Second)
 	surface.PlaySound( "/slashers/effects/notif_2.wav" )
 	BackGroundPanel:Center()
 
-	local titleLabel = vgui.Create("DtitleLabel",BackGroundPanel)
+	local titleLabel = vgui.Create("DLabel",BackGroundPanel)
 	titleLabel:Center()
 	titleLabel:SetFont( "Friday13" )
 	titleLabel:Dock(FILL)
