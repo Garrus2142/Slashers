@@ -37,6 +37,7 @@ hook.Add("Think", "sls_SurvivorInView", HaveASurvivorInSight)
 local ChaseSound
 local function InitValue()
 	if !IsValid(localplayer) then return end
+	localplayer = LocalPlayer()
 	ChaseSound = CreateSound( localplayer, GAMEMODE.CONFIG["chase_musics"][game.GetMap()])
 	localplayer.LastViewByKillerTime = 0
 	localplayer.ChaseSoundPlaying = false
