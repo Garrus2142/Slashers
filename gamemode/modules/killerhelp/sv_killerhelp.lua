@@ -105,7 +105,7 @@ local function PlayerFootstep(ply, pos, foot, sound, volume, filter)
 		net.WriteEntity(ply)
 		net.WriteVector(pos)
 		net.WriteAngle(ply:GetAimVector():Angle())
-		net.WriteInt(CurTime() + GM.CONFIG["kilelrhelp_step_duration"], 16)
+		net.WriteInt(CurTime() + GM.CONFIG["killerhelp_step_duration"], 16)
 	net.Send(GM.ROUND.Killer)
 end
 hook.Add("PlayerFootstep", "sls_killerhelp_PlayerFootstep", PlayerFootstep)

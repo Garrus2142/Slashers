@@ -99,7 +99,7 @@ GM.CONFIG["killerhelp_exit_entities"] = {
 -- Durée icones porte
 GM.CONFIG["killerhelp_door_duration"] = 3
 -- Durée trace de pas
-GM.CONFIG["kilelrhelp_step_duration"] = 30
+GM.CONFIG["killerhelp_step_duration"] = 30
 
 -- Shop
 GM.CONFIG["shop_website_shop_url"] = "http://www.utopia-games.net/?page=shop"
