@@ -1,3 +1,12 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Guilhem PECH
+-- @Date:   2017-07-26T13:54:42+02:00
+-- @Last Modified by:   Guilhem PECH
+-- @Last Modified time: 2017-07-26T15:16:04+02:00
+
+
+
 AddCSLuaFile()
 
 
@@ -81,7 +90,7 @@ end
 ObjectiveAlreadySet = false
 
 function objectivePanel(objTextn,objType)
-	if (!ObjectiveAlreadySet && objTextn=='') then 
+	if (!ObjectiveAlreadySet && objTextn=='') then
 		return
 	end
 -- Move down and the previous objective first

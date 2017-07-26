@@ -1,3 +1,12 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Guilhem PECH
+-- @Date:   2017-07-26T13:50:55+02:00
+-- @Last Modified by:   Guilhem PECH
+-- @Last Modified time: 2017-07-26T15:16:08+02:00
+
+
+
 local NOTICON_ICON = Material("icons/icon_exit.png")
 local noticonData = {}
 

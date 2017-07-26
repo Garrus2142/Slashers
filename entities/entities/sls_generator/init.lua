@@ -1,3 +1,12 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Guilhem PECH
+-- @Date:   2017-07-26T13:54:42+02:00
+-- @Last Modified by:   Guilhem PECH
+-- @Last Modified time: 2017-07-26T15:16:11+02:00
+
+
+
 local GM = GAMEMODE
 
 AddCSLuaFile( "cl_init.lua" )
@@ -36,7 +45,7 @@ function ENT:Initialize()
 	self:SetNWBool( 'activated', false)
 
 	local phys = self:GetPhysicsObject()
-	if phys:IsValid() then 
+	if phys:IsValid() then
 		phys:EnableMotion(false)
 	end
 end
