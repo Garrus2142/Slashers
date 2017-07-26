@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:50:55+02:00
 -- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-26 22:46:31
+-- @Last Modified time: 2017-07-26 22:59:21
 
 
 
@@ -25,7 +25,7 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 	PersoPANEL:Center()
 
 	local img_charac = vgui.Create( "DImage", PersoPANEL )
-	
+
 
 	img_charac:SetImage( ImageCharac )
 	img_charac:SetTall((1/1.5)*ScrH())
@@ -46,7 +46,7 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 			DescriptionBox:SetPaintBackground( false )
 
 
-			local TitleSpe = vgui.Create("DtitleLabel",DescriptionBox)
+			local TitleSpe = vgui.Create("DLabel",DescriptionBox)
 			TitleSpe:SetText("You are "..CharacName)
 			TitleSpe:SetFont( "Bohemian typewriter TITLE" )
 			TitleSpe:SetColor(Color(168,0,0,255))
@@ -55,7 +55,7 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 			TitleSpe:SetAutoStretchVertical( true )
 			TitleSpe:SetWidth((1/1.45)*ScrH())
 
-			local SpecificDescription = vgui.Create("DtitleLabel",DescriptionBox)
+			local SpecificDescription = vgui.Create("DLabel",DescriptionBox)
 			SpecificDescription:SetText(CharacText)
 			SpecificDescription:SetFont( "Bohemian typewriter SA" )
 			SpecificDescription:MoveBelow( TitleSpe, 5 )
@@ -65,7 +65,7 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 			SpecificDescription:SetAutoStretchVertical( true )
 
 
-			local TitleGen = vgui.Create("DtitleLabel",DescriptionBox)
+			local TitleGen = vgui.Create("DLabel",DescriptionBox)
 			--Title1:Dock(TOP)
 			TitleGen:SetText("You are " .. TeamName)
 			TitleGen:MoveBelow( SpecificDescription, 1/4*ScrH() )
@@ -76,7 +76,7 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 			TitleGen:SetAutoStretchVertical( true )
 			TitleGen:SetWidth((1/1.45)*ScrH())
 
-			local GenericDescription = vgui.Create("DtitleLabel",DescriptionBox)
+			local GenericDescription = vgui.Create("DLabel",DescriptionBox)
 			GenericDescription:SetText(TeamText)
 			GenericDescription:SetFont( "Bohemian typewriter SA" )
 			GenericDescription:MoveBelow( TitleGen, 5 )
@@ -167,7 +167,7 @@ function ShowTitle(Title,Second)
 	surface.PlaySound( "/slashers/effects/notif_2.wav" )
 	BackGroundPanel:Center()
 
-	local titleLabel = vgui.Create("DtitleLabel",BackGroundPanel)
+	local titleLabel = vgui.Create("DLabel",BackGroundPanel)
 	titleLabel:Center()
 	titleLabel:SetFont( "Friday13" )
 	titleLabel:Dock(FILL)
