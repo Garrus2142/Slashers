@@ -1,3 +1,10 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Garrus2142
+-- @Date:   2017-07-25 16:15:46
+-- @Last Modified by:   Garrus2142
+-- @Last Modified time: 2017-07-26 14:46:14
+
 -- resource.AddWorkshop("582366370") --[TFA] No More Room in Hell Melee SWEPs
 -- resource.AddWorkshop("582526207") --[TFA] No More Room in Hell Unique SWEPs
 -- resource.AddWorkshop("582493650") --[TFA] No More Room in Hell Firearm SWEPs

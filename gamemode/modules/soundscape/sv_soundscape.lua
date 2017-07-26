@@ -1,3 +1,10 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Garrus2142
+-- @Date:   2017-07-25 16:15:51
+-- @Last Modified by:   Garrus2142
+-- @Last Modified time: 2017-07-26 14:49:13
+
 local GM = GM or GAMEMODE
 
 -- Son à la mort d'un joueur

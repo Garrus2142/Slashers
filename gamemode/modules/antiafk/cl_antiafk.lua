@@ -1,3 +1,10 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Garrus2142
+-- @Date:   2017-07-26 01:30:34
+-- @Last Modified by:   Garrus2142
+-- @Last Modified time: 2017-07-26 14:48:13
+
 local scrW, scrH = ScrW(), ScrH()
 
 surface.CreateFont("Arial Big", {

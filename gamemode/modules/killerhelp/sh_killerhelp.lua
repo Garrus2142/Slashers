@@ -1,3 +1,10 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Garrus2142
+-- @Date:   2017-07-25 16:15:50
+-- @Last Modified by:   Garrus2142
+-- @Last Modified time: 2017-07-26 14:48:35
+
 hook.Add( "PlayerFootstep", "CDisableSoundFootStepsUnique", function( ply, pos, foot, sound, volume, filter )
 	if ply:GetColor().a == 0  then 
 		return true 
