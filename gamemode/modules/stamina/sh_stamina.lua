@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
 -- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-26T15:16:08+02:00
+-- @Last Modified time: 2017-07-26T18:03:35+02:00
 
 
 
@@ -110,7 +110,7 @@ if CLIENT then
 				else
 
 					ply.Stamina = math.Clamp(ply.Stamina - 2 * Change * ply.DecayMul,0,ply.MaxStamina)
-					ply.NextRegen = CurTime() + 4.25
+					ply.NextRegen = CurTime() + 2.25
 
 				end
 
@@ -131,7 +131,7 @@ if CLIENT then
 			if ply.NextRegen then
 				if ply.NextRegen < CurTime() then
 					if (cmd:KeyDown(IN_FORWARD) or cmd:KeyDown(IN_BACK) or cmd:KeyDown(IN_MOVELEFT) or cmd:KeyDown(IN_MOVERIGHT)) then
-						ply.Stamina = math.Clamp(ply.Stamina + ( Change * 0.3 * ply.RegenMul ) ,0,ply.MaxStamina)
+						ply.Stamina = math.Clamp(ply.Stamina + ( Change * 0.5 * ply.RegenMul ) ,0,ply.MaxStamina)
 					else
 						ply.Stamina = math.Clamp(ply.Stamina + ( Change * 1 * ply.RegenMul ) ,0,ply.MaxStamina)
 					end
@@ -148,8 +148,8 @@ if CLIENT then
 		if ply == GAMEMODE.ROUND.Killer then return end
 		ply.Stamina = GAMEMODE.CLASS.Survivors[ply.ClassID].stamina
 		ply.MaxStamina = GAMEMODE.CLASS.Survivors[ply.ClassID].stamina
-		ply.DecayMul = 1
-		ply.RegenMul = 1.5
+		ply.DecayMul = 0.8
+		ply.RegenMul = 1.8
 
 		ply.NextRegen = 0
 		ply.WaterTick = 0
