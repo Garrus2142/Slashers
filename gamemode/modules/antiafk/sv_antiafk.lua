@@ -21,7 +21,7 @@ local function Think()
 	local curtime = CurTime()
 
 	for _, v in ipairs(player.GetAll()) do
-		if !v:Alive() || v:IsBot() then 
+		if !v:Alive() || v:IsBot() then
 			v.afktime = curtime
 			continue
 		end
@@ -35,11 +35,7 @@ local function Think()
 
 		elseif curtime > v.afktime + AFK_KICK_DELAY then
 			-- Kick
-			//v:Kill("Vous avez été kick par le système d'anti AFK")
-			v:Kill()
-			v.afktime = CurTime()
-			v:SetNWInt("afk_warn", 0)
-			v:ChatPrint("[Anti-AFK] You're killed by anti-afk system !")
+			v:Kick("You're kicked by anti-afk system.")
 
 		elseif v:GetNWInt("afk_warn") == 0 && curtime > v.afktime + AFK_WARN_DELAY then
 			-- Warning
