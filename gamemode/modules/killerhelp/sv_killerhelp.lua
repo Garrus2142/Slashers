@@ -40,44 +40,44 @@ local function findVictim()
 	end
 end
 
-function FindNearestEntity( Name, pos, range )    
+function FindNearestEntity( Name, pos, range )
     local nearestEnt;
-	
-	for i, entity in ipairs( ents.FindByName( Name ) ) do        
+
+	for i, entity in ipairs( ents.FindByName( Name ) ) do
 		local distance = pos:Distance( entity:GetPos() )
-		if( distance <= range ) then            
+		if( distance <= range ) then
 			nearestEnt = entity
 			range = distance
-		end        
-	end 
+		end
+	end
 
-	return nearestEnt    
+	return nearestEnt
 end
 
 local function ExitAppear()
-	if !IsValid(GM.ROUND.EscapeButton) then return end 
-	
+	if !IsValid(GM.ROUND.EscapeButton) then return end
+
 	local ButtonPos
 	local EscapePos
-	
+
 	ButtonPos = GM.ROUND.EscapeButton:GetPos()
-	
+
 	-- door_exit*
 	-- brush_car_1
 	-- prop_car_*
-	
-	Escape = FindNearestEntity("door_exit*",ButtonPos,9000)
+
+	local Escape = FindNearestEntity("door_exit*",ButtonPos,9000)
 	if (Escape == nil ) then
 		Escape = FindNearestEntity("prop_car_*",ButtonPos,9000)
 		EscapePos = Escape:GetPos()
-		
+
 	else
 		EscapePos = Escape:GetPos()
-		
-	end 
 
-	AddExit(Vector(EscapePos))		
-	
+	end
+
+	AddExit(Vector(EscapePos))
+
 end
 hook.Add("sls_round_StartEscape", "sls_round_exitIcon", ExitAppear)
 
@@ -163,7 +163,7 @@ local function PostPlayerDeath(ply)
 				net.WriteVector(Vector(42, 42, 42))
 			net.Send(GM.ROUND.Killer)
 		end
-	end 
+	end
 end
 hook.Add("PostPlayerDeath", "sls_killerhelp_PostPlayerDeath", PostPlayerDeath)
 
@@ -197,25 +197,25 @@ local KNormal = Color(255,255,255,255)
 local InitialSpawnK = false
 --local keyPressed = false
 local KillerInView
-local LastKillerInView = 0 
+local LastKillerInView = 0
 
 local function CandisapearV2()
 	local curtime = CurTime()
-	
-	
+
+
 	if LastKillerInView > curtime - 0.5 then
 		KillerInView = true
 	else
 		KillerInView = false
 	end
-	
-end 
+
+end
 hook.Add("Think","UpdateKillerInView",CandisapearV2)
 
 
 function ResponsePlayerSeeKiller()
 	LastKillerInView = net.ReadFloat()
-end 
+end
 net.Receive("sls_survivorseekiller", ResponsePlayerSeeKiller)
 
 local function disapearKiller()
@@ -228,50 +228,50 @@ local function disapearKiller()
 			net.Send(KillerPly)
 			return
 	end
-	
-	if !KillerPly.InvisibleActive  and !KillerInView then 
-		
-		KillerPly:EmitSound( "slashers/effects/proxy_power_on.wav" )			
-		
+
+	if !KillerPly.InvisibleActive  and !KillerInView then
+
+		KillerPly:EmitSound( "slashers/effects/proxy_power_on.wav" )
+
 		timer.Simple( 0.6, function ()
-		
+
 			KillerPly:SetColor(KInvisible )
 			KillerPly:SetWalkSpeed( 400 )
 			KillerPly:SetRunSpeed(400)
 			KillerPly:StripWeapon(PlayerWeapon:GetClass())
-			
+
 			KillerPly:SetRenderMode(RENDERMODE_NONE )
 			KillerPly:DrawShadow( false )
 			KillerPly:AddEffects(EF_NOSHADOW)
 			KillerPly.InvisibleActive = true
 			KillerPly:CrosshairDisable()
-		
+
 			net.Start("sls_Invisible")
 					net.WriteBool(true)
 			net.Send(KillerPly)
 
 		end)
-		
-	elseif KillerPly.InvisibleActive and !KillerInView  then 
-		KillerPly:EmitSound( "slashers/effects/proxy_power_off.wav" ) 
-		
+
+	elseif KillerPly.InvisibleActive and !KillerInView  then
+		KillerPly:EmitSound( "slashers/effects/proxy_power_off.wav" )
+
 		timer.Simple( 1, function ()
 		--	KillerPly:AddKey( IN_ATTACK )
 		--	KillerPly:AddKey( IN_ZOOM )
 			KillerPly:Give(KillerPly.InitialWeapon)
 			KillerPly:SetColor( KNormal )
-			KillerPly:SetRunSpeed( 400 )				
+			KillerPly:SetRunSpeed( 400 )
 			KillerPly:DrawShadow( true )
 			KillerPly:SetWalkSpeed(GAMEMODE.CLASS.Killers[CLASS_KILL_PROXY].walkspeed)
 			KillerPly:SetRunSpeed(GAMEMODE.CLASS.Killers[CLASS_KILL_PROXY].walkspeed)
 			KillerPly:SetRenderMode(RENDERMODE_TRANSALPHA )
-		
+
 			KillerPly.InvisibleActive = false
-			
+
 			net.Start("sls_Invisible")
 					net.WriteBool(false)
 			net.Send(KillerPly)
-			
+
 		end)
 	end
 end
@@ -285,10 +285,10 @@ local function ResetVisibility()
 			v:SetWalkSpeed(GAMEMODE.CLASS.Killers[CLASS_KILL_PROXY].walkspeed)
 			v:SetRunSpeed(GAMEMODE.CLASS.Killers[CLASS_KILL_PROXY].walkspeed)
 			GM.ROUND.Killer.InvisibleActive = false
-		end 
+		end
 		v:SetRenderMode(RENDERMODE_TRANSALPHA )
 		v:SetColor(Color(255,255,255))
-	end 
+	end
 	if (!GAMEMODE.ROUND.Killer) then return end
 	net.Start("sls_Invisible")
 		net.WriteBool(false)
