@@ -30,7 +30,6 @@ local function ActivateOnPlayer(ent, self)
 	ent:SetRunSpeed(1)
 	ent:SetJumpPower(1)
 
-	self:GetPhysicsObject():EnableMotion(false) -- Freeze trap entity
 	self:EmitSound("slashers/effects/beartrap_trigger.wav") -- Play sound
 	self:SetSequence(self:LookupSequence("open")) -- Play animation
 
@@ -72,6 +71,9 @@ function ENT:Initialize()
 	local phys = self:GetPhysicsObject()
 	if (phys:IsValid()) then
 		phys:Wake()
+		timer.Simple(1, function()
+			self:GetPhysicsObject():EnableMotion(false) -- Freeze trap entity
+		end)
 	end
 end
 

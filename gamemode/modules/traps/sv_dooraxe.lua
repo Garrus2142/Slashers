@@ -8,7 +8,11 @@ if SERVER then
 		ent:Fire("Open")
 		ent.axe:GetPhysicsObject():EnableMotion(true)
 		ent.axe:GetPhysicsObject():ApplyForceCenter(Vector(0, 0, -1))
-		ply:Kill()
+		ply:Freeze(true)
+		timer.Simple(1, function()
+			ply:Kill()
+			ply:Freeze(false)
+		end)
 		ent.trapeddoor = 2
 	end )
 end
