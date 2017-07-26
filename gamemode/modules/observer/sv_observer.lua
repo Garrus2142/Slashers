@@ -114,18 +114,14 @@ end
 hook.Add("KeyPress", "sls_observer_KeyPress", KeyPress)
 
 local function PlayerInitialSpawn(ply)
-	/*timer.Simple(3, function()
-		if !ply:Alive() && GM.ROUND.Active then
+	timer.Simple(3, function()
+		if IsValid(ply) && !ply:Alive() && GM.ROUND.Active then
 			for _, v in ipairs(GM.ROUND.Survivors) do
 				if v:Alive() then
 					SpectatePlayer(ply, v)
 				end
 			end
 		end
-	end)*/
-	/*if GM.ROUND.Active then
-		ply:SetTeam(TEAM_SURVIVORS)
-		ply:SetObserverMode(OBS_MODE_CHASE)
-	end*/
+	end)
 end
 hook.Add("PlayerInitialSpawn", "sls_round_PlayerInitialSpawn", PlayerInitialSpawn)
