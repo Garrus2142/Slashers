@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
 -- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-26 22:32:08
+-- @Last Modified time: 2017-07-26 23:35:25
 
 
 
@@ -20,7 +20,7 @@ if CLIENT then
     SWEP.DrawAmmo = false
     SWEP.DrawCrosshair = false
 end
- 
+
 SWEP.Author = "DarylWinters"
 SWEP.Instructions = "Left click to lock / Right click to unlock"
 SWEP.Contact = ""
@@ -119,11 +119,13 @@ end
 
 function SWEP:AddKeys()
 	PlayerEnt = LocalPlayer()
-	GAMEMODE.CLASS.Survivors[PlayerEnt.ClassID].keysNumber = GAMEMODE.CLASS.Survivors[PlayerEnt.ClassID].keysNumber + 1
+  if GAMEMODE.CLASS.Survivors[PlayerEnt.ClassID].keysNumber >= 3 then return end
+  GAMEMODE.CLASS.Survivors[PlayerEnt.ClassID].keysNumber = GAMEMODE.CLASS.Survivors[PlayerEnt.ClassID].keysNumber + 1
 end
 
 function SWEP:RemoveKeys()
 	PlayerEnt = LocalPlayer()
+  if GAMEMODE.CLASS.Survivors[PlayerEnt.ClassID].keysNumber <= 0 then return end
 	GAMEMODE.CLASS.Survivors[PlayerEnt.ClassID].keysNumber = GAMEMODE.CLASS.Survivors[PlayerEnt.ClassID].keysNumber - 1
 
 
