@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:50:55+02:00
 -- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-27 00:11:34
+-- @Last Modified time: 2017-07-27 00:13:06
 
 
 
@@ -27,8 +27,8 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 	local img_charac = vgui.Create( "DImage", PersoPANEL )
 
 	if !ImageCharac then
-		ImageCharac = "/characteres/"..string.lower(GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].name)..".png"
-	end 
+		ImageCharac = "/characteres/default.png"
+	end
 	img_charac:SetImage( ImageCharac )
 	img_charac:SetTall((1/1.5)*ScrH())
 	img_charac:SetWide((1/1.5)*ScrH()/1080*987)
