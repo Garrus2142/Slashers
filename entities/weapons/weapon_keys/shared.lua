@@ -1,3 +1,12 @@
+-- Utopia Games - Slashers
+--
+-- @Author: Guilhem PECH
+-- @Date:   2017-07-26T13:54:42+02:00
+-- @Last Modified by:   Guilhem PECH
+-- @Last Modified time: 2017-07-26 22:32:08
+
+
+
 if SERVER then
     AddCSLuaFile("shared.lua")
     util.AddNetworkString("Close_time")
@@ -11,9 +20,9 @@ if CLIENT then
     SWEP.DrawAmmo = false
     SWEP.DrawCrosshair = false
 end
-
+ 
 SWEP.Author = "DarylWinters"
-SWEP.Instructions = ""
+SWEP.Instructions = "Left click to lock / Right click to unlock"
 SWEP.Contact = ""
 SWEP.Purpose = ""
 SWEP.ViewModelFOV = 62
@@ -40,7 +49,7 @@ SWEP.CloseTime = 1
 function SWEP:Initialize()
     self:SetWeaponHoldType("normal")
 	self.KeysLeft = 3
-	
+
 end
 
 if CLIENT then
@@ -52,7 +61,7 @@ if CLIENT then
         wep.CloseTime = time
         wep.EndPick = CurTime() + time
     end)
-	
+
 end
 
 
@@ -64,13 +73,13 @@ function SWEP:PrimaryAttack()
     if self.IsCloseing then return end
     local trace = self.Owner:GetEyeTrace()
     local e = trace.Entity
-    if self.KeysLeft == 0 then return end 
+    if self.KeysLeft == 0 then return end
 	if not IsValid(e) or trace.HitPos:Distance(self.Owner:GetShootPos()) > 100 or trace.Entity:GetClass() ~= "prop_door_rotating"  then return end
-    
+
 	if e:GetModel() ~= "models/props_doors/doormain_rural01_small.mdl" and e:GetModel() ~= "models/props_doors/doormainmetal01.mdl" then return end
-	
+
 	if trace.Entity:GetNWBool("LockedByUser" , false ) then return end
-	
+
     if SERVER then
         self.IsCloseing = true
         self.StartPick = CurTime()
@@ -83,14 +92,14 @@ function SWEP:PrimaryAttack()
     end
 
     self:SetWeaponHoldType("pistol")
-	
+
     if SERVER then
         timer.Create("CloseSounds", 0.1, self.CloseTime, function()
             if not IsValid(self) then return end
             local snd = {1, 3, 4}
             self:EmitSound("weapons/357/357_reload" .. tostring(snd[math.random(1, #snd)]) .. ".wav", 50, 100)
         end)
-	end 
+	end
 end
 
 function SWEP:Holster()
@@ -109,43 +118,43 @@ end
 
 
 function SWEP:AddKeys()
-	PlayerEnt = LocalPlayer()	
+	PlayerEnt = LocalPlayer()
 	GAMEMODE.CLASS.Survivors[PlayerEnt.ClassID].keysNumber = GAMEMODE.CLASS.Survivors[PlayerEnt.ClassID].keysNumber + 1
-end 
+end
 
 function SWEP:RemoveKeys()
-	PlayerEnt = LocalPlayer()	
+	PlayerEnt = LocalPlayer()
 	GAMEMODE.CLASS.Survivors[PlayerEnt.ClassID].keysNumber = GAMEMODE.CLASS.Survivors[PlayerEnt.ClassID].keysNumber - 1
-	
-	
-	
-end 
+
+
+
+end
 
 function SWEP:Succeed()
     self.IsCloseing = false
     self:SetWeaponHoldType("normal")
     local trace = self.Owner:GetEyeTrace()
-	
-	
+
+
     if IsValid(trace.Entity) and trace.Entity.Fire then
-        if  LockAction == true then 
+        if  LockAction == true then
 			trace.Entity:Fire("Lock", "", .1)
 			trace.Entity:Fire("setanimation", "Lock", .1)
 			trace.Entity:Fire("Close", "", .0)
 			trace.Entity:SetNWBool( "LockedByUser", true )
-			
+
 			self.KeysLeft = self.KeysLeft - 1
 			-- GAMEMODE.CLASS.Survivors[self.Owner:GetNWInt("ClassID")].keysNumber = self.KeysLeft
 			self:CallOnClient( "RemoveKeys")
-		else 
+		else
 			trace.Entity:Fire("Unlock", "", .0)
 			trace.Entity:Fire("setanimation", "Unlock", .0)
 			trace.Entity:SetNWBool( "LockedByUser", false )
-			
+
 			self.KeysLeft = self.KeysLeft + 1
-			-- GAMEMODE.CLASS.Survivors[self.Owner:GetNWInt("ClassID")].keysNumber = self.KeysLeft 
-			self:CallOnClient( "AddKeys")	
-			
+			-- GAMEMODE.CLASS.Survivors[self.Owner:GetNWInt("ClassID")].keysNumber = self.KeysLeft
+			self:CallOnClient( "AddKeys")
+
 		end
     end
 
@@ -172,7 +181,7 @@ function SWEP:Fail()
 end
 
 function SWEP:Think()
-     
+
 	if self.IsCloseing and self.EndPick then
         local trace = self.Owner:GetEyeTrace()
 
@@ -185,7 +194,7 @@ function SWEP:Think()
         end
 
         if self.EndPick <= CurTime() then
-           
+
 			self:Succeed()
         end
     end
@@ -203,7 +212,7 @@ function SWEP:DrawHUD()
         local BarWidth = status * (width - 16)
         local cornerRadius = math.Min(8, BarWidth / 3 * 2 - BarWidth / 3 * 2 % 2)
         draw.RoundedBox(cornerRadius, x + 8, y + 8, BarWidth, height - 16, Color(255 - (status * 255), 0 + (status * 255), 0, 255))
-        
+
     end
 end
 
@@ -219,7 +228,7 @@ function SWEP:SecondaryAttack()
     local e = trace.Entity
 	if e:GetModel() ~= "models/props_doors/doormain_rural01_small.mdl" and e:GetModel() ~= "models/props_doors/doormainmetal01.mdl" then return end
     if not IsValid(e) or trace.HitPos:Distance(self.Owner:GetShootPos()) > 100 or trace.Entity:GetClass() ~= "prop_door_rotating"  then return end
-    if not trace.Entity:GetNWBool("LockedByUser" , false )then 
+    if not trace.Entity:GetNWBool("LockedByUser" , false )then
 		if self.KeysLeft >= 3 then
 			self:PrimaryAttack()
 		else
@@ -235,10 +244,10 @@ function SWEP:SecondaryAttack()
         net.WriteEntity(self)
         net.WriteUInt(self.CloseTime, 5)
         net.Send(self.Owner)
-        self.EndPick = CurTime() + self.CloseTime 
+        self.EndPick = CurTime() + self.CloseTime
 
 	end
-	
+
     self:SetWeaponHoldType("pistol")
 
     if SERVER then
@@ -247,5 +256,5 @@ function SWEP:SecondaryAttack()
             local snd = {1, 3, 4}
             self:EmitSound("weapons/357/357_reload" .. tostring(snd[math.random(1, #snd)]) .. ".wav", 50, 100)
         end)
-	end 
+	end
 end

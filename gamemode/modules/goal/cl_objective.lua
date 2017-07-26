@@ -3,19 +3,13 @@
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
 -- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-26T15:16:04+02:00
+-- @Last Modified time: 2017-07-26T22:29:36+02:00
 
 
 
 AddCSLuaFile()
 
 
-
-concommand.Add( "Objective", function(a,b,c,argStr)
-	objectivePanel(argStr,'question')
-	end )
-
----
 net.Receive( "objectiveSlasher", function()
 	 local NotifText = net.ReadString()
 	 local NotifType = net.ReadString()
@@ -38,10 +32,6 @@ net.Receive( "modifyObjectiveSlasher", function()
 	end
 end )
 
-
-local function inQuad( fraction, beginning, change )
-	return change * ( fraction ^ 2 ) + beginning
-end
 
 local EntityAlreadyActivited = false
 
@@ -161,10 +151,6 @@ end
 
 	-- Animation coming
 	OBJPanel:MoveTo( OBJPanel.x, ToThisPosUp, 1.5, 0) -- Slide up
-	-- OBJPanel:MoveTo(OBJPanel.x,ToThisPosDown,0.7,4,-1)   -- Slide Down
-
-
 		surface.PlaySound( "slashers/effects/objective_complete.wav" )
-
 
 end

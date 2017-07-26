@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
 -- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-26T15:16:11+02:00
+-- @Last Modified time: 2017-07-26T22:25:56+02:00
 
 
 
@@ -13,7 +13,7 @@ AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 include('shared.lua')
 
--- ambient/intro/logosfx.wav
+
 sound.Add( {
 	name = "engine_sound",
 	channel = CHAN_AUTO,
@@ -21,7 +21,7 @@ sound.Add( {
 	level = 75,
 	pitch = { 95, 110 },
 	sound = "vehicles/Crane/crane_startengine1.wav"
-	//ambient\water\leak_1.wav
+
 } )
 sound.Add( {
 	name = "engine_fueling",
@@ -35,7 +35,7 @@ sound.Add( {
 local engine_fuelingSound = Sound("ambient/water/leak_1.wav")
 
 function ENT:Initialize()
-	-- self.Entity:SetCollisionGroup( COLLISION_GROUP_WEAPON )
+	
 	self.Active = false
 	self:SetModel("models/props_vehicles/generatortrailer01.mdl")
 	self:PhysicsInit(SOLID_NONE)
