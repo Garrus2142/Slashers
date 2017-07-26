@@ -5,6 +5,8 @@ SWEP.SlotPos = 2
 
 SWEP.DrawAmmo = false
 SWEP.DrawCrosshair = false
+
+SWEP.Instructions = "Left click to place them, Reload to take back the first hook if you lost it"
  
 language.Add("Undone_alertropes","Undone Alert Ropes")
 
