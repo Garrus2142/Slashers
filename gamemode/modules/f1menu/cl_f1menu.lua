@@ -139,14 +139,14 @@ net.Receive( "sls_f1_menu", function ()
 
 		TeamName = "a Survivor"
 		TeamText = "Each survivor has a special perk. Your goal is to find jerrycans (number varying with the amount of player) to fill the generator so you can turn on the radio then call the police for help. Each element you have to find has many possible spawn points and spawns randomly on the map. The teamplay and a moderate use of your flashlight are the key of surviving."
-		ImageCharac = "/personnages/"..string.lower(GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].name)..".png"
+		ImageCharac = "/characteres/"..string.lower(GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].name)..".png"
 		CharacName = GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].dispname
 		CharacText = GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].description
 
 	elseif LocalPlayer():Team() == 1 then
 		TeamName = "the Killer"
 		TeamText = "You are a killer from a slasher movie and you are immortal. Your goal is to kill every survivors before they can escape. You are randomly given one of the following weapons ; the axe, the machete or the chainsaw (which turns on by pushing R) To give a harder hit, you can hold left click and release. You can hear survivors' heartbeat when they're not moving, just follow the sound and you'll find them."
-		ImageCharac = "/personnages/"..string.lower(GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].name)..".png"
+		ImageCharac = "/characteres/"..string.lower(GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].name)..".png"
 		CharacName = GM.CLASS.Killers[LocalPlayer().ClassID].name
 		CharacText = GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].description
 	end

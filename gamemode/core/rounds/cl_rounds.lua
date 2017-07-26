@@ -42,29 +42,29 @@ hook.Add("HUDPaint", "sls_round_HUDPaint", HUDPaint)
 
 local function PostStart()
 	ShowTitle("SLASHERS",4)
-	timer.Simple(4, function() 
+	timer.Simple(4, function()
 
 		local TeamName
 		local TeamText
 		local ImageCharac
-		local CharacName 
+		local CharacName
 		local CharacText
 		if LocalPlayer():Team() == 1001 then return end
 		if LocalPlayer():Team() == TEAM_SURVIVORS then
-			
+
 			TeamName = "a Survivor"
 			TeamText = "Each survivor has a special perk. Your goal is to find jerrycans (number varying with the amount of player) to fill the generator so you can turn on the radio then call the police for help. Each element you have to find has many possible spawn points and spawns randomly on the map. The teamplay and a moderate use of your flashlight are the key of surviving."
-			ImageCharac = "/personages/"..string.lower(GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].name)..".png"
+			ImageCharac = "/characteres/"..string.lower(GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].name)..".png"
 			CharacName = GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].dispname
 			CharacText = GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].description
 		elseif LocalPlayer():Team() == TEAM_KILLER then
 			TeamName = "the Killer"
 			TeamText = "You are a killer from a slasher movie and you are immortal. Your goal is to kill every survivors before they can escape. You are randomly given one of the following weapons ; the axe, the machete or the chainsaw (which turns on by pushing R) To give a harder hit, you can hold left click and release. You can hear survivors' heartbeat when they're not moving, just follow the sound and you'll find them."
-			ImageCharac = "/personages/"..string.lower(GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].name)..".png"
+			ImageCharac = "/characteres/"..string.lower(GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].name)..".png"
 			CharacName = GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].name
 			CharacText = GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].description
 		end
-	
+
 		ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,GM.CONFIG["round_freeze_start"]-3)
 	end)
 end
