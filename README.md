@@ -1,4 +1,7 @@
-![Slashers](http://utopia-games.net/medias/slashers/logo.png)
+<center>![Slashers](http://utopia-games.net/medias/slashers/logo.png)</center>
+
+
+![How to play](http://utopia-games.net/medias/slashers/game.png)
 
 #### Welcome to Slashers, the ultimate horror movie gamemode by Utopia-Games.
 
@@ -34,11 +37,11 @@ Each character is different and has a special ability that will help him survive
 
 There are actually five maps working with the gamemode, each one has its own killer associated :
 
-* *slash\_highschool (Ghostface map)* : takes place in an american highschool at night, has 4 exits.
-* *slash\_summercamp (Jason map)* : takes place in a summer camp in the middle of the woods at night, has 2 exits.
-* *slash\_selvage (Michael Myers map)* : takes place in small suburbs at Halloween night, has 2 exits.
-* *slash\_subway (Proxy map)* : takes place in an abandoned train station at night, has 3 exits.
-* *slash\_lodge (Intruder map)* : takes place in a mountain lodge at a snowy night, has 2 exits.
+* [slash_highschool (Ghostface map)](http://steamcommunity.com/sharedfiles/filedetails/?id=787938932) : takes place in an american highschool at night, has 4 exits.
+* [slash_summercamp (Jason map)](http://steamcommunity.com/sharedfiles/filedetails/?id=787938932) : takes place in a summer camp in the middle of the woods at night, has 2 exits.
+* [slash_selvage (Michael Myers map)](http://steamcommunity.com/sharedfiles/filedetails/?id=798554357) : takes place in small suburbs at Halloween night, has 2 exits.
+* [slash\_subway (Proxy map)](http://steamcommunity.com/sharedfiles/filedetails/?id=858049276) : takes place in an abandoned train station at night, has 3 exits.
+* [slash\_lodge (Intruder map)](http://steamcommunity.com/sharedfiles/filedetails/?id=1091061063) : takes place in a mountain lodge at a snowy night, has 2 exits.
 
 ![What's Next](http://utopia-games.net/medias/slashers/next.png)
 
@@ -57,7 +60,7 @@ As you can see, we have MANY ideas for the future maps and killers, but you can 
 
 ![Important](http://utopia-games.net/medias/slashers/important.png)
 
-* 10 players is a MAXIMUM, you can't open a server with more slots or you will broke the gamemode.
+* 10 players is a MAXIMUM, you can't open a server with more slots or you will break the gamemode.
 * You can ONLY play on the official maps, if you want to convert an existing map for the gamemode, contact Steinman and leave a comment on his profile.
 * The gamemode was made with the goal of being as scary as possible, adding addons like Pointshop could totally break the immersion and atmosphere.
 * Want to make a custom map for the gamemode ? Feel free to contact Steinman by leaving a comment on his profile.
