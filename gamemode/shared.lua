@@ -33,17 +33,13 @@ team.SetUp(TEAM_KILLER, "Murderer", Color(255, 0, 0), false);
 team.SetUp(TEAM_SURVIVORS, "Survivors", Color(0, 0, 255), false);
 
 -- Module Loader
-local disabledModules = {
-	["observer"] = false,
-	["breakdoors"] = false,
-}
 function LoadModules()
 	local modulesPath = "slashers/gamemode/modules"
 	local _, directories = file.Find(modulesPath .. "/*", "LUA")
 
 	if SERVER then print("--- MODULES ---") end
 	for _, mod in ipairs(directories) do
-		if disabledModules[mod] then continue end
+		if GM.CONFIG["disabled_modules"][mod] then continue end
 		files = file.Find(modulesPath .. "/" .. mod .. "/*.lua", "LUA")
 		if #files > 0 then
 			if SERVER then print("LOADING " .. mod) end

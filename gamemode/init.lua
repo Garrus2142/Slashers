@@ -6,8 +6,8 @@
 -- @Last Modified time: 2017-07-26 14:49:46
 
 DEFINE_BASECLASS( "gamemode_base" )
-include("shared.lua")
 include("config.lua")
+include("shared.lua")
 include("libs/zones.lua")
 include("core/_includes.lua")
 AddCSLuaFile("cl_init.lua")

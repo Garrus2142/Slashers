@@ -8,6 +8,11 @@
 local GM = GM or GAMEMODE
 GM.CONFIG = {}
 
+
+GM.CONFIG["disabled_modules"] = {
+	-- ["goal"] = true, -- set true to disable module
+}
+
 -- Classe du tueur
 GM.CONFIG["killer_class_map"] = {
 	["slash_highschool"] = CLASS_KILL_GHOSTFACE,
