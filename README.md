@@ -37,7 +37,7 @@ Each character is different and has a special ability that will help him survive
 
 There are actually five maps working with the gamemode, each one has its own killer associated :
 
-* [slash_highschool (Ghostface map)](http://steamcommunity.com/sharedfiles/filedetails/?id=787938932) : takes place in an american highschool at night, has 4 exits.
+* [slash_highschool (Ghostface map)](http://steamcommunity.com/sharedfiles/filedetails/?id=787790694) : takes place in an american highschool at night, has 4 exits.
 * [slash_summercamp (Jason map)](http://steamcommunity.com/sharedfiles/filedetails/?id=787938932) : takes place in a summer camp in the middle of the woods at night, has 2 exits.
 * [slash_selvage (Michael Myers map)](http://steamcommunity.com/sharedfiles/filedetails/?id=798554357) : takes place in small suburbs at Halloween night, has 2 exits.
 * [slash\_subway (Proxy map)](http://steamcommunity.com/sharedfiles/filedetails/?id=858049276) : takes place in an abandoned train station at night, has 3 exits.
