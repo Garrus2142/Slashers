@@ -74,10 +74,10 @@ Join the Steam group to get the latest news :
 http://steamcommunity.com/groups/gslashers
 
 Play now on the official servers :
-* *Server #1* : utopia-games.net:27075
-* *Server #2* : utopia-games.net:27107
-* *Server #3* : utopia-games.net:27109
-* *Server #4* : utopia-games.net:27110
+* [Server #1](steam://connect/utopia-games.net:27075) : utopia-games.net:27075
+* [Server #2](steam://connect/utopia-games.net:27107) : utopia-games.net:27107
+* [Server #3](steam://connect/utopia-games.net:27109) : utopia-games.net:27109
+* [Server #4](steam://connect/utopia-games.net:27110) : utopia-games.net:27110
 
 If you like this gamemode, feel free to join the Utopia-Games Steam group to get the latest news about our other and upcoming projects :
 http://steamcommunity.com/groups/utopia-games
