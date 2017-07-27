@@ -1,4 +1,4 @@
-<center>![Slashers](http://utopia-games.net/medias/slashers/logo.png)</center>
+![Slashers](http://utopia-games.net/medias/slashers/logo.png)
 
 
 ![How to play](http://utopia-games.net/medias/slashers/game.png)
