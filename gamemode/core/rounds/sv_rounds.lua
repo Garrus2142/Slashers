@@ -50,7 +50,7 @@ function GM.ROUND:Start(forceKiller)
 			playersCount = playersCount + 1
 		end
 	end
-	if playersCount < GM.CONFIG["round_min_player"] then 
+	if playersCount < GM.CONFIG["round_min_player"] then
 		GM.ROUND.WaitingPlayers = true
 		net.Start("sls_round_WaitingPlayers")
 			net.WriteBool(true)
@@ -72,11 +72,14 @@ function GM.ROUND:Start(forceKiller)
 	else
 		GM.ROUND.Killer = GM.ROUND:ChooseKiller()
 	end
-	
+
+	local i = 0
 	for _, v in ipairs(player.GetAll()) do
+		if i > 10 then break end
 		if GM.ROUND.Killer != v then
 			table.insert(GM.ROUND.Survivors, v)
 		end
+		i = i + 1
 	end
 	GM.ROUND:ViewInitCam(false)
 
