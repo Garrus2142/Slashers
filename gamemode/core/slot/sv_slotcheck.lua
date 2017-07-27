@@ -8,7 +8,7 @@
 
 -- The gamemode CANNOT handle more than 10 players !
 hook.Add( "CheckPassword", "max_players", function(  steamID64, ipAddress, svPassword, clPassword, name  )
-	if player.GetCount() >= 10 then
+	if #player.GetAll() >= 10 then
     return false, "Server is full."
   end
 end )
