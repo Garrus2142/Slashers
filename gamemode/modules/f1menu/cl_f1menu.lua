@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:50:55+02:00
 -- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-27 01:39:07
+-- @Last Modified time: 2017-07-27 22:22:46
 
 
 
@@ -11,6 +11,11 @@ local active
 local GM = GAMEMODE or GM
 
 function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Time,isOpen,active)
+
+	if TeamName == nil or TeamText == nil or CharacName == nil or ImageCharac == nil then
+		return
+	end 
+
 	active = true
 	local BackGroundPanel = vgui.Create( "DPanel" )
 	BackGroundPanel:SetSize( ScrW(),ScrH() )
