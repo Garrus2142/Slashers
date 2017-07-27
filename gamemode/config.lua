@@ -66,14 +66,7 @@ GM.CONFIG["round_start_music"] = {
 	["slash_subway"] = "slashers_start_game_proxy.wav",
 	["slash_lodge"] = "slasher_start_game_intruder.wav"
 }
--- Message de start
-GM.CONFIG["round_start_msg"] = {
-	["slash_highschool"] = "31/10/1982 - Black Lake High-School",
-	["slash_summercamp"] = "13/08/1982 - Black Lake Summer Camp",
-	["slash_selvage"] = "31/10/1982 - Westfield Suburbs",
-	["slash_subway"] = "21/02/1982 - Abandoned Subway",
-	["slash_lodge"] = "??? DARYL EST PD ???",
-}
+
 -- Durée d'attente avant l'arrivée de la police base
 GM.CONFIG["round_duration_waitingpolice_base"] = 32.5
 -- Durée ajouté par survivant pour l'arrivée de la police (secondes)
@@ -105,6 +98,3 @@ GM.CONFIG["killerhelp_exit_entities"] = {
 GM.CONFIG["killerhelp_door_duration"] = 3
 -- Durée trace de pas
 GM.CONFIG["killerhelp_step_duration"] = 30
-
--- Shop
-GM.CONFIG["shop_website_shop_url"] = "http://www.utopia-games.net/?page=shop"
