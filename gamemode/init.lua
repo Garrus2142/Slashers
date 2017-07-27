@@ -3,17 +3,19 @@
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:48
 -- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-07-26 14:49:46
+-- @Last Modified time: 2017-07-27 17:09:45
 
 DEFINE_BASECLASS( "gamemode_base" )
-include("config.lua")
 include("shared.lua")
+include("config.lua")
 include("libs/zones.lua")
 include("core/_includes.lua")
+include("modulesloader.lua")
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 AddCSLuaFile("config.lua")
 AddCSLuaFile("core/_includes.lua")
+AddCSLuaFile("modulesloader.lua")
 
 GAME_LUM = "g"
 
@@ -39,5 +41,3 @@ end
 function GM:GetFallDamage( ply, speed )
 	return ( speed / 8 )
 end
-
-LoadModules()
