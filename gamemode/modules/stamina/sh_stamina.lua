@@ -2,8 +2,8 @@
 --
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
--- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-27 11:52:08
+-- @Last Modified by:   Garrus2142
+-- @Last Modified time: 2017-07-27 18:08:23
 
 
 
@@ -214,7 +214,7 @@ if CLIENT then
 		local ply = LocalPlayer()
 		local bwide
 		if ply:Team() != TEAM_SURVIVORS || !ply:Alive() then return end
-		if ply.ClassID == nil || ply.ClassID == CLASS_SURV_SPORTS then return end
+		--if ply.ClassID == nil || ply.ClassID == CLASS_SURV_SPORTS then return end
 		if !ply.ClassID || !GAMEMODE.ROUND.Active || !GAMEMODE.CLASS.Survivors[ply.ClassID].stamina then return end
 		bwide = 256 * ply.Stamina / GAMEMODE.CLASS.Survivors[ply.ClassID].stamina
 		if ply.Stamina == GAMEMODE.CLASS.Survivors[ply.ClassID].stamina && alpha_stamina > 0 then

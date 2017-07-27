@@ -3,7 +3,7 @@
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:50
 -- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-07-26 14:48:43
+-- @Last Modified time: 2017-07-27 18:08:05
 
 local GM = GM or GAMEMODE
 
@@ -113,16 +113,18 @@ local function KeyPress( ply, key )
 end
 hook.Add("KeyPress", "sls_observer_KeyPress", KeyPress)
 
--- Doesn't work today
-/*local function PlayerInitialSpawn(ply)
-	timer.Simple(3, function()
+local function PlayerInitialSpawn(ply)
+	timer.Simple(15, function()
 		if IsValid(ply) && !ply:Alive() && GM.ROUND.Active then
 			for _, v in ipairs(GM.ROUND.Survivors) do
 				if v:Alive() then
+					net.Start("sls_round_Camera")
+						net.WriteBool(false)
+					net.Broadcast()
 					SpectatePlayer(ply, v)
 				end
 			end
 		end
 	end)
 end
-hook.Add("PlayerInitialSpawn", "sls_round_PlayerInitialSpawn", PlayerInitialSpawn)*/
+hook.Add("PlayerInitialSpawn", "sls_round_PlayerInitialSpawn", PlayerInitialSpawn)
