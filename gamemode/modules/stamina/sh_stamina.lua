@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
 -- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-26 23:47:01
+-- @Last Modified time: 2017-07-27 11:52:08
 
 
 
@@ -54,7 +54,7 @@ if CLIENT then
 
 		local ply = LocalPlayer()
 		if !GAMEMODE.ROUND.Active || !IsValid(GAMEMODE.ROUND.Killer) || !GAMEMODE.ROUND.Survivors  then return end
-		if table.HasValue(GAMEMODE.ROUND.Survivors, ply ) and GAMEMODE.CLASS.Survivors[ply.ClassID].name ~= "Sports" then
+		if table.HasValue(GAMEMODE.ROUND.Survivors, ply )  then
 
 			if 	ply.Stamina >= 10 then
 				net.Start("stopSound")
@@ -131,9 +131,17 @@ if CLIENT then
 			if ply.NextRegen then
 				if ply.NextRegen < CurTime() then
 					if (cmd:KeyDown(IN_FORWARD) or cmd:KeyDown(IN_BACK) or cmd:KeyDown(IN_MOVELEFT) or cmd:KeyDown(IN_MOVERIGHT)) then
-						ply.Stamina = math.Clamp(ply.Stamina + ( Change * 0.5 * ply.RegenMul ) ,0,ply.MaxStamina)
+							if GAMEMODE.CLASS.Survivors[ply.ClassID].name ~= "Sports" then
+								ply.Stamina = math.Clamp(ply.Stamina + ( Change * 0.5 * ply.RegenMul ) ,0,ply.MaxStamina)
+							else
+								ply.Stamina = math.Clamp(ply.Stamina + ( Change * 1.5 * ply.RegenMul ) ,0,ply.MaxStamina)
+							end
 					else
-						ply.Stamina = math.Clamp(ply.Stamina + ( Change * 1 * ply.RegenMul ) ,0,ply.MaxStamina)
+						if GAMEMODE.CLASS.Survivors[ply.ClassID].name ~= "Sports" then
+							ply.Stamina = math.Clamp(ply.Stamina + ( Change * 1 * ply.RegenMul ) ,0,ply.MaxStamina)
+						else
+							ply.Stamina = math.Clamp(ply.Stamina + ( Change * 2 * ply.RegenMul ) ,0,ply.MaxStamina)
+						end
 					end
 				end
 			end
@@ -153,7 +161,7 @@ if CLIENT then
 
 		ply.NextRegen = 0
 		ply.WaterTick = 0
-	end 
+	end
 	hook.Add("sls_round_PostStart", "sls_stamina_PostStart", ResetStamina)
 
 	-- A function to draw a certain part of a texture
