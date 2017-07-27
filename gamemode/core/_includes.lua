@@ -2,8 +2,8 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:45
--- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-07-26 14:46:05
+-- @Last Modified by:   Guilhem PECH
+-- @Last Modified time: 2017-07-27 13:32:59
 
 if SERVER then
 	-- Fonts
@@ -28,9 +28,14 @@ if SERVER then
 	include("rounds/sh_rounds.lua")
 	include("rounds/sv_rounds.lua")
 	include("rounds/sv_choosekiller.lua")
+
+
 	AddCSLuaFile("rounds/sh_rounds.lua")
 	AddCSLuaFile("rounds/cl_network.lua")
 	AddCSLuaFile("rounds/cl_rounds.lua")
+
+	-- Slot CheckPassword
+	include ("slot/sv_slotcheck.lua")
 else
 	-- Fonts
 	include("fonts.lua")
