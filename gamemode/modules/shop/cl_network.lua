@@ -11,6 +11,6 @@ end
 hook.Add("sls_round_OnTeamWin", "sls_shop_OnTeamWin", OnTeamWin)
 
 local function OpenShop()
-	gui.OpenURL(GAMEMODE.CONFIG["shop_website_shop_url"])
+	gui.OpenURL("http://www.utopia-games.net/?page=shop")
 end
 net.Receive("shop_OpenShop", OpenShop)

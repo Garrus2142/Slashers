@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:50:55+02:00
 -- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-27 00:13:06
+-- @Last Modified time: 2017-07-27 01:39:07
 
 
 
@@ -132,10 +132,10 @@ end
 
 net.Receive( "sls_f1_menu", function ()
 	active = false
-	local TeamName
-	local TeamText
-	local ImageCharac
-	local CharacName
+	local TeamName = " "
+	local TeamText = " "
+	local ImageCharac =  "/characteres/default.png"
+	local CharacName = " "
 
 	if LocalPlayer():Team() == 2 then
 
