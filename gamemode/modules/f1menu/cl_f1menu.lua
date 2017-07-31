@@ -3,11 +3,8 @@
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:50:55+02:00
 -- @Last Modified by:   Guilhem PECH
-<<<<<<< HEAD
 -- @Last Modified time: 2017-07-26 22:59:21
-=======
--- @Last Modified time: 2017-07-27 22:22:46
->>>>>>> dev
+
 
 
 
@@ -18,7 +15,7 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 
 	if TeamName == nil or TeamText == nil or CharacName == nil or ImageCharac == nil then
 		return
-	end 
+	end
 
 	active = true
 	local BackGroundPanel = vgui.Create( "DPanel" )
@@ -34,13 +31,10 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 	PersoPANEL:Center()
 
 	local img_charac = vgui.Create( "DImage", PersoPANEL )
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
 
 	if !ImageCharac then
 		ImageCharac = "/characteres/default.png"
+		BackGroundPanel:SetTerm(1)
 	end
 	img_charac:SetImage( ImageCharac )
 	img_charac:SetTall((1/1.5)*ScrH())
