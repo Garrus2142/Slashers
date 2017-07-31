@@ -2,8 +2,8 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:46
--- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-07-26 14:45:22
+-- @Last Modified by:   Guilhem PECH
+-- @Last Modified time: 2017-07-27 11:49:54
 
 local GM = GM or GAMEMODE
 
@@ -18,7 +18,7 @@ GM.CLASS.Survivors[CLASS_SURV_SPORTS].description = "You have unlimited stamina 
 GM.CLASS.Survivors[CLASS_SURV_SPORTS].walkspeed = 150
 GM.CLASS.Survivors[CLASS_SURV_SPORTS].runspeed = 240
 GM.CLASS.Survivors[CLASS_SURV_SPORTS].life = 120
-GM.CLASS.Survivors[CLASS_SURV_SPORTS].stamina = 0
+GM.CLASS.Survivors[CLASS_SURV_SPORTS].stamina = 210
 GM.CLASS.Survivors[CLASS_SURV_SPORTS].model = "models/steinman/slashers/sport_pm.mdl"
 GM.CLASS.Survivors[CLASS_SURV_SPORTS].icon = Material("icons/icon_sportif.png")
 GM.CLASS.Survivors[CLASS_SURV_SPORTS].die_sound = "slashers/effects/scream_man_1.wav"

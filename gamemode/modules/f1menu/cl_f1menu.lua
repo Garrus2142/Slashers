@@ -3,7 +3,11 @@
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:50:55+02:00
 -- @Last Modified by:   Guilhem PECH
+<<<<<<< HEAD
 -- @Last Modified time: 2017-07-26 22:59:21
+=======
+-- @Last Modified time: 2017-07-27 22:22:46
+>>>>>>> dev
 
 
 
@@ -11,6 +15,11 @@ local active
 local GM = GAMEMODE or GM
 
 function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Time,isOpen,active)
+
+	if TeamName == nil or TeamText == nil or CharacName == nil or ImageCharac == nil then
+		return
+	end 
+
 	active = true
 	local BackGroundPanel = vgui.Create( "DPanel" )
 	BackGroundPanel:SetSize( ScrW(),ScrH() )
@@ -25,8 +34,12 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 	PersoPANEL:Center()
 
 	local img_charac = vgui.Create( "DImage", PersoPANEL )
+<<<<<<< HEAD
 
 
+	if !ImageCharac then
+		ImageCharac = "/characteres/default.png"
+	end
 	img_charac:SetImage( ImageCharac )
 	img_charac:SetTall((1/1.5)*ScrH())
 	img_charac:SetWide((1/1.5)*ScrH()/1080*987)
@@ -130,10 +143,10 @@ end
 
 net.Receive( "sls_f1_menu", function ()
 	active = false
-	local TeamName
-	local TeamText
-	local ImageCharac
-	local CharacName
+	local TeamName = " "
+	local TeamText = " "
+	local ImageCharac =  "/characteres/default.png"
+	local CharacName = " "
 
 	if LocalPlayer():Team() == 2 then
 
@@ -149,6 +162,12 @@ net.Receive( "sls_f1_menu", function ()
 		ImageCharac = "/characteres/"..string.lower(GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].name)..".png"
 		CharacName = GM.CLASS.Killers[LocalPlayer().ClassID].name
 		CharacText = GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].description
+  else
+		TeamName = "unnafected"
+		TeamText = "unaffected"
+		ImageCharac = "/characteres/default.png"
+		CharacName = "Unaffected"
+		CharacText = "none"
 	end
 
 	if (!active) then

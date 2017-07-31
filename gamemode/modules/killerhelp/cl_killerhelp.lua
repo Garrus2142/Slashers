@@ -177,11 +177,11 @@ local function Wallhack()
 		victimPos = nil
 	else
 		victimPos = tempPos
-	end 
+	end
 end
 net.Receive("sls_killerhelp_Wallhack", Wallhack)
 
-/** PROXYHELP **/ 
+/** PROXYHELP **/
 
 local PlyInvisible = false
 
@@ -195,17 +195,17 @@ local Visible
 
 local function isVisible()
 	Visible = net.ReadBool()
-	
-end 
+
+end
 net.Receive("sls_InvisibleIndic", isVisible)
 
-local function InvisibleVision()	
-	if !GM.ROUND.Active || !GM.ROUND.Survivors || LocalPlayer():Team() != TEAM_KILLER then return end 
-	
+local function InvisibleVision()
+	if !GM.ROUND.Active || !GM.ROUND.Survivors || LocalPlayer():Team() != TEAM_KILLER then return end
+
 	if PlyInvisible and LocalPlayer():Alive() then
-	
+
 		DrawMaterialOverlay( "effects/dodge_overlay.vmt", -0.42 )
-		DrawSharpen( 1.2, 1.2 )	  
+		DrawSharpen( 1.2, 1.2 )
 	end
 end
 hook.Add( "RenderScreenspaceEffects", "BinocDraw", InvisibleVision )
@@ -215,22 +215,22 @@ local function getMenuKey()
 	local cpt = 0
 	while input.LookupKeyBinding( cpt ) ~= "+menu" && cpt < 159 do
 		 cpt = cpt + 1
-	end	
-	return  cpt 
+	end
+	return  cpt
 end
 
 local enableKeyActivated = false
 local menuKey = getMenuKey()
 local function enableAbilityI()
-	if !GM.ROUND.Active || !GM.ROUND.Survivors || LocalPlayer():Team() != TEAM_KILLER then return end 
-	if GM.ROUND.Killer.ClassID ~= CLASS_KILL_PROXY then return end 
+	if !GM.ROUND.Active || !GM.ROUND.Survivors || LocalPlayer():Team() != TEAM_KILLER then return end
+	if GM.ROUND.Killer.ClassID ~= CLASS_KILL_PROXY then return end
 	if input.IsButtonDown( menuKey ) and !enableKeyActivated then
-		
+
 		net.Start( "sls_EnableInvisibility" )
 		net.WriteEntity(LocalPlayer())
 		net.SendToServer()
 		enableKeyActivated = true
-				
+
 	else
 		if !input.IsButtonDown( menuKey ) then
 			enableKeyActivated = false
@@ -239,37 +239,37 @@ local function enableAbilityI()
 end
 hook.Add ("HUDPaint","CheckEnableKey",enableAbilityI)
 
-local TimerView = 0 
+local TimerView = 0
 local function CheckKillerInSight()
 	local v = team.GetPlayers(TEAM_KILLER)[1]
-	local curtime = CurTime()	 
-	local ply = LocalPlayer()	
-		
-	if !ply:IsLineOfSightClear( v )  or !v:IsValid() or v == ply then return end 
+	local curtime = CurTime()
+	local ply = LocalPlayer()
 
-					
-	local TargetPosMax= v:GetPos()+ v:OBBMaxs() - Vector(10,0,0)			
+	if !ply:IsLineOfSightClear( v )  or !v:IsValid() or v == ply then return end
+
+
+	local TargetPosMax= v:GetPos()+ v:OBBMaxs() - Vector(10,0,0)
 	local TargetPosCenter = v:GetPos()+v:OBBCenter()
 	local TargetPosMin = v:GetPos()+ v:OBBMins() + Vector(10,0,0)
-	
+
 	local ScreenPosMax = TargetPosMax:ToScreen()
 	local ScreenPosCenter = TargetPosCenter:ToScreen()
-	local ScreenPosMin = TargetPosMin:ToScreen()	
-	
+	local ScreenPosMin = TargetPosMin:ToScreen()
+
 	posPlayer = ply:GetPos()
 	if ( TimerView < curtime) and (posPlayer:Distance( v:GetPos()) < 150) then
 			net.Start( "sls_survivorseekiller" )
-				net.WriteFloat( curtime ) 
-			net.SendToServer()			
+				net.WriteFloat( curtime )
+			net.SendToServer()
 			TimerView = curtime + 0.2
-	 
-	
+
+
 	elseif (TimerView < curtime) and (ScreenPosMax.x < ScrW() and ScreenPosMax.y < ScrH() and ScreenPosMin.x > 0 and ScreenPosMin.y > 0) then
 			-- print("KILLERSIGHT")
 			net.Start( "sls_survivorseekiller" )
-				net.WriteFloat( curtime ) 
-			net.SendToServer()			
+				net.WriteFloat( curtime )
+			net.SendToServer()
 			TimerView = curtime + 0.2
 	end
-end 
+end
 hook.Add ("Think","sls_IHaveTheKillerInView",CheckKillerInSight)

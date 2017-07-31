@@ -3,11 +3,12 @@
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:45
 -- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-07-26 14:49:26
+-- @Last Modified time: 2017-07-27 17:08:44
 
 include("shared.lua")
 include("config.lua")
 include("core/_includes.lua")
+include("modulesloader.lua")
 
 local hide = {
 	CHudHealth = true,
@@ -38,5 +39,3 @@ end
 function GM:DrawDeathNotice(x, y)
 
 end
-
-LoadModules()

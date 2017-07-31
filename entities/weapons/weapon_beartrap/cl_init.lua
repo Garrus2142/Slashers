@@ -3,7 +3,7 @@
 -- @Author: Vyn
 -- @Date:   2017-07-26 14:11:41
 -- @Last Modified by:   Vyn
--- @Last Modified time: 2017-07-26 15:20:54
+-- @Last Modified time: 2017-07-27 18:26:23
 
 include("shared.lua")
 
@@ -76,7 +76,9 @@ function SWEP:GetViewModelPosition(pos, ang)
 end
 
 function SWEP:DrawWorldModel()
-	local hand_pos = self.Owner:GetBonePosition(self.Owner:LookupBone("ValveBiped.Bip01_R_Hand"))
+	local bone = self.Owner:LookupBone("ValveBiped.Bip01_R_Hand")
+	if !bone then return end
+	local hand_pos = self.Owner:GetBonePosition(bone)
 	local hand_ang = Angle(self.Owner:EyeAngles().pitch + 90, self.Owner:EyeAngles().yaw - 30, 0)
 	hand_pos = hand_pos + hand_ang:Up() * 3 + hand_ang:Right() * -4
 	self:SetRenderOrigin(hand_pos)
