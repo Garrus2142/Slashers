@@ -37,7 +37,7 @@ local function HUDPaint()
 		alpha_bg = Lerp(0.05, alpha_bg, 225)
 	end
 
-	text = "You're about to be kicked out of the server for inactivity in " .. formatSeconde(LocalPlayer():GetNWInt("afk_warn") - CurTime())
+	text = GM.LANG:GetString("antiakf_will_kicked", formatSeconde(LocalPlayer():GetNWInt("afk_warn") - CurTime()))
 
 	surface.SetDrawColor(Color(0, 0, 0, alpha_bg))
 	surface.DrawRect(0, 0, scrW, scrH)
