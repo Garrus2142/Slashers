@@ -2,10 +2,13 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:45
--- @Last Modified by:   Guilhem PECH
+-- @Last Modified by:   Garrus2142
 -- @Last Modified time: 2017-07-27 13:32:59
 
 if SERVER then
+	-- Language
+	include("lang/sv_lang.lua")
+	AddCSLuaFile("lang/cl_lang.lua")
 	-- Fonts
 	AddCSLuaFile("fonts.lua")
 	-- Format
@@ -37,6 +40,8 @@ if SERVER then
 	-- Slot CheckPassword
 	include ("slot/sv_slotcheck.lua")
 else
+	-- Language
+	include("lang/cl_lang.lua")
 	-- Fonts
 	include("fonts.lua")
 	-- Format
