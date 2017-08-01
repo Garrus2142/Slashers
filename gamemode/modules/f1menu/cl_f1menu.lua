@@ -5,14 +5,11 @@
 -- @Last Modified by:   Garrus2142
 -- @Last Modified time: 2017-07-27 01:39:07
 
-
-
-local active
 local GM = GAMEMODE or GM
+local BackGroundPanel, timed
 
-function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Time,isOpen,active)
-	active = true
-	local BackGroundPanel = vgui.Create( "DPanel" )
+function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Time,isOpen)
+	BackGroundPanel = vgui.Create( "DPanel" )
 	BackGroundPanel:SetSize( ScrW(),ScrH() )
 	BackGroundPanel:Dock(FILL)
 	BackGroundPanel:SetDrawBackground( true )
@@ -87,55 +84,41 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 			GenericDescription:SetAutoStretchVertical( true )
 			GenericDescription:SetWidth((1/1.45)*ScrH())
 		end )
-end)
+	end)
 
-if Time ~= 0 then
-	timer.Simple( Time-0.3, function()
-		img_charac:MoveTo((ScrW() /2) - (img_charac:GetWide()/2)  ,0,0.5,0,1)
-		DescriptionBox:MoveTo((ScrW() /2) - (DescriptionBox:GetWide()/2.5)  ,0,0.5,0,1)
-		DescriptionBox:MoveToBefore(img_charac)
-		DescriptionBox:SizeTo( 0, DescriptionBox:GetTall(), 0.4, 0, -1,  function ()
-			PersoPANEL:MoveBy(0,PersoPANEL:GetTall() /2,0.5,0.1,1)
-			PersoPANEL:SizeTo(PersoPANEL:GetWide(),0,0.5,0.1,1)
-			img_charac:MoveBy(0,-(PersoPANEL:GetTall()/2),0.5,0.1,1,function()
-				BackGroundPanel:Remove()
-				isOpen = false
+	if Time ~= 0 then
+		timed = true
+		timer.Simple( Time-0.3, function()
+			img_charac:MoveTo((ScrW() /2) - (img_charac:GetWide()/2)  ,0,0.5,0,1)
+			DescriptionBox:MoveTo((ScrW() /2) - (DescriptionBox:GetWide()/2.5)  ,0,0.5,0,1)
+			DescriptionBox:MoveToBefore(img_charac)
+			DescriptionBox:SizeTo( 0, DescriptionBox:GetTall(), 0.4, 0, -1,  function ()
+				PersoPANEL:MoveBy(0,PersoPANEL:GetTall() /2,0.5,0.1,1)
+				PersoPANEL:SizeTo(PersoPANEL:GetWide(),0,0.5,0.1,1)
+				img_charac:MoveBy(0,-(PersoPANEL:GetTall()/2),0.5,0.1,1,function()
+					BackGroundPanel:Remove()
+					isOpen = false
+					timed = false
+				end)
 			end)
-		end)
-
-	end )
-end
-if Time == 0 then
-
-	local CloseB = vgui.Create( "DButton" )
-	CloseB:MakePopup()
-	CloseB:MoveToFront()
-	CloseB:SetPos( 40, 40 )
-	CloseB:SetText( "X" )
-
-	CloseB:SetSize( 20, 20 )
-	CloseB.DoClick = function()
-		img_charac:MoveTo((ScrW() /2) - (img_charac:GetWide()/2)  ,0,0.5,0,1)
-		DescriptionBox:MoveTo((ScrW() /2) - (DescriptionBox:GetWide()/2.5)  ,0,0.5,0,1)
-		DescriptionBox:MoveToBefore(img_charac)
-		DescriptionBox:SizeTo( 0, DescriptionBox:GetTall(), 0.4, 0, -1,  function ()
-			PersoPANEL:MoveBy(0,PersoPANEL:GetTall() /2,0.5,0.1,1)
-			PersoPANEL:SizeTo(PersoPANEL:GetWide(),0,0.5,0.1,1)
-			img_charac:MoveBy(0,-(PersoPANEL:GetTall()/2),0.5,0.1,1,function() BackGroundPanel:Remove() end)
-		end)
-		CloseB:Remove()
-		active = false
+		end )
+	else
+		timed = false
 	end
 end
 
-end
-
 net.Receive( "sls_f1_menu", function ()
-	active = false
 	local TeamName = " "
 	local TeamText = " "
 	local ImageCharac =  "/characteres/default.png"
 	local CharacName = " "
+
+	if timed then return end
+	
+	if IsValid(BackGroundPanel) then
+		BackGroundPanel:Remove()
+		return
+	end
 
 	if LocalPlayer():Team() == 2 then
 
@@ -159,9 +142,7 @@ net.Receive( "sls_f1_menu", function ()
 		CharacText = "none"
 	end
 
-	if (!active) then
-		ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,0,active)
-	end
+	ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,0)
 end)
 
 function ShowTitle(Title,Second)
