@@ -3,7 +3,7 @@
 -- @Author: Packages
 -- @Date:   2017-08-02 8:58:00
 -- @Last Modified by:   Packages
--- @Last Modified time: 2017-08-02 8:58:00
+-- @Last Modified time: 2017-08-02 1:39:00
 
 local LANG = {}
 
@@ -47,6 +47,7 @@ LANG["round_notif_escape_killer"] = "Не позволяйте им убежат
 LANG["round_notif_error_radio"] = "Вы не можете активировать радио!"
 LANG["round_notif_error_generator"] = "Вы не можете активировать генератор!"
 LANG["round_notif_enabled_generator"] = "Вы активировали генератор!"
+LANG["round_notif_player_die"] = "%s умер"
 LANG["round_end_escaped"] = "Убижавшие выжившие на данный момент..."
 LANG["round_end_dead"] = "Все выжившие были убиты."
 
@@ -56,4 +57,7 @@ LANG["f1menu_you_are"] = "Вы %s"
 LANG["workshop_need_content"] = "Вам может понадобиться дополнительный контент из Мастерской."
 LANG["workshop_get_it"] = "Покажи мне!"
 LANG["workshop_no"] = "Я не хочу."
+LANG["traps_rope_hit_world"] = "Веревка зашла за рамки карты"
+LANG["traps_too_much_distance"] = "Слишком большое расстояние"
+LANG["killerhelp_cant_use_ability"] = "Вы не можете использовать свои способности сейчас"
 return LANG
