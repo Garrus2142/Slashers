@@ -2,9 +2,10 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-26 01:30:34
--- @Last Modified by:   Garrus2142
+-- @Last Modified by:
 -- @Last Modified time: 2017-07-26 14:48:13
 
+local GM = GM or GAMEMODE
 local scrW, scrH = ScrW(), ScrH()
 
 surface.CreateFont("Arial Big", {
@@ -37,7 +38,7 @@ local function HUDPaint()
 		alpha_bg = Lerp(0.05, alpha_bg, 225)
 	end
 
-	text = GM.LANG:GetString("antiakf_will_kicked", formatSeconde(LocalPlayer():GetNWInt("afk_warn") - CurTime()))
+	text = GM.LANG:GetString("antiafk_will_kicked", formatSeconde(LocalPlayer():GetNWInt("afk_warn") - CurTime()))
 
 	surface.SetDrawColor(Color(0, 0, 0, alpha_bg))
 	surface.DrawRect(0, 0, scrW, scrH)
