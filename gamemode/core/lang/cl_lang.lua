@@ -2,7 +2,7 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-08-01 17:14:14
--- @Last Modified by:   Garrus2142
+-- @Last Modified by:
 -- @Last Modified time: 2017-08-01 17:14:14
 
 local GM = GM or GAMEMODE
@@ -11,7 +11,7 @@ local LANG
 GM.LANG = {}
 
 function GM.LANG:GetString(key, ...)
-	return string.format(LANG[key], ...)
+	return LANG[key] and string.format(LANG[key], ...) or "Unknow key string"
 end
 
 local function LoadLanguage(lang)
