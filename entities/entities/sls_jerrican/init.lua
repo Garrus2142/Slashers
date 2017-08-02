@@ -2,7 +2,7 @@
 --
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
--- @Last Modified by:
+-- @Last Modified by:   Garrus2142
 -- @Last Modified time: 2017-07-26T22:25:37+02:00
 
 
@@ -48,7 +48,7 @@ function ENT:Use(ply)
 			self:Remove()
 			NbJerricanToFound = NbJerricanToFound - 1
 			net.Start( "notificationSlasher" )
-							net.WriteString("round_mission_jerrycan_found")
+							net.WriteTable({"round_mission_jerrycan_found"})
 							net.WriteString("safe")
 							net.Send(ply)
 

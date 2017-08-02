@@ -2,7 +2,7 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-08-01 16:53:54
--- @Last Modified by:
+-- @Last Modified by:   Garrus2142
 -- @Last Modified time: 2017-08-01 16:53:55
 
 local LANG = {}
@@ -47,6 +47,7 @@ LANG["round_notif_escape_killer"] = "Don't let them go"
 LANG["round_notif_error_radio"] = "You can't activate the radio !"
 LANG["round_notif_error_generator"] = "You can't activate the generator !"
 LANG["round_notif_enabled_generator"] = "You activated the generator !"
+LANG["round_notif_player_die"] = "%s is dead"
 LANG["round_end_escaped"] = "The survivors have escaped... for now"
 LANG["round_end_dead"] = "The survivors have been eradicated"
 
@@ -56,4 +57,7 @@ LANG["f1menu_you_are"] = "You are %s"
 LANG["workshop_need_content"] = "You may need extra content from the Steam Workshop."
 LANG["workshop_get_it"] = "Take me to it!"
 LANG["workshop_no"] = "I'd rather not."
+LANG["traps_rope_hit_world"] = "The rope hit the world"
+LANG["traps_too_much_distance"] = "Too much distance"
+LANG["killerhelp_cant_use_ability"] = "You can't use your ability now"
 return LANG

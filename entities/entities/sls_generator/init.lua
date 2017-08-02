@@ -2,7 +2,7 @@
 --
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
--- @Last Modified by:
+-- @Last Modified by:   Garrus2142
 -- @Last Modified time: 2017-07-26T22:25:56+02:00
 
 
@@ -90,7 +90,7 @@ function ENT:Use(activator, caller)
 			net.Send(caller)
 
 			net.Start( "notificationSlasher" )
-			net.WriteString("round_notif_enabled_generator")
+			net.WriteTable({"round_notif_enabled_generator"})
 			net.WriteString("safe")
 			net.Send(caller)
 
@@ -105,7 +105,7 @@ function ENT:Use(activator, caller)
 		self:SetUseType( SIMPLE_USE )
 		if (!self:GetNWBool( 'activated')) then
 			net.Start( "notificationSlasher" )
-			net.WriteString("round_notif_error_generator")
+			net.WriteTable({"round_notif_error_generator"})
 			net.WriteString("cross")
 			net.Send(caller)
 		end

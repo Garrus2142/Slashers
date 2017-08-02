@@ -2,7 +2,7 @@
 --
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
--- @Last Modified by:
+-- @Last Modified by:   Garrus2142
 -- @Last Modified time: 2017-07-26T22:25:43+02:00
 
 
@@ -55,7 +55,7 @@ end
 function ENT:Use(ply)
 	if CurrentObjective == "activate_radio" && ply:Team() == TEAM_SURVIVORS then
 		net.Start( "notificationSlasher" )
-						net.WriteString("round_notif_police_call")
+						net.WriteTable({"round_notif_police_call"})
 						net.WriteString("safe")
 						net.Send(ply)
 
@@ -70,7 +70,7 @@ function ENT:Use(ply)
 	else
 		if (!self:GetNWBool( 'activated')) then
 				net.Start( "notificationSlasher" )
-								net.WriteString("round_notif_error_radio")
+								net.WriteTable({"round_notif_error_radio"})
 								net.WriteString("cross")
 								net.Send(ply)
 		end

@@ -2,7 +2,7 @@
 --
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T15:18:58+02:00
--- @Last Modified by:
+-- @Last Modified by:   Garrus2142
 -- @Last Modified time: 2017-07-26 22:32:05
 
 
@@ -11,9 +11,9 @@ local NOTICON_ICON = Material("icons/icon_exit.png")
 local noticonData = {}
 
 net.Receive( "notificationSlasher", function()
-	 local NotifText = GAMEMODE.LANG:GetString(net.ReadString())
+	 local NotifText = net.ReadTable()
 	 local NotifType = net.ReadString()
-	 notificationPanel(NotifText,NotifType)
+	 notificationPanel(GAMEMODE.LANG:GetString(unpack(NotifText)),NotifType)
 
 end )
 
