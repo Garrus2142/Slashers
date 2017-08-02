@@ -2,7 +2,7 @@
 --
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T15:18:58+02:00
--- @Last Modified by:   Guilhem PECH
+-- @Last Modified by:
 -- @Last Modified time: 2017-07-26 22:32:05
 
 
@@ -11,7 +11,7 @@ local NOTICON_ICON = Material("icons/icon_exit.png")
 local noticonData = {}
 
 net.Receive( "notificationSlasher", function()
-	 local NotifText = net.ReadString()
+	 local NotifText = GAMEMODE.LANG:GetString(net.ReadString())
 	 local NotifType = net.ReadString()
 	 notificationPanel(NotifText,NotifType)
 
@@ -67,7 +67,7 @@ function notificationPanel(notifText,notificationType)
 	---
 
 	ToThisPosUp = BackGroundPanel.y - (CounterActiveNotif * 100)
-	ToThisPosDown = BackGroundPanel.y + (CounterActiveNotif * 100) 
+	ToThisPosDown = BackGroundPanel.y + (CounterActiveNotif * 100)
 
 	-- Animation
 	BackGroundPanel:MoveTo( BackGroundPanel.x, ToThisPosUp, 1, 0) -- Slide up

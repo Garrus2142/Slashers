@@ -44,7 +44,7 @@ end)
 
 function objectifComplete()
 		net.Start( "objectiveSlasher" )
-		net.WriteTable({""})
+		net.WriteTable({})
 		net.WriteString("safe")
 		net.Broadcast()
 end

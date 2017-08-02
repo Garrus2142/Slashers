@@ -13,7 +13,8 @@ AddCSLuaFile()
 net.Receive( "objectiveSlasher", function()
 	 local NotifText = net.ReadTable()
 	 local NotifType = net.ReadString()
-	 objectivePanel(GAMEMODE.LANG:GetString(unpack(NotifText)),NotifType)
+
+	 objectivePanel(#NotifText > 0 and GAMEMODE.LANG:GetString(unpack(NotifText)) or "",NotifType)
 
 end )
 ---

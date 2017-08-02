@@ -60,7 +60,7 @@ function ENT:Use(ply)
 		end
 		if (NbJerricanToFound == 0) then
 			net.Start( "objectiveSlasher" )
-							 net.WriteString("round_mission_generator")
+							 net.WriteTable({"round_mission_generator"})
 							 net.WriteString("caution")
 							 net.SendOmit(GM.ROUND.Killer)
 
