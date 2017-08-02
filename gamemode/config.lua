@@ -8,6 +8,7 @@
 local GM = GM or GAMEMODE
 GM.CONFIG = {}
 
+GM.CONFIG["lang_default"] = "en"
 
 GM.CONFIG["disabled_modules"] = {
 	-- ["goal"] = true, -- set true to disable module
