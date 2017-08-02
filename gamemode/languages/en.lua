@@ -2,7 +2,7 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-08-01 16:53:54
--- @Last Modified by:   Garrus2142
+-- @Last Modified by:
 -- @Last Modified time: 2017-08-01 16:53:55
 
 local LANG = {}
@@ -31,6 +31,9 @@ LANG["round_mission_escape"] = "Escape %s"
 LANG["round_mission_escape_killer"] = "Don't let them go %s"
 LANG["round_mission_objectives"] = "Complete the objectives %s"
 LANG["round_mission_objectives_killer"] = "Kill them all %s"
+LANG["round_mission_jerrycan"] = "Find %i jerrycan(s)"
+LANG["round_mission_jerrycan_found"] = "You found a jerrycan !"
+LANG["round_mission_generator"] = "Find and activate the Generator !"
 LANG["round_wait_players"] = "Waiting for players %i/%i"
 LANG["round_team_name_survivor"] = "a Survivor"
 LANG["round_team_name_killer"] = "the Killer"

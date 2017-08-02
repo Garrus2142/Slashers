@@ -2,19 +2,19 @@
 --
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
--- @Last Modified by:   Guilhem PECH
+-- @Last Modified by:
 -- @Last Modified time: 2017-07-26T22:25:37+02:00
 
 
 
-local GM = GAMEMODE
+local GM = GM or GAMEMODE
 
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 include('shared.lua')
 
 function ENT:Initialize()
-	
+
 	self.Active = false
 	self:SetModel("models/props_junk/gascan001a.mdl")
 	self:PhysicsInit(SOLID_VPHYSICS)
@@ -48,19 +48,19 @@ function ENT:Use(ply)
 			self:Remove()
 			NbJerricanToFound = NbJerricanToFound - 1
 			net.Start( "notificationSlasher" )
-							net.WriteString("You found a jerrycan !")
+							net.WriteString("round_mission_jerrycan_found")
 							net.WriteString("safe")
 							net.Send(ply)
 
 
 			net.Start( "modifyObjectiveSlasher" )
-						net.WriteString("Find " .. NbJerricanToFound .." jerrycan(s)")
+						net.WriteTable({"round_mission_jerrycan", NbJerricanToFound})
 						net.SendOmit(GM.ROUND.Killer)
 
 		end
 		if (NbJerricanToFound == 0) then
 			net.Start( "objectiveSlasher" )
-							 net.WriteString("Find and activate the Generator !")
+							 net.WriteString("round_mission_generator")
 							 net.WriteString("caution")
 							 net.SendOmit(GM.ROUND.Killer)
 
