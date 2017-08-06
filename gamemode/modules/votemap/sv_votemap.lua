@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH <Daryl_Winters>
 -- @Date:   2017-08-06T09:44:00+02:00
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-06T13:46:32+02:00
+-- @Last Modified time: 2017-08-06T15:28:14+02:00
 
 util.AddNetworkString("slash_sendvotedata")
 util.AddNetworkString("slash_summitvote")
@@ -13,6 +13,7 @@ util.AddNetworkString("slash_sendmaplist")
 local GM = GAMEMODE or GM
 
 local slashersMaps = file.Find( "maps/slash_*.bsp", "GAME" )
+table.Add(slashersMaps, GM.ROUND.custom_maps )
 local currentVote = {}
 local countVote = {}
 

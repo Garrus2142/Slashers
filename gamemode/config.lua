@@ -2,8 +2,8 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:45
--- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-07-26 14:49:31
+-- @Last Modified by:   Daryl_Winters
+-- @Last Modified time: 2017-08-06T15:27:08+02:00
 
 local GM = GM or GAMEMODE
 GM.CONFIG = {}
@@ -99,3 +99,9 @@ GM.CONFIG["killerhelp_exit_entities"] = {
 GM.CONFIG["killerhelp_door_duration"] = 3
 -- Durée trace de pas
 GM.CONFIG["killerhelp_step_duration"] = 30
+
+-- Custom added maps
+GM.CONFIG["custom_maps"] = {
+	-- "gm_construct.bsp",
+	-- "gm_flatgrass.bsp"
+}
