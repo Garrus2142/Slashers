@@ -60,4 +60,8 @@ LANG["workshop_no"] = "Я не хочу."
 LANG["traps_rope_hit_world"] = "Веревка зашла за рамки карты"
 LANG["traps_too_much_distance"] = "Слишком большое расстояние"
 LANG["killerhelp_cant_use_ability"] = "Вы не можете использовать свои способности сейчас"
+LANG["votemap_title"] = "Голосование за карту!"
+LANG["votemap_extend"] = "Продлить"
+LANG["votemap_random"] = "Случайно"
+
 return LANG
