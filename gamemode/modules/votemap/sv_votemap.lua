@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH <Daryl_Winters>
 -- @Date:   2017-08-06T09:44:00+02:00
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-06T19:43:48+02:00
+-- @Last Modified time: 2017-08-06T19:49:23+02:00
 
 util.AddNetworkString("slash_sendvotedata")
 util.AddNetworkString("slash_summitvote")
@@ -83,29 +83,5 @@ local function removeDisconnectVote(ply)
   if currentVote[ply] then
     currentVote[ply] = nil
   end
-  if rtvCount[ply] then
-    rtvCount[ply] = nil
-  end
 end
 hook.Add("PlayerDisconnected","sls_remove_disconnectedvote",removeDisconnectVote)
-
-
-
-local function rockTheVote(ply, text, team)
-  if text == "!rtv" then
-    rtvCount[ply] = "Voted !"
-    if table.Count(rtvCount) >= player.GetCount() then
-      GM.ROUND.Count = GM.CONFIG["round_count_nextmap"]
-      PrintMessage(HUD_PRINTTALK, "[RTV] A vote will start at the end of the round !")
-      return
-    end
-    return "[RTV] ".. table.Count(rtvCount) .. " / " .. player.GetCount()
-  end
-end
-hook.Add( "PlayerSay", "sls_rockthevote", rockTheVote  )
-
-local function rockTheVoteFailure()
-  rtvCount = {}
-  PrintMessage(HUD_PRINTTALK,"[RTV] Abort : Not enought vote")
-end
-hook.Add("sls_round_End","sls_rockthevote_fail",rockTheVoteFailure)
