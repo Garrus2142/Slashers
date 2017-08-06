@@ -138,7 +138,16 @@ local function openVotemap()
   net.Start("slash_summitvote")
   net.SendToServer()
 end
-net.Receive("slash_openvotemap",openVotemap)
+net.Receive("slash_openvotemap",function ()
+
+if IsValid(backVote) then
+		backVote:Remove()
+		return
+	end
+
+openVotemap()
+
+end)
 
 local function receiveVoteStat()
   local voteData = net.ReadTable()
