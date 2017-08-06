@@ -141,7 +141,9 @@ end
 net.Receive("slash_openvotemap",function ()
 
 if IsValid(backVote) then
+		backVote.isOpen = false	
 		backVote:Remove()
+		gui.EnableScreenClicker( backVote.isOpen )
 		return
 	end
 
