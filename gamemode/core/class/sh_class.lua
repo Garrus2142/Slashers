@@ -115,6 +115,7 @@ GM.CLASS.Survivors[CLASS_SURV_EMO].stamina = 130
 GM.CLASS.Survivors[CLASS_SURV_EMO].model = "models/steinman/slashers/emo_pm.mdl"
 GM.CLASS.Survivors[CLASS_SURV_EMO].die_sound = "slashers/effects/scream_girl_1.wav"
 GM.CLASS.Survivors[CLASS_SURV_EMO].weapons = {}
+if CLIENT then
 	GM.CLASS.Survivors[CLASS_SURV_EMO].name = "Emo"
 	GM.CLASS.Survivors[CLASS_SURV_EMO].dispname = "Audrey"
 	GM.CLASS.Survivors[CLASS_SURV_EMO].description = GM.LANG:GetString("class_desc_emo")
@@ -122,7 +123,6 @@ GM.CLASS.Survivors[CLASS_SURV_EMO].weapons = {}
 end
 
 GM.CLASS.Survivors[CLASS_SURV_BLACK] = {}
-GM.CLASS.Survivors[CLASS_SURV_BLACK].dispname = "Roland"
 GM.CLASS.Survivors[CLASS_SURV_BLACK].walkspeed = 140
 GM.CLASS.Survivors[CLASS_SURV_BLACK].runspeed = 240
 GM.CLASS.Survivors[CLASS_SURV_BLACK].life = 120
