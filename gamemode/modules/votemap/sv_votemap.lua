@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH <Daryl_Winters>
 -- @Date:   2017-08-06T09:44:00+02:00
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-06T15:28:14+02:00
+-- @Last Modified time: 2017-08-06T16:47:17+02:00
 
 util.AddNetworkString("slash_sendvotedata")
 util.AddNetworkString("slash_summitvote")
@@ -76,3 +76,10 @@ local function autoOpen()
   end
 end
 hook.Add("sls_round_End","sls_autoOpen",autoOpen)
+
+local function removeDisconnectVote(ply)
+  if currentVote[ply] then
+    currentVote[ply] = nil
+  end  
+end
+hook.Add("PlayerDisconnected","sls_remove_disconnectedvote",removeDisconnectVote)

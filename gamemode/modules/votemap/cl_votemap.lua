@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH <Daryl_Winters>
 -- @Date:   2017-08-06T09:43:46+02:00
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-06T13:31:47+02:00
+-- @Last Modified time: 2017-08-06T15:45:58+02:00
 
 
 local GM = GAMEMODE or GM
@@ -23,7 +23,7 @@ local function openVotemap()
   local scrh = ScrH()
 
   backVote:SetSize( scrw , scrh - 300 ) -- Set the size of the panel
-  
+
   backVote:SetBackgroundColor( Color( 0, 0, 0, 180 ) )
 
   local titleLabel = vgui.Create( "DLabel", backVote )
