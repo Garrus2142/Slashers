@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH <Daryl_Winters>
 -- @Date:   2017-08-06T09:43:46+02:00
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-06T17:23:40+02:00
+-- @Last Modified time: 2017-08-06T19:43:11+02:00
 
 
 local GM = GAMEMODE or GM
@@ -141,7 +141,7 @@ end
 net.Receive("slash_openvotemap",function ()
 
 if IsValid(backVote) then
-		backVote.isOpen = false	
+		backVote.isOpen = false
 		backVote:Remove()
 		gui.EnableScreenClicker( backVote.isOpen )
 		return
@@ -194,8 +194,5 @@ local function receiveVoteStat()
     backVote:SetPos( (ScrW() - backVote:GetWide())/2, (ScrH() - backVote:GetTall())/2 ) -- Set the position of the panel
 
   end
-
-
-
 end
 net.Receive("slash_sendvotedata",receiveVoteStat)
