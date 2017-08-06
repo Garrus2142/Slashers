@@ -2,7 +2,7 @@
 --
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
--- @Last Modified by:   Guilhem PECH
+-- @Last Modified by:   Garrus2142
 -- @Last Modified time: 2017-07-26T22:25:56+02:00
 
 
@@ -35,7 +35,7 @@ sound.Add( {
 local engine_fuelingSound = Sound("ambient/water/leak_1.wav")
 
 function ENT:Initialize()
-	
+
 	self.Active = false
 	self:SetModel("models/props_vehicles/generatortrailer01.mdl")
 	self:PhysicsInit(SOLID_NONE)
@@ -90,12 +90,12 @@ function ENT:Use(activator, caller)
 			net.Send(caller)
 
 			net.Start( "notificationSlasher" )
-			net.WriteString("You activated the generator !")
+			net.WriteTable({"round_notif_enabled_generator"})
 			net.WriteString("safe")
 			net.Send(caller)
 
 			net.Start( "objectiveSlasher" )
-			net.WriteString("Find and activate the radio!")
+			net.WriteTable({"round_mission_radio"})
 			net.WriteString("caution")
 			net.SendOmit(GM.ROUND.Killer)
 			self.Active = true
@@ -105,7 +105,7 @@ function ENT:Use(activator, caller)
 		self:SetUseType( SIMPLE_USE )
 		if (!self:GetNWBool( 'activated')) then
 			net.Start( "notificationSlasher" )
-			net.WriteString("You can't activate the generator !")
+			net.WriteTable({"round_notif_error_generator"})
 			net.WriteString("cross")
 			net.Send(caller)
 		end

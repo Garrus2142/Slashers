@@ -2,8 +2,8 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:48
--- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-07-26 14:45:36
+-- @Last Modified by:   Daryl_Winters
+-- @Last Modified time: 2017-08-06T10:19:06+02:00
 
 local GM = GM or GAMEMODE
 local MAPS_LIST
@@ -281,7 +281,7 @@ local function Think()
 	end
 
 	-- Check NextMap
-	if !GM.ROUND.Active && GM.ROUND.NextStart && curtime >= GM.ROUND.NextStart && GM.ROUND.Count >= GM.CONFIG["round_count_nextmap"] then
+	if !GM.ROUND.Active && GM.ROUND.NextStart && curtime >= GM.ROUND.NextStart && GM.ROUND.Count >= GM.CONFIG["round_count_nextmap"] && GM.CONFIG["disabled_modules"]["votemap"] then
 		local mapindex = table.KeyFromValue(MAPS_LIST, game.GetMap())
 		GM.ROUND.NextStart = nil
 		RunConsoleCommand("changelevel", mapindex == #MAPS_LIST and MAPS_LIST[1] or MAPS_LIST[mapindex + 1])

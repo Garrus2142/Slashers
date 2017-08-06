@@ -223,7 +223,7 @@ local function disapearKiller()
 	local PlayerWeapon = KillerPly:GetActiveWeapon()
 	if KillerInView then
 		net.Start( "notificationSlasher" )
-			net.WriteString("You can't use your ability now")
+			net.WriteTable({"killerhelp_cant_use_ability"})
 			net.WriteString("cross")
 			net.Send(KillerPly)
 			return

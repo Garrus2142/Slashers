@@ -2,14 +2,17 @@
 --
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:50:55+02:00
+<<<<<<< HEAD
 -- @Last Modified by:   Guilhem PECH
 -- @Last Modified time: 2017-07-26 22:59:21
 
+=======
+-- @Last Modified by:
+-- @Last Modified time: 2017-07-27 01:39:07
+>>>>>>> dev
 
-
-
-local active
 local GM = GAMEMODE or GM
+local BackGroundPanel, timed
 
 function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Time,isOpen,active)
 
@@ -17,8 +20,7 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 		return
 	end
 
-	active = true
-	local BackGroundPanel = vgui.Create( "DPanel" )
+	BackGroundPanel = vgui.Create( "DPanel" )
 	BackGroundPanel:SetSize( ScrW(),ScrH() )
 	BackGroundPanel:Dock(FILL)
 	BackGroundPanel:SetDrawBackground( true )
@@ -56,7 +58,7 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 
 
 			local TitleSpe = vgui.Create("DLabel",DescriptionBox)
-			TitleSpe:SetText("You are "..CharacName)
+			TitleSpe:SetText(GM.LANG:GetString("f1menu_you_are", CharacName))
 			TitleSpe:SetFont( "Bohemian typewriter TITLE" )
 			TitleSpe:SetColor(Color(168,0,0,255))
 			TitleSpe:SizeToContents()
@@ -76,7 +78,7 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 
 			local TitleGen = vgui.Create("DLabel",DescriptionBox)
 			--Title1:Dock(TOP)
-			TitleGen:SetText("You are " .. TeamName)
+			TitleGen:SetText(GM.LANG:GetString("f1menu_you_are", TeamName))
 			TitleGen:MoveBelow( SpecificDescription, 1/4*ScrH() )
 			TitleGen:SetFont( "Bohemian typewriter TITLE" )
 			TitleGen:SetColor(Color(168,0,0,255))
@@ -94,67 +96,53 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 			GenericDescription:SetAutoStretchVertical( true )
 			GenericDescription:SetWidth((1/1.45)*ScrH())
 		end )
-end)
+	end)
 
-if Time ~= 0 then
-	timer.Simple( Time-0.3, function()
-		img_charac:MoveTo((ScrW() /2) - (img_charac:GetWide()/2)  ,0,0.5,0,1)
-		DescriptionBox:MoveTo((ScrW() /2) - (DescriptionBox:GetWide()/2.5)  ,0,0.5,0,1)
-		DescriptionBox:MoveToBefore(img_charac)
-		DescriptionBox:SizeTo( 0, DescriptionBox:GetTall(), 0.4, 0, -1,  function ()
-			PersoPANEL:MoveBy(0,PersoPANEL:GetTall() /2,0.5,0.1,1)
-			PersoPANEL:SizeTo(PersoPANEL:GetWide(),0,0.5,0.1,1)
-			img_charac:MoveBy(0,-(PersoPANEL:GetTall()/2),0.5,0.1,1,function()
-				BackGroundPanel:Remove()
-				isOpen = false
+	if Time ~= 0 then
+		timed = true
+		timer.Simple( Time-0.3, function()
+			img_charac:MoveTo((ScrW() /2) - (img_charac:GetWide()/2)  ,0,0.5,0,1)
+			DescriptionBox:MoveTo((ScrW() /2) - (DescriptionBox:GetWide()/2.5)  ,0,0.5,0,1)
+			DescriptionBox:MoveToBefore(img_charac)
+			DescriptionBox:SizeTo( 0, DescriptionBox:GetTall(), 0.4, 0, -1,  function ()
+				PersoPANEL:MoveBy(0,PersoPANEL:GetTall() /2,0.5,0.1,1)
+				PersoPANEL:SizeTo(PersoPANEL:GetWide(),0,0.5,0.1,1)
+				img_charac:MoveBy(0,-(PersoPANEL:GetTall()/2),0.5,0.1,1,function()
+					BackGroundPanel:Remove()
+					isOpen = false
+					timed = false
+				end)
 			end)
-		end)
-
-	end )
-end
-if Time == 0 then
-
-	local CloseB = vgui.Create( "DButton" )
-	CloseB:MakePopup()
-	CloseB:MoveToFront()
-	CloseB:SetPos( 40, 40 )
-	CloseB:SetText( "X" )
-
-	CloseB:SetSize( 20, 20 )
-	CloseB.DoClick = function()
-		img_charac:MoveTo((ScrW() /2) - (img_charac:GetWide()/2)  ,0,0.5,0,1)
-		DescriptionBox:MoveTo((ScrW() /2) - (DescriptionBox:GetWide()/2.5)  ,0,0.5,0,1)
-		DescriptionBox:MoveToBefore(img_charac)
-		DescriptionBox:SizeTo( 0, DescriptionBox:GetTall(), 0.4, 0, -1,  function ()
-			PersoPANEL:MoveBy(0,PersoPANEL:GetTall() /2,0.5,0.1,1)
-			PersoPANEL:SizeTo(PersoPANEL:GetWide(),0,0.5,0.1,1)
-			img_charac:MoveBy(0,-(PersoPANEL:GetTall()/2),0.5,0.1,1,function() BackGroundPanel:Remove() end)
-		end)
-		CloseB:Remove()
-		active = false
+		end )
+	else
+		timed = false
 	end
 end
 
-end
-
 net.Receive( "sls_f1_menu", function ()
-	active = false
 	local TeamName = " "
 	local TeamText = " "
 	local ImageCharac =  "/characteres/default.png"
 	local CharacName = " "
 
+	if timed then return end
+
+	if IsValid(BackGroundPanel) then
+		BackGroundPanel:Remove()
+		return
+	end
+
 	if LocalPlayer():Team() == 2 then
 
-		TeamName = "a Survivor"
-		TeamText = "Each survivor has a special perk. Your goal is to find jerrycans (number varying with the amount of player) to fill the generator so you can turn on the radio then call the police for help. Each element you have to find has many possible spawn points and spawns randomly on the map. The teamplay and a moderate use of your flashlight are the key of surviving."
+		TeamName = GM.LANG:GetString("round_team_name_survivor")
+		TeamText = GM.LANG:GetString("round_team_desc_survivor")
 		ImageCharac = "/characteres/"..string.lower(GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].name)..".png"
 		CharacName = GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].dispname
 		CharacText = GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].description
 
 	elseif LocalPlayer():Team() == 1 then
-		TeamName = "the Killer"
-		TeamText = "You are a killer from a slasher movie and you are immortal. Your goal is to kill every survivors before they can escape. You are randomly given one of the following weapons ; the axe, the machete or the chainsaw (which turns on by pushing R) To give a harder hit, you can hold left click and release. You can hear survivors' heartbeat when they're not moving, just follow the sound and you'll find them."
+		TeamName = GM.LANG:GetString("round_team_name_killer")
+		TeamText = GM.LANG:GetString("round_team_desc_killer")
 		ImageCharac = "/characteres/"..string.lower(GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].name)..".png"
 		CharacName = GM.CLASS.Killers[LocalPlayer().ClassID].name
 		CharacText = GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].description
@@ -166,9 +154,7 @@ net.Receive( "sls_f1_menu", function ()
 		CharacText = "none"
 	end
 
-	if (!active) then
-		ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,0,active)
-	end
+	ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,0)
 end)
 
 function ShowTitle(Title,Second)
