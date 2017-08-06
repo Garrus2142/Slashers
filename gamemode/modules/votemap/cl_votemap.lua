@@ -18,7 +18,7 @@ local horizonBar
 
 local function openVotemap()
   backVote = vgui.Create( "DPanel" )
-  backVote:MakePopup()
+  backVote.isOpen = true
   local scrw = ScrW()
   local scrh = ScrH()
 
@@ -26,6 +26,8 @@ local function openVotemap()
 
   backVote:SetBackgroundColor( Color( 0, 0, 0, 180 ) )
 
+  gui.EnableScreenClicker( backVote.isOpen )
+  
   local titleLabel = vgui.Create( "DLabel", backVote )
   titleLabel:SetFont("Friday13 title")
   titleLabel:SetText( GM.LANG:GetString("votemap_title" ))
@@ -39,7 +41,9 @@ local function openVotemap()
   exitButton:AlignTop( 20 )
   exitButton:AlignRight( 100 )
   exitButton.DoClick= function()
+    backVote.isOpen = false
     backVote:Remove()
+    gui.EnableScreenClicker( backVote.isOpen )
   end
 
   horizonBar = vgui.Create("DPanel",backVote,"horBar")
