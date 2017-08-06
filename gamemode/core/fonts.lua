@@ -2,8 +2,8 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:46
--- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-07-26 14:47:24
+-- @Last Modified by:   Daryl_Winters
+-- @Last Modified time: 2017-08-06T09:45:14+02:00
 
 surface.CreateFont("horror1", {
 	font = "Bohemian typewriter",
@@ -54,14 +54,14 @@ surface.CreateFont( "Bohemian typewriter STITLE", {
 	weight = 500,
 	blursize = 0,
 	scanlines = 0,
-	antialias = true, 
+	antialias = true,
 	underline = false,
 	italic = false,
 	strikeout = false,
 	symbol = false,
 	rotary = false,
 	shadow = true,
-	additive = false, 
+	additive = false,
 	outline = false,
 } )
 surface.CreateFont( "KeyboardFont", {
@@ -76,7 +76,7 @@ surface.CreateFont( "KeyboardFont", {
 	italic = false,
 	strikeout = false,
 	symbol = false,
-	rotary = false, 
+	rotary = false,
 	shadow = false,
 	additive = false,
 	outline = false,
@@ -136,4 +136,24 @@ surface.CreateFont( "Bohemian typewriter TITLE", {
 	shadow = true,
 	additive = false,
 	outline = false,
+} )
+
+surface.CreateFont( "Friday13 title", {
+  font = "Friday13", -- Use the font-name which is shown to you by your operating system Font Viewer, not the file name
+  extended = true,
+  size = ScreenScale(30),
+  weight = 500,
+  blursize = 0,
+  scanlines = 0,
+  antialias = true,
+} )
+
+surface.CreateFont( "Friday13 mapLabel", {
+  font = "Friday13", -- Use the font-name which is shown to you by your operating system Font Viewer, not the file name
+  extended = true,
+  size = ScreenScale(12),
+  weight = 500,
+  blursize = 0,
+  scanlines = 0,
+  antialias = true,
 } )

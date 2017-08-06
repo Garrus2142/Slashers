@@ -3,13 +3,13 @@
 -- @Author: Guilhem PECH <Daryl_Winters>
 -- @Date:   2017-08-02T17:49:23+02:00
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-02T18:47:35+02:00
+-- @Last Modified time: 2017-08-06T13:50:10+02:00
 
 local LANG = {}
 
 -- 	Core Gamemode
 -- 		Survivors
-LANG["class_desc_sports"] = "Vous avez une bonne stamina et vous êtes fort. Faites en bon escient pour tenir le tueur à distance !"
+LANG["class_desc_sports"] = "Vous avez une très bonne endurance est êtes l'un des plus rapides du groupe. Faites en bon escient pour tenir le tueur à distance !"
 LANG["class_desc_popular"] = "Vous êtes notifié de la position exacte de la Police à la fin de la partie. Utilisez cette aide pour faire gagner votre équipe !"
 LANG["class_desc_nerd"] = "Utilisez votre détecteur pour voir les formes de vies aux alentours. Mais attention, le détecteur ne fait pas la différence entre tueur et survivant ..."
 LANG["class_desc_fat"] = "Vous êtes la personne la plus forte du groupe mais ... vous avez moins de stamina."
@@ -38,7 +38,7 @@ LANG["round_mission_radio"] = "Trouvez et activez la radio!"
 LANG["round_wait_players"] = "Attente de joueurs %i/%i"
 LANG["round_team_name_survivor"] = "un Survivant"
 LANG["round_team_name_killer"] = "le Tueur"
-LANG["round_team_desc_survivor"] = "Tous les survivants ont une capacité propre. Votre but est de touver des jerrycans (le nombre varie en fonction du nombre de joueurs) pour remplir et allumer le générateur de manière à activer la radio et appeler la police. Chaque éléments que vous devez trouver a de nombreux point d'apparitions aléatoire.Le jeu d'équipe et l'utilisation modéré de la lampe-torche sont la clef de la survie !"
+LANG["round_team_desc_survivor"] = "Tous les survivants ont une capacité propre. Votre but est de touver des jerrycans (le nombre varie en fonction du nombre de joueurs) pour remplir et allumer le générateur de manière à activer la radio et appeler la police. Chaque éléments que vous devez trouver a de nombreux points d'apparitions aléatoire.Le jeu d'équipe et l'utilisation modéré de la lampe-torche sont la clef de la survie !"
 LANG["round_team_desc_killer"] = "Vous êtes le tueur d'un Slasher movie. Votre but est de tuer tous les survivants avant qu'ils s'enfuient. On vous donne une arme aléatoire parmis cette liste : une hache, une machete ou une tronconneuse (vous pouvez l'allumer en appuyant sur R) Pour un coup plus puissant enfoncer le clique gauche et relachez. Vous pouvez entendre le coeur battre des survivants qui ne bougent pas, suivez le son pour les trouver."
 LANG["round_notif_police_call"] = "vous avez appelé la police !"
 LANG["round_notif_police"] = "Survivez en attendant la police !"
@@ -49,7 +49,7 @@ LANG["round_notif_error_generator"] = "Vous ne pouvez pas activer le générateu
 LANG["round_notif_enabled_generator"] = "Vous avez activez le générateur!"
 LANG["round_notif_player_die"] = "%s est mort"
 LANG["round_end_escaped"] = "Les survivants se sont enfuis... pour l'instant"
-LANG["round_end_dead"] = "Les survivants se sont fait erradiquer"
+LANG["round_end_dead"] = "Les survivants se sont fait massacrer"
 
 -- Modules
 LANG["antiafk_will_kicked"] = "Vous êtes sur le point d'être expulsé du serveur pour inactivité dans %s"
@@ -60,4 +60,8 @@ LANG["workshop_no"] = "Je ne préfère pas"
 LANG["traps_rope_hit_world"] = "La corde touche le sol"
 LANG["traps_too_much_distance"] = "Trop loin"
 LANG["killerhelp_cant_use_ability"] = "Vous ne pouvez pas utiliser votre capacité maintenant"
+LANG["votemap_title"] = "Votez pour la map suivante !"
+LANG["votemap_extend"] = "Prolonger"
+LANG["votemap_random"] = "Aleatoire"
+
 return LANG

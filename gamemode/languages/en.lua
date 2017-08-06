@@ -2,14 +2,14 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-08-01 16:53:54
--- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-08-01 16:53:55
+-- @Last Modified by:   Daryl_Winters
+-- @Last Modified time: 2017-08-06T10:10:19+02:00
 
 local LANG = {}
 
 -- 	Core Gamemode
 -- 		Survivors
-LANG["class_desc_sports"] = "You have unlimited stamina and you're strong. Use weapons to stun the killer and helping the survivors running away."
+LANG["class_desc_sports"] = "You have a lot of stamina and you're strong. Use weapons to stun the killer and helping the survivors running away."
 LANG["class_desc_popular"] = "You're notified of the exact position of the Police at the end of each game. Use it to help the survivors escaping."
 LANG["class_desc_nerd"] = "Use your detector to see players nearby. Be careful, you can't make difference between survivors and the killer."
 LANG["class_desc_fat"] = "You're the strongest and hardest survivor to kill but you have the lowest stamina."
@@ -60,4 +60,6 @@ LANG["workshop_no"] = "I'd rather not."
 LANG["traps_rope_hit_world"] = "The rope hit the world"
 LANG["traps_too_much_distance"] = "Too much distance"
 LANG["killerhelp_cant_use_ability"] = "You can't use your ability now"
+LANG["votemap_title"] = "Vote for the next map !"
+
 return LANG
