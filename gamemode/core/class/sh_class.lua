@@ -2,8 +2,8 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:46
--- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-07-27 11:49:54
+-- @Last Modified by:   Daryl_Winters
+-- @Last Modified time: 2017-08-07T17:43:02+02:00
 
 local GM = GM or GAMEMODE
 
@@ -12,12 +12,6 @@ GM.CLASS.Survivors = {}
 GM.CLASS.Killers = {}
 
 GM.CLASS.Survivors[CLASS_SURV_SPORTS] = {}
-<<<<<<< HEAD
-GM.CLASS.Survivors[CLASS_SURV_SPORTS].name = "Sports"
-GM.CLASS.Survivors[CLASS_SURV_SPORTS].dispname = "Trent"
-GM.CLASS.Survivors[CLASS_SURV_SPORTS].description = "You have a better stamina and you're strong. Use weapons to stun the killer and helping the survivors running away."
-=======
->>>>>>> dev
 GM.CLASS.Survivors[CLASS_SURV_SPORTS].walkspeed = 150
 GM.CLASS.Survivors[CLASS_SURV_SPORTS].runspeed = 240
 GM.CLASS.Survivors[CLASS_SURV_SPORTS].life = 120

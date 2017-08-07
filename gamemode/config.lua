@@ -3,7 +3,7 @@
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:45
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-06T15:27:08+02:00
+-- @Last Modified time: 2017-08-07T17:33:47+02:00
 
 local GM = GM or GAMEMODE
 GM.CONFIG = {}
@@ -105,3 +105,7 @@ GM.CONFIG["custom_maps"] = {
 	-- "gm_construct.bsp",
 	-- "gm_flatgrass.bsp"
 }
+
+-- Mayers ability cooldown
+GM.CONFIG["myers_cooldown"] = 10
+GM.CONFIG["myers_abilitytime"] = 10

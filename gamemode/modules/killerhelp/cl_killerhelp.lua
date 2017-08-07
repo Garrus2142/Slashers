@@ -2,8 +2,8 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:50
--- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-07-26 14:48:35
+-- @Last Modified by:   Daryl_Winters
+-- @Last Modified time: 2017-08-07T18:37:28+02:00
 
 local GM = GM or GAMEMODE
 local doors = {}
@@ -44,6 +44,35 @@ local function AddExit()
 end
 net.Receive("sls_popularhelp_AddExit", AddExit)
 
+local function getMenuKey()
+	local cpt = 0
+	while input.LookupKeyBinding( cpt ) ~= "+menu" && cpt < 159 do
+		 cpt = cpt + 1
+	end
+	return  cpt
+end
+
+
+local function requestPosSurvivor(ply, button)
+	 if GM.ROUND.Active && GM.ROUND.Survivors && ply:Team() == TEAM_KILLER &&  button == getMenuKey() then
+		net.Start("sls_myers_request")
+		net.SendToServer()
+	end
+end
+hook.Add("PlayerButtonDown","sls_killerhelp_myersRequest",requestPosSurvivor)
+
+local function updateMyersAbility()
+		local status = net.ReadInt(2)
+		if status == 2 then
+			-- Available !
+		elseif status == 1 then
+			-- Activated !
+		elseif status == 0 then
+			-- Deactivated !
+		end
+end
+net.Receive("sls_update_myersability",updateMyersAbility)
+
 local function HUDPaintBackground()
 	local curtime = CurTime()
 
@@ -79,6 +108,7 @@ local function HUDPaintBackground()
 		surface.SetDrawColor(Color(255, 255, 255))
 		surface.SetMaterial(ICON_VICTIM)
 		surface.DrawTexturedRect(pos2.x - 64, pos2.y - 64, 128, 128)
+		surface.DrawTexturedRect(ScrW()-110,10,100,100)
 	end
 end
 hook.Add("HUDPaintBackground", "sls_killerhelp_HUDPaintBackground", HUDPaintBackground)
@@ -210,14 +240,6 @@ local function InvisibleVision()
 end
 hook.Add( "RenderScreenspaceEffects", "BinocDraw", InvisibleVision )
 
-
-local function getMenuKey()
-	local cpt = 0
-	while input.LookupKeyBinding( cpt ) ~= "+menu" && cpt < 159 do
-		 cpt = cpt + 1
-	end
-	return  cpt
-end
 
 local enableKeyActivated = false
 local menuKey = getMenuKey()

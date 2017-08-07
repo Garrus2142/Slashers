@@ -2,14 +2,8 @@
 --
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:50:55+02:00
-<<<<<<< HEAD
--- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-26 22:59:21
-
-=======
--- @Last Modified by:
--- @Last Modified time: 2017-07-27 01:39:07
->>>>>>> dev
+-- @Last Modified by:   Daryl_Winters
+-- @Last Modified time: 2017-08-07T17:46:37+02:00
 
 local GM = GAMEMODE or GM
 local BackGroundPanel, timed
@@ -36,7 +30,6 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 
 	if !ImageCharac then
 		ImageCharac = "/characteres/default.png"
-		BackGroundPanel:SetTerm(1)
 	end
 	img_charac:SetImage( ImageCharac )
 	img_charac:SetTall((1/1.5)*ScrH())

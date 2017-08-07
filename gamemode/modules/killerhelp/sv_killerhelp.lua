@@ -2,8 +2,8 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:50
--- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-07-26 14:48:34
+-- @Last Modified by:   Daryl_Winters
+-- @Last Modified time: 2017-08-07T18:37:32+02:00
 
 local GM = GM or GAMEMODE
 
@@ -12,6 +12,8 @@ util.AddNetworkString("sls_killerhelp_AddStep")
 util.AddNetworkString("sls_killerhelp_Wallhack")
 util.AddNetworkString("sls_popularhelp_AddExit")
 util.AddNetworkString("sls_EnableInvisibility")
+util.AddNetworkString("sls_myers_request")
+util.AddNetworkString("sls_update_myersability")
 
 local VictimMyers
 local Timer1 = 0
@@ -110,6 +112,32 @@ local function PlayerFootstep(ply, pos, foot, sound, volume, filter)
 end
 hook.Add("PlayerFootstep", "sls_killerhelp_PlayerFootstep", PlayerFootstep)
 
+local lastRequestMyers = 0
+local myersAbilityActivated = false
+local function receiveRequestMyers()
+	if CurTime() - lastRequestMyers < GM.CONFIG["myers_cooldown"]  then
+		net.Start( "notificationSlasher" )
+			net.WriteTable({"killerhelp_cant_use_ability"})
+			net.WriteString("cross")
+			net.Send(GM.ROUND.Killer)
+		return
+	end
+	if myersAbilityActivated then return end
+	net.Start("sls_update_myersability")
+	net.WriteInt(1,2)
+	net.Send(GM.ROUND.Killer)
+	myersAbilityActivated = true
+	timer.Simple(GM.CONFIG["myers_abilitytime"],function ()
+		myersAbilityActivated = false
+		lastRequestMyers = CurTime()
+		net.Start("sls_update_myersability")
+		net.WriteInt(0,2)
+		net.Send(GM.ROUND.Killer)
+	end)
+end
+net.Receive("sls_myers_request",receiveRequestMyers)
+
+
 local DIST_RESET = 350 ^ 2
 local CAMP_DELAY = 15
 local function Think()
@@ -140,12 +168,24 @@ local function Think()
 	-- Help Myers
 	local curtime = CurTime()
 	if !GM.ROUND.Active || !IsValid(GM.ROUND.Killer) || !GM.ROUND.Survivors  then return end
-	if GM.ROUND.Killer.ClassID == CLASS_KILL_MYERS && Timer1 < curtime && IsValid(VictimMyers) && VictimMyers.ClassID != CLASS_SURV_SHY then
-		net.Start("sls_killerhelp_Wallhack")
-			net.WriteVector(VictimMyers:GetPos() + Vector(0, 0, 50))
-		net.Send(GM.ROUND.Killer)
+	if GM.ROUND.Killer.ClassID == CLASS_KILL_MYERS && Timer1 < curtime && IsValid(VictimMyers) && VictimMyers.ClassID != CLASS_SURV_SHY  then
+		if myersAbilityActivated then
+			net.Start("sls_killerhelp_Wallhack")
+				net.WriteVector(VictimMyers:GetPos() + Vector(0, 0, 50))
+			net.Send(GM.ROUND.Killer)
+		else
+			net.Start("sls_killerhelp_Wallhack")
+				net.WriteVector(Vector(42, 42, 42))
+			net.Send(GM.ROUND.Killer)
+		end
 		Timer1 = curtime + 0.5
 	end
+	if  CurTime() - lastRequestMyers == GM.CONFIG["myers_cooldown"] then
+		net.Start("sls_update_myersability") --Send a message if the ability is available again
+		net.WriteInt(2,2)
+		net.Send(GM.ROUND.Killer)
+	end
+
 end
 hook.Add("Think", "sls_killerhelp_Think", Think)
 
