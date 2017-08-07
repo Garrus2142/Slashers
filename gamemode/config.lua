@@ -112,4 +112,4 @@ GM.CONFIG["myers_abilitytime"] = 10
 
 -- Ghostface radius ability
 
-GM.CONFIG["ghostface_ability_radius"] = 200 -- 0 for unlimited
+GM.CONFIG["ghostface_ability_radius"] = 600 -- 0 for unlimited
