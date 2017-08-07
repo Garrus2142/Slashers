@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH <Daryl_Winters>
 -- @Date:   2017-08-06T09:43:46+02:00
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-06T20:53:07+02:00
+-- @Last Modified time: 2017-08-07T21:05:30+02:00
 
 
 local GM = GAMEMODE or GM
@@ -13,7 +13,7 @@ net.Receive("slash_sendmaplist",function ()
   slashersMaps = net.ReadTable()
 end)
 
-local backVote
+
 local horizonBar
 
 local function openVotemap()
@@ -153,8 +153,8 @@ end)
 
 local function receiveVoteStat()
   local voteData = net.ReadTable()
-
-  if !backVote.isOpen or !backVote:IsVisible() then return end
+  if !IsValid(backVote) then return end 
+  if !backVote.isOpen then return end
   for k,v in pairs(backVote:GetChildren()[3]:GetChildren()) do
 
     local nbCurVote = voteData[v:GetName()] or 0
