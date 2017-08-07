@@ -54,6 +54,7 @@ end
 
 
 local function requestPosSurvivor(ply, button)
+	if !IsFirstTimePredicted() then return end
 	 if GM.ROUND.Active && GM.ROUND.Survivors && ply:Team() == TEAM_KILLER &&  button == getMenuKey() then
 		net.Start("sls_myers_request")
 		net.SendToServer()
