@@ -3,7 +3,7 @@
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:50
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-07T18:52:38+02:00
+-- @Last Modified time: 2017-08-07T19:54:09+02:00
 
 local GM = GM or GAMEMODE
 
@@ -22,7 +22,7 @@ local function AddDoor(pos, endtime)
 	if !GM.ROUND.Active || !IsValid(GM.ROUND.Killer) then return end
 	if GM.CONFIG["ghostface_ability_radius"] != 0 then
 		local entsNerby = ents.FindInSphere( pos, GM.CONFIG["ghostface_ability_radius"]	 )
-		local isKillerNerby = table.HasValue( ents, GM.ROUND.Killer )
+		local isKillerNerby = table.HasValue( entsNerby, GM.ROUND.Killer )
 		if !isKillerNerby then return end
 	end
 	net.Start("sls_killerhelp_AddDoor")
@@ -119,6 +119,7 @@ hook.Add("PlayerFootstep", "sls_killerhelp_PlayerFootstep", PlayerFootstep)
 local lastRequestMyers = 0
 local myersAbilityActivated = false
 local function receiveRequestMyers()
+	if !IsFirstTimePredicted() then return end
 	if CurTime() - lastRequestMyers < GM.CONFIG["myers_cooldown"]  then
 		net.Start( "notificationSlasher" )
 			net.WriteTable({"killerhelp_cant_use_ability"})
