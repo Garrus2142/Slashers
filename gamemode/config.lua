@@ -3,7 +3,7 @@
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:45
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-07T17:33:47+02:00
+-- @Last Modified time: 2017-08-07T18:52:51+02:00
 
 local GM = GM or GAMEMODE
 GM.CONFIG = {}
@@ -109,3 +109,7 @@ GM.CONFIG["custom_maps"] = {
 -- Mayers ability cooldown
 GM.CONFIG["myers_cooldown"] = 10
 GM.CONFIG["myers_abilitytime"] = 10
+
+-- Ghostface radius ability
+
+GM.CONFIG["ghostface_ability_radius"] = 200 -- 0 for unlimited
