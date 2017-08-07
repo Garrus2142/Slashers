@@ -3,7 +3,7 @@
 -- @Author: Garrus2142
 -- @Date:   2017-08-01 16:53:54
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-06T10:10:19+02:00
+-- @Last Modified time: 2017-08-06T16:17:17+02:00
 
 local LANG = {}
 
@@ -61,5 +61,6 @@ LANG["traps_rope_hit_world"] = "The rope hit the world"
 LANG["traps_too_much_distance"] = "Too much distance"
 LANG["killerhelp_cant_use_ability"] = "You can't use your ability now"
 LANG["votemap_title"] = "Vote for the next map !"
-
+LANG["votemap_extend"] = "Extend"
+LANG["votemap_random"] = "Random"
 return LANG

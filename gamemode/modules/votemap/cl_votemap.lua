@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH <Daryl_Winters>
 -- @Date:   2017-08-06T09:43:46+02:00
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-06T13:31:47+02:00
+-- @Last Modified time: 2017-08-06T20:53:07+02:00
 
 
 local GM = GAMEMODE or GM
@@ -18,13 +18,15 @@ local horizonBar
 
 local function openVotemap()
   backVote = vgui.Create( "DPanel" )
-  backVote:MakePopup()
+  backVote.isOpen = true
   local scrw = ScrW()
   local scrh = ScrH()
 
   backVote:SetSize( scrw , scrh - 300 ) -- Set the size of the panel
-  
+
   backVote:SetBackgroundColor( Color( 0, 0, 0, 180 ) )
+
+  gui.EnableScreenClicker( backVote.isOpen )
 
   local titleLabel = vgui.Create( "DLabel", backVote )
   titleLabel:SetFont("Friday13 title")
@@ -39,7 +41,9 @@ local function openVotemap()
   exitButton:AlignTop( 20 )
   exitButton:AlignRight( 100 )
   exitButton.DoClick= function()
+    backVote.isOpen = false
     backVote:Remove()
+    gui.EnableScreenClicker( backVote.isOpen )
   end
 
   horizonBar = vgui.Create("DPanel",backVote,"horBar")
@@ -134,12 +138,23 @@ local function openVotemap()
   net.Start("slash_summitvote")
   net.SendToServer()
 end
-net.Receive("slash_openvotemap",openVotemap)
+net.Receive("slash_openvotemap",function ()
+
+if IsValid(backVote) then
+		backVote.isOpen = false
+		backVote:Remove()
+		gui.EnableScreenClicker( backVote.isOpen )
+		return
+	end
+
+openVotemap()
+
+end)
 
 local function receiveVoteStat()
   local voteData = net.ReadTable()
 
-  if !backVote:IsVisible() then return end
+  if !backVote.isOpen or !backVote:IsVisible() then return end
   for k,v in pairs(backVote:GetChildren()[3]:GetChildren()) do
 
     local nbCurVote = voteData[v:GetName()] or 0
@@ -179,7 +194,5 @@ local function receiveVoteStat()
     backVote:SetPos( (ScrW() - backVote:GetWide())/2, (ScrH() - backVote:GetTall())/2 ) -- Set the position of the panel
 
   end
-
-
 end
 net.Receive("slash_sendvotedata",receiveVoteStat)
