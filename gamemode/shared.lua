@@ -7,8 +7,6 @@
 
 GM.Name = "Slashers";
 GM.Author = "Garrus2142";
-SLASHERS = {}
-SLASHERS.ROUND = {}
 
 TEAM_KILLER = 1;
 TEAM_SURVIVORS = 2;
