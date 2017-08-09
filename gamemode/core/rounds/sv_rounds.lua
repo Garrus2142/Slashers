@@ -50,7 +50,7 @@ function GM.ROUND:Start(forceKiller)
 			playersCount = playersCount + 1
 		end
 	end
-	if playersCount < GM.CONFIG["round_min_player"] then
+	if playersCount < GetConVar("slashers_round_min_player"):GetInt() then
 		GM.ROUND.WaitingPlayers = true
 		net.Start("sls_round_WaitingPlayers")
 			net.WriteBool(true)
@@ -106,7 +106,7 @@ function GM.ROUND:Start(forceKiller)
 
 	GM.ROUND.Active = true
 	GM.ROUND.Count = GM.ROUND.Count + 1
-	GM.ROUND.EndTime = CurTime() + GM.CONFIG["round_freeze_start"] + GM.CONFIG["round_duration_base"] + (#GM.ROUND.Survivors * GM.CONFIG["round_duration_add"])
+	GM.ROUND.EndTime = CurTime() + GM.CONFIG["round_freeze_start"] + GetConVar("slashers_duration_base"):GetFloat() + (#GM.ROUND.Survivors * GetConVar("slashers_duration_addsurv"):GetFloat())
 
 	hook.Run("sls_round_PostStart")
 	net.Start("sls_round_PostStart")
@@ -130,13 +130,13 @@ function GM.ROUND:Start(forceKiller)
 		end
 	)
 
-	print("Start round " .. GM.ROUND.Count .. "/" .. GM.CONFIG["round_count_nextmap"])
+	print("Start round " .. GM.ROUND.Count .. "/" .. GetConVar("slashers_round_max"):GetInt())
 end
 
 function GM.ROUND:StartWaitingPolice()
 	GM.ROUND.WaitingPolice = true
-	GM.ROUND.EndTime = CurTime() + GM.CONFIG["round_freeze_start"] + GM.CONFIG["round_duration_waitingpolice_base"] +
-		(#GM.ROUND:GetSurvivorsAlive() * GM.CONFIG["round_duration_waitingpolice_add"])
+	GM.ROUND.EndTime = CurTime() + GM.CONFIG["round_freeze_start"] + GetConVar("slashers_duration_waitingpolice_base"):GetFloat() +
+		(#GM.ROUND:GetSurvivorsAlive() * GetConVar("slashers_duration_waitingpolice_addsurv"):GetFloat())
 
 	hook.Run("sls_round_StartWaitingPolice")
 	net.Start("sls_round_StartWaitingPolice")
@@ -192,7 +192,7 @@ function GM.ROUND:End(nowin)
 	GM.ROUND.EndTime = nil
 	GM.ROUND.NextStart = CurTime() + (nowin and 8 or GM.CONFIG["round_duration_end"])
 
-	if #player.GetAll() < GM.CONFIG["round_min_player"] then
+	if #player.GetAll() < GetConVar("slashers_round_min_player"):GetInt() then
 		GM.ROUND.WaitingPlayers = true
 		net.Start("sls_round_WaitingPlayers")
 			net.WriteBool(true)
@@ -295,10 +295,10 @@ local function Think()
 				count = count + 1
 			end
 		end
-		if count >= GM.CONFIG["round_min_player"] then
+		if count >= GetConVar("slashers_round_min_player"):GetInt() then
 			GM.ROUND.WaitingPlayers = false
 			timer.Simple(1, function()
-				if #player.GetAll() < GM.CONFIG["round_min_player"] then
+				if #player.GetAll() < GetConVar("slashers_round_min_player"):GetInt() then
 					GM.ROUND.WaitingPlayers = true
 					return
 				end

@@ -57,6 +57,9 @@ if CLIENT then
 	GM.MAP.Killer.Icon = Material("icons/icon_jason.png")
 end
 
+-- Convars
+CreateConVar("slashers_jason_step_duration", 30, {FCVAR_SERVER_CAN_EXECUTE, FCVAR_ARCHIVE, FCVAR_REPLICATED}, "Set duration when the footstep is displayed for Jason.")
+
 -- Ability
 
 if CLIENT then
@@ -138,7 +141,7 @@ else
 			net.WriteEntity(ply)
 			net.WriteVector(pos)
 			net.WriteAngle(ply:GetAimVector():Angle())
-			net.WriteInt(CurTime() + GM.CONFIG["killerhelp_step_duration"], 16)
+			net.WriteInt(CurTime() + GetConVar("slashers_jason_step_duration"):GetFloat(), 16)
 		net.Send(GM.ROUND.Killer)
 	end
 	hook.Add("PlayerFootstep", "sls_kability_PlayerFootstep", PlayerFootstep)

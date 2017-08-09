@@ -56,6 +56,10 @@ if CLIENT then
 	GM.MAP.Killer.Icon = Material("icons/icon_ghostface.png")
 end
 
+-- Convars
+CreateConVar("slashers_ghostface_door_duration", 3, {FCVAR_SERVER_CAN_EXECUTE, FCVAR_ARCHIVE, FCVAR_REPLICATED}, "Set duration when the door is displayed for Ghostface.")
+CreateConVar("slashers_ghostface_door_radius", 1400, {FCVAR_SERVER_CAN_EXECUTE, FCVAR_ARCHIVE, FCVAR_REPLICATED}, "Set Ghostface's ability radius. (0 to disable radius)")
+
 -- Ability
 
 if CLIENT then
@@ -102,9 +106,10 @@ else
 
 	local function AddDoor(pos, endtime)
 		if !GM.ROUND.Active || !IsValid(GM.ROUND.Killer) then return end
+		local CV_Radius = GetConVar("slashers_ghostface_door_radius")
 
-		if GM.CONFIG["ghostface_ability_radius"] != 0 then
-			local entsNerby = ents.FindInSphere( pos, GM.CONFIG["ghostface_ability_radius"]	 )
+		if CV_Radius:GetInt() != 0 then
+			local entsNerby = ents.FindInSphere( pos, CV_Radius:GetInt()	 )
 			local isKillerNerby = table.HasValue( entsNerby, GM.ROUND.Killer )
 			if !isKillerNerby then return end
 		end
@@ -121,10 +126,11 @@ else
 		if ply.ClassID == CLASS_SURV_SHY then return end
 		if !table.HasValue(GM.CONFIG["killerhelp_door_entities"], ent:GetClass()) then return end
 		if ply.kh_use && ply.kh_use[ent:EntIndex()] && CurTime() <= ply.kh_use[ent:EntIndex()] then return end
+		local CV_DoorDuration = GetConVar("slashers_ghostface_door_duration")
 
 		ply.kh_use = ply.kh_use or {}
-		ply.kh_use[ent:EntIndex()] = CurTime() + GM.CONFIG["killerhelp_door_duration"]
-		AddDoor(ent:GetPos(), CurTime() + GM.CONFIG["killerhelp_door_duration"])
+		ply.kh_use[ent:EntIndex()] = CurTime() + CV_DoorDuration:GetFloat()
+		AddDoor(ent:GetPos(), CurTime() + CV_DoorDuration:GetFloat())
 	end
 	hook.Add("PlayerUse", "sls_kability_PlayerUse", PlayerUse)
 end

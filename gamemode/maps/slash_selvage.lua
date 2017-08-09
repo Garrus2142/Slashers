@@ -86,6 +86,10 @@ if CLIENT then
 	GM.MAP.Killer.Icon = Material("icons/icon_myers.png")
 end
 
+-- Convars
+CreateConVar("slashers_myers_wallhack_cooldown", 10, {FCVAR_SERVER_CAN_EXECUTE, FCVAR_ARCHIVE, FCVAR_REPLICATED}, "Set Myers's wallhack cooldown.")
+CreateConVar("slashers_myers_wallhack_duration", 10, {FCVAR_SERVER_CAN_EXECUTE, FCVAR_ARCHIVE, FCVAR_REPLICATED}, "Set Myers's wallhack duration.")
+
 -- Ability
 
 if CLIENT then
@@ -150,7 +154,7 @@ else
 	local lastRequestMyers = 0
 	local myersAbilityActivated = false
 	function GM.MAP.Killer:UseAbility( ply )
-		if CurTime() - lastRequestMyers < GM.CONFIG["myers_cooldown"]  then
+		if CurTime() - lastRequestMyers < GetConVar("slashers_myers_wallhack_cooldown"):GetFloat()  then
 			net.Start( "notificationSlasher" )
 				net.WriteTable({"killerhelp_cant_use_ability"})
 				net.WriteString("cross")
@@ -162,7 +166,7 @@ else
 		net.WriteInt(1,2)
 		net.Send(ply)
 		myersAbilityActivated = true
-		timer.Simple(GM.CONFIG["myers_abilitytime"],function ()
+		timer.Simple(GetConVar("slashers_myers_wallhack_duration"):GetFloat(),function ()
 			if !GM.ROUND.Active then return end
 
 			myersAbilityActivated = false

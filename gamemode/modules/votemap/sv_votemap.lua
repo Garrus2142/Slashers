@@ -49,7 +49,7 @@ end
 hook.Add("PlayerButtonDown","slash_openvotemap",openVoteMap )
 
 local function changeMap()
-  if !GM.ROUND.Active && GM.ROUND.NextStart && CurTime() >= GM.ROUND.NextStart && GM.ROUND.Count >= GM.CONFIG["round_count_nextmap"]  then
+  if !GM.ROUND.Active && GM.ROUND.NextStart && CurTime() >= GM.ROUND.NextStart && GM.ROUND.Count >= GetConVar("slashers_round_max"):GetInt()  then
 		local winner = table.GetWinningKey( countVote )
     countVote = {}
     currentVote = {}
