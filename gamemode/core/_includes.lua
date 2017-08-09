@@ -9,6 +9,9 @@ if SERVER then
 	-- Language
 	include("lang/sv_lang.lua")
 	AddCSLuaFile("lang/cl_lang.lua")
+	-- Maps loader
+	include("mapsloader.lua")
+	AddCSLuaFile("mapsloader.lua")
 	-- Fonts
 	AddCSLuaFile("fonts.lua")
 	-- Format
@@ -42,6 +45,8 @@ if SERVER then
 else
 	-- Language
 	include("lang/cl_lang.lua")
+	-- Maps loader
+	include("mapsloader.lua")
 	-- Fonts
 	include("fonts.lua")
 	-- Format

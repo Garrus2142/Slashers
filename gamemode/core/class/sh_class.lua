@@ -148,57 +148,6 @@ if CLIENT then
 	GM.CLASS.Survivors[CLASS_SURV_SHERIF].icon = Material("icons/icon_sherif.png")
 end
 
-GM.CLASS.Killers[CLASS_KILL_JASON] = {}
-GM.CLASS.Killers[CLASS_KILL_JASON].walkspeed = 190
-GM.CLASS.Killers[CLASS_KILL_JASON].runspeed = 240
-GM.CLASS.Killers[CLASS_KILL_JASON].model = "models/player/mkx_jason.mdl"
-if CLIENT then
-	GM.CLASS.Killers[CLASS_KILL_JASON].name = "Jason"
-	GM.CLASS.Killers[CLASS_KILL_JASON].description = GM.LANG:GetString("class_desc_jason")
-	GM.CLASS.Killers[CLASS_KILL_JASON].icon = Material("icons/icon_jason.png")
-end
-
-GM.CLASS.Killers[CLASS_KILL_GHOSTFACE] = {}
-GM.CLASS.Killers[CLASS_KILL_GHOSTFACE].walkspeed = 190
-GM.CLASS.Killers[CLASS_KILL_GHOSTFACE].runspeed = 240
-GM.CLASS.Killers[CLASS_KILL_GHOSTFACE].model = "models/player/screamplayermodel/scream/scream.mdl"
-if CLIENT then
-	GM.CLASS.Killers[CLASS_KILL_GHOSTFACE].name = "Ghostface"
-	GM.CLASS.Killers[CLASS_KILL_GHOSTFACE].description = GM.LANG:GetString("class_desc_ghostface")
-	GM.CLASS.Killers[CLASS_KILL_GHOSTFACE].icon = Material("icons/icon_ghostface.png")
-end
-
-GM.CLASS.Killers[CLASS_KILL_MYERS] = {}
-GM.CLASS.Killers[CLASS_KILL_MYERS].walkspeed = 200
-GM.CLASS.Killers[CLASS_KILL_MYERS].runspeed = 200
-GM.CLASS.Killers[CLASS_KILL_MYERS].model = "models/player/dewobedil/mike_myers/default_p.mdl"
-if CLIENT then
-	GM.CLASS.Killers[CLASS_KILL_MYERS].name = "Michael Myers"
-	GM.CLASS.Killers[CLASS_KILL_MYERS].description = GM.LANG:GetString("class_desc_myers")
-	GM.CLASS.Killers[CLASS_KILL_MYERS].icon = Material("icons/icon_myers.png")
-end
-
-GM.CLASS.Killers[CLASS_KILL_PROXY] = {}
-GM.CLASS.Killers[CLASS_KILL_PROXY].walkspeed = 200
-GM.CLASS.Killers[CLASS_KILL_PROXY].runspeed = 200
-GM.CLASS.Killers[CLASS_KILL_PROXY].model = "models/slender_arrival/chaser.mdl"
-if CLIENT then
-	GM.CLASS.Killers[CLASS_KILL_PROXY].name = "the Proxy"
-	GM.CLASS.Killers[CLASS_KILL_PROXY].description = GM.LANG:GetString("class_desc_proxy")
-	GM.CLASS.Killers[CLASS_KILL_PROXY].icon = Material("icons/icon_proxy.png")
-end
-
-GM.CLASS.Killers[CLASS_KILL_INTRUDER] = {}
-GM.CLASS.Killers[CLASS_KILL_INTRUDER].walkspeed = 200
-GM.CLASS.Killers[CLASS_KILL_INTRUDER].runspeed = 200
-GM.CLASS.Killers[CLASS_KILL_INTRUDER].model = "models/steinman/slashers/intruder_pm.mdl"
-GM.CLASS.Killers[CLASS_KILL_INTRUDER].weapons = {"weapon_beartrap", "weapon_alertropes", "weapon_dooraxe"}
-if CLIENT then
-	GM.CLASS.Killers[CLASS_KILL_INTRUDER].name = "the Intruder"
-	GM.CLASS.Killers[CLASS_KILL_INTRUDER].description = GM.LANG:GetString("class_desc_intruder")
-	GM.CLASS.Killers[CLASS_KILL_INTRUDER].icon = Material("icons/icon_intruder.png")
-end
-
 local function StartRound()
 	for _, v in ipairs(player.GetAll()) do
 		v.ClassID = nil

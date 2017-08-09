@@ -2,7 +2,7 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:48
--- @Last Modified by:   Daryl_Winters
+-- @Last Modified by:   Garrus2142
 -- @Last Modified time: 2017-08-06T10:19:06+02:00
 
 local GM = GM or GAMEMODE
@@ -95,7 +95,7 @@ function GM.ROUND:Start(forceKiller)
 
 	if IsValid(GM.ROUND.Killer) then
 		GM.ROUND.Killer:Spawn()
-		GM.ROUND.Killer:SetKillClass(GM.CONFIG["killer_class_map"][game.GetMap()])
+		GM.ROUND.Killer:SetupKiller()
 		GM.ROUND.Killer:SetPos(table.Random(ents.FindByClass("info_player_terrorist")):GetPos())
 		GM.ROUND.Killer:Freeze(true)
 		GM.ROUND.Killer:ScreenFade(SCREENFADE.IN, Color(0, 0, 0), 2, GM.CONFIG["round_freeze_start"] - 2)
@@ -148,7 +148,7 @@ function GM.ROUND:StartEscape()
 	objectifComplete()
 	GM.ROUND.WaitingPolice = false
 	GM.ROUND.Escape = true
-	GM.ROUND.EndTime = CurTime() + (GM.CONFIG["round_duration_escape"][game.GetMap()] or 60)
+	GM.ROUND.EndTime = CurTime() + (GM.MAP.EscapeDuration or 60)
 
 	-- Button escape
 	GM.ROUND.EscapeButton = table.Random(ents.FindByName("button_escape"))
@@ -282,9 +282,9 @@ local function Think()
 
 	-- Check NextMap
 	if !GM.ROUND.Active && GM.ROUND.NextStart && curtime >= GM.ROUND.NextStart && GM.ROUND.Count >= GM.CONFIG["round_count_nextmap"] && GM.CONFIG["disabled_modules"]["votemap"] then
-		local mapindex = table.KeyFromValue(MAPS_LIST, game.GetMap())
+		local mapindex = table.KeyFromValue(GM.MAPS, game.GetMap())
 		GM.ROUND.NextStart = nil
-		RunConsoleCommand("changelevel", mapindex == #MAPS_LIST and MAPS_LIST[1] or MAPS_LIST[mapindex + 1])
+		RunConsoleCommand("changelevel", mapindex == #GM.MAPS and GM.MAPS[1] or GM.MAPS[mapindex + 1])
 	end
 
 	-- Waiting Players
@@ -342,14 +342,3 @@ local function InitPostEntity()
 	GM.ROUND.CameraAng = camera:GetAngles()
 end
 hook.Add("InitPostEntity", "sls_round_InitPostEntity", InitPostEntity)
-
--- List all maps slashers
-do
-	local files = file.Find("maps/*.bsp", "GAME")
-	MAPS_LIST = {}
-	for _, v in ipairs(files) do
-		if string.sub(v, 1, 6) == "slash_" && GM.CONFIG["killer_class_map"][string.StripExtension(v)] != nil then
-			table.insert(MAPS_LIST, string.StripExtension(v))
-		end
-	end
-end

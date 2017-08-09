@@ -2,7 +2,7 @@
 --
 -- @Author: Guilhem PECH <Daryl_Winters>
 -- @Date:   2017-08-06T09:43:46+02:00
--- @Last Modified by:   Daryl_Winters
+-- @Last Modified by:   Garrus2142
 -- @Last Modified time: 2017-08-06T20:53:07+02:00
 
 
@@ -154,7 +154,7 @@ end)
 local function receiveVoteStat()
   local voteData = net.ReadTable()
 
-  if !backVote.isOpen or !backVote:IsVisible() then return end
+  if !IsValid(backvote) or !backVote.isOpen or !backVote:IsVisible() then return end
   for k,v in pairs(backVote:GetChildren()[3]:GetChildren()) do
 
     local nbCurVote = voteData[v:GetName()] or 0

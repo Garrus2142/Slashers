@@ -63,9 +63,9 @@ local function PostStart()
 		elseif LocalPlayer():Team() == TEAM_KILLER then
 			TeamName = GM.LANG:GetString("round_team_name_killer")
 			TeamText = GM.LANG:GetString("round_team_desc_killer")
-			ImageCharac = "/characteres/"..string.lower(GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].name)..".png"
-			CharacName = GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].name
-			CharacText = GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].description
+			ImageCharac = "/characteres/"..string.lower(GAMEMODE.MAP.Killer.Name)..".png"
+			CharacName = GAMEMODE.MAP.Killer.Name
+			CharacText = GAMEMODE.MAP.Killer.Desc
 		end
 
 		ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,GM.CONFIG["round_freeze_start"]-3)
