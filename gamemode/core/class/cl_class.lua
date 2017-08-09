@@ -2,7 +2,7 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:46
--- @Last Modified by:   Daryl_Winters
+-- @Last Modified by:   Garrus2142
 -- @Last Modified time: 2017-08-09T14:10:02+02:00
 
 local GM = GM or GAMEMODE
@@ -10,6 +10,7 @@ local scrw, scrh = ScrW(), ScrH()
 local ICON_CROSS = Material("icons/icon_cross.png")
 local ICON_SAFE = Material("icons/icon_safe.png")
 local ICON_KEYS = Material("icons/icon_keys.png")
+local FIRST
 
 local function DrawHUDSurvivor()
 	surface.SetDrawColor(Color(255, 255, 255, 255))
@@ -27,7 +28,7 @@ end
 
 local function DrawHUDKiller()
 	surface.SetDrawColor(Color(255, 255, 255, 255))
-	surface.SetMaterial(GM.CLASS.Killers[LocalPlayer().ClassID].icon)
+	surface.SetMaterial(GM.MAP.Killer.Icon)
 	surface.DrawTexturedRect(20, scrh - 84, 64, 64)
 
 	for k, v in ipairs(GM.ROUND.Survivors) do
@@ -49,14 +50,14 @@ local function HUDPaint()
 
 	if LocalPlayer():Team() == TEAM_SURVIVORS  && GM.CLASS.Survivors[LocalPlayer().ClassID] then
 		DrawHUDSurvivor()
-		if GM.CLASS.Survivors[LocalPlayer().ClassID].name == "Black" then
-			if FISRT then
+		if LocalPlayer().ClassID == CLASS_SURV_BLACK then
+			if FIRST then
 				GM.CLASS.Survivors[LocalPlayer().ClassID].keysNumber = 3
 				FIRST = false
 			end
 			DrawHUDBlack(GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].keysNumber)
 		end
-	elseif LocalPlayer():Team() == TEAM_KILLER && GM.CLASS.Killers[LocalPlayer().ClassID] then
+	elseif LocalPlayer():Team() == TEAM_KILLER then
 		DrawHUDKiller()
 	end
 end
@@ -80,5 +81,3 @@ local function getUseKey()
 		return input.GetKeyName( cpt )
 	end
 end
-
-local usekey = getUseKey() 

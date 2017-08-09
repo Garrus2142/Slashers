@@ -2,7 +2,7 @@
 --
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:50:55+02:00
--- @Last Modified by:   Daryl_Winters
+-- @Last Modified by:   Garrus2142
 -- @Last Modified time: 2017-08-07T17:46:37+02:00
 
 local GM = GAMEMODE or GM
@@ -130,15 +130,15 @@ net.Receive( "sls_f1_menu", function ()
 		TeamName = GM.LANG:GetString("round_team_name_survivor")
 		TeamText = GM.LANG:GetString("round_team_desc_survivor")
 		ImageCharac = "/characteres/"..string.lower(GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].name)..".png"
-		CharacName = GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].dispname
-		CharacText = GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].description
+		CharacName = GM.CLASS.Survivors[LocalPlayer().ClassID].dispname
+		CharacText = GM.CLASS.Survivors[LocalPlayer().ClassID].description
 
 	elseif LocalPlayer():Team() == 1 then
 		TeamName = GM.LANG:GetString("round_team_name_killer")
 		TeamText = GM.LANG:GetString("round_team_desc_killer")
-		ImageCharac = "/characteres/"..string.lower(GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].name)..".png"
-		CharacName = GM.CLASS.Killers[LocalPlayer().ClassID].name
-		CharacText = GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].description
+		ImageCharac = "/characteres/"..string.lower(GAMEMODE.MAP.Killer.Name)..".png"
+		CharacName = GM.MAP.Killer.Name
+		CharacText = GM.MAP.Killer.Desc
   else
 		TeamName = "unnafected"
 		TeamText = "unaffected"

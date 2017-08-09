@@ -2,7 +2,7 @@
 --
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
--- @Last Modified by:   Guilhem PECH
+-- @Last Modified by:   Garrus2142
 
 
 
@@ -12,8 +12,7 @@ local GM = GM or GAMEMODE
 
 local function HaveASurvivorInSight()
 
-	local killer = team.GetPlayers(TEAM_KILLER)[1]
-	if !IsValid(killer) then return end
+	if !IsValid(GM.ROUND.Killer) then return end
 	if LocalPlayer():Team() != TEAM_KILLER then return end
 	local curtime = CurTime()
 	if Timer1 > curtime then return end
@@ -21,7 +20,7 @@ local function HaveASurvivorInSight()
 	local SurvivorsPly = player.GetAll()
 	for k,v in pairs(SurvivorsPly) do
 
-		if killer:GetPos():Distance(v:GetPos()) < 1000 && LocalPlayer():IsLineOfSightClear( v )  and v:IsValid() and v ~= LocalPlayer()  then
+		if GM.ROUND.Killer:GetPos():Distance(v:GetPos()) < 1000 && LocalPlayer():IsLineOfSightClear( v )  and v:IsValid() and v ~= LocalPlayer()  then
 
 			local TargetPosMax= v:GetPos()+ v:OBBMaxs() - Vector(10,0,0)
 			local TargetPosMin = v:GetPos()+ v:OBBMins() + Vector(10,0,0)
@@ -48,7 +47,7 @@ local ChaseSound
 local function InitValue()
 	if !IsValid(LocalPlayer()) then return end
 
-	ChaseSound = CreateSound( LocalPlayer(), GAMEMODE.CONFIG["chase_musics"][game.GetMap()])
+	ChaseSound = CreateSound( LocalPlayer(), GM.MAP.ChaseMusic)
 	LocalPlayer().LastViewByKillerTime = 0
 	LocalPlayer().ChaseSoundPlaying = false
 end
