@@ -3,7 +3,7 @@
 -- @Author: Garrus2142
 -- @Date:   2017-08-07T18:00:56+02:00
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-10T14:43:00+02:00
+-- @Last Modified time: 2017-08-10T16:24:10+02:00
 
 local GM = GM or GAMEMODE
 
@@ -77,7 +77,7 @@ else
 	util.AddNetworkString("sls_trapspos")
 	local timerTrap = 0
 	local function sendTrapProximity()
-			if IsValid(GM.ROUND.Killer) and GM.ROUND.Killer.ClassID == CLASS_KILL_INTRUDER &&   GM.ROUND.Active && timerTrap < CurTime()  then
+			if IsValid(GM.ROUND.Killer)  &&   GM.ROUND.Active && timerTrap < CurTime()  then
 			timerTrap = CurTime() + 1
 			local shygirl = getSurvivorByClass(CLASS_SURV_SHY)
 			if !shygirl then return end
