@@ -2,8 +2,8 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-08-09 14:19:18
--- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-08-09 14:19:18
+-- @Last Modified by:   Daryl_Winters
+-- @Last Modified time: 2017-08-10T14:43:50+02:00
 
 local GM = GM or GAMEMODE
 
@@ -142,10 +142,31 @@ if CLIENT then
 		end
 	end
 	hook.Add ("Think","sls_kability_IHaveTheKillerInView",CheckKillerInSight)
+
+	local proxyPos
+	local showProxy
+	local function receiveProxyPos()
+		proxyPos = net.ReadVector()
+		showProxy = net.ReadBool()
+
+	end
+	net.Receive("sls_proxy_sendpos",receiveProxyPos)
+
+	local function drawIconOnProxy()
+		if !showProxy or !proxyPos  then return end
+		local pos = proxyPos:ToScreen()
+		surface.SetDrawColor(Color(255, 255, 255))
+		surface.SetMaterial(GM.CLASS.Killers[CLASS_KILL_PROXY].icon)
+		surface.DrawTexturedRect(pos.x - 64, pos.y - 64, 64, 64)
+	end
+	hook.Add("HUDPaintBackground","sls_proxyicon_draw",drawIconOnProxy)
+
 else
 	util.AddNetworkString( "sls_kability_Invisible" )
 	util.AddNetworkString( "sls_kability_InvisibleIndic" )
 	util.AddNetworkString( "sls_kability_survivorseekiller" )
+	util.AddNetworkString("sls_proxy_sendpos")
+
 
 	local KInvisible = Color(255,255,255,0)
 	local KNormal = Color(255,255,255,255)
@@ -250,6 +271,27 @@ else
 hook.Add("PostPlayerDeath","sls_kability_ResetViewKiller",ResetVisibility)
 hook.Add("sls_round_PostStart","sls_kability_ResetViewKillerAfterEnd",ResetVisibility)
 
+local timerSend = 0
+local function sendPosWhenInvisible()
+	if IsValid(GM.ROUND.Killer) and GM.ROUND.Killer.ClassID == CLASS_KILL_PROXY &&   GM.ROUND.Active && timerSend < CurTime()  then
+		timerSend = CurTime() + 0.5
+		local shygirl = getSurvivorByClass(CLASS_SURV_SHY)
+		if !shygirl then return end
+		if !shygirl:IsLineOfSightClear(GM.ROUND.Killer) or  GM.ROUND.Killer.InvisibleActive then
+			net.Start("sls_proxy_sendpos")
+			net.WriteVector(Vector(0,0,0))
+			net.WriteBool(false)
+			net.Send(shygirl)
+			return
+		end
+
+		net.Start("sls_proxy_sendpos")
+		net.WriteVector(GM.ROUND.Killer:GetPos())
+		net.WriteBool(true)
+		net.Send(shygirl)
+	end
+end
+hook.Add("Think","sls_sendposkillerwheninvisible",sendPosWhenInvisible)
 end
 
 local function initCol()
