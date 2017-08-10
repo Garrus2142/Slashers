@@ -3,7 +3,7 @@
 -- @Author: Garrus2142
 -- @Date:   2017-08-09 14:19:18
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-10T14:43:50+02:00
+-- @Last Modified time: 2017-08-10T16:22:35+02:00
 
 local GM = GM or GAMEMODE
 
@@ -146,6 +146,7 @@ if CLIENT then
 	local proxyPos
 	local showProxy
 	local function receiveProxyPos()
+		
 		proxyPos = net.ReadVector()
 		showProxy = net.ReadBool()
 
@@ -156,7 +157,7 @@ if CLIENT then
 		if !showProxy or !proxyPos  then return end
 		local pos = proxyPos:ToScreen()
 		surface.SetDrawColor(Color(255, 255, 255))
-		surface.SetMaterial(GM.CLASS.Killers[CLASS_KILL_PROXY].icon)
+		surface.SetMaterial(GM.MAP.Killer.Icon)
 		surface.DrawTexturedRect(pos.x - 64, pos.y - 64, 64, 64)
 	end
 	hook.Add("HUDPaintBackground","sls_proxyicon_draw",drawIconOnProxy)
@@ -273,11 +274,11 @@ hook.Add("sls_round_PostStart","sls_kability_ResetViewKillerAfterEnd",ResetVisib
 
 local timerSend = 0
 local function sendPosWhenInvisible()
-	if IsValid(GM.ROUND.Killer) and GM.ROUND.Killer.ClassID == CLASS_KILL_PROXY &&   GM.ROUND.Active && timerSend < CurTime()  then
+	if IsValid(GM.ROUND.Killer) &&   GM.ROUND.Active && timerSend < CurTime()  then
 		timerSend = CurTime() + 0.5
 		local shygirl = getSurvivorByClass(CLASS_SURV_SHY)
 		if !shygirl then return end
-		if !shygirl:IsLineOfSightClear(GM.ROUND.Killer) or  GM.ROUND.Killer.InvisibleActive then
+		if !shygirl:IsLineOfSightClear(GM.ROUND.Killer) or  !GM.ROUND.Killer.InvisibleActive then
 			net.Start("sls_proxy_sendpos")
 			net.WriteVector(Vector(0,0,0))
 			net.WriteBool(false)
