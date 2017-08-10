@@ -3,7 +3,7 @@
 -- @Author: Vyn
 -- @Date:   2017-07-26 12:09:24
 -- @Last Modified by:   Vyn
--- @Last Modified time: 2017-07-26 15:19:51
+-- @Last Modified time: 2017-07-27 18:54:03
 
  
 AddCSLuaFile( "cl_init.lua" ) -- Make sure clientside
@@ -78,9 +78,7 @@ function ENT:Initialize()
 	local phys = self:GetPhysicsObject()
 	if (phys:IsValid()) then
 		phys:Wake()
-		timer.Simple(1, function()
-			self:GetPhysicsObject():EnableMotion(false) -- Freeze trap entity
-		end)
+		self:GetPhysicsObject():EnableMotion(false)
 	end
 end
 

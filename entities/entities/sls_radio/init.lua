@@ -2,7 +2,7 @@
 --
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
--- @Last Modified by:   Guilhem PECH
+-- @Last Modified by:   Garrus2142
 -- @Last Modified time: 2017-07-26T22:25:43+02:00
 
 
@@ -23,7 +23,7 @@ sound.Add( {
 } )
 
 function ENT:Initialize()
-	
+
 	self.Active = false
 	self:SetModel("models/props_lab/citizenradio.mdl")
 	self:PhysicsInit(SOLID_NONE)
@@ -55,12 +55,12 @@ end
 function ENT:Use(ply)
 	if CurrentObjective == "activate_radio" && ply:Team() == TEAM_SURVIVORS then
 		net.Start( "notificationSlasher" )
-						net.WriteString("You contacted the police !")
+						net.WriteTable({"round_notif_police_call"})
 						net.WriteString("safe")
 						net.Send(ply)
 
 		net.Start( "objectiveSlasher" )
-						 net.WriteString("Survive until the police arrival !")
+						 net.WriteTable({"round_notif_police"})
 						 net.WriteString("caution")
 						 net.SendOmit(GM.ROUND.Killer)
 
@@ -70,7 +70,7 @@ function ENT:Use(ply)
 	else
 		if (!self:GetNWBool( 'activated')) then
 				net.Start( "notificationSlasher" )
-								net.WriteString("You can't activate the radio !")
+								net.WriteTable({"round_notif_error_radio"})
 								net.WriteString("cross")
 								net.Send(ply)
 		end

@@ -3,7 +3,7 @@
 -- @Author: Vyn
 -- @Date:   2017-07-26 00:51:16
 -- @Last Modified by:   Vyn
--- @Last Modified time: 2017-07-26 15:20:52
+-- @Last Modified time: 2017-07-27 18:53:48
 
 SWEP.Author = "Vyn"
  
@@ -47,9 +47,7 @@ end
 function slashers_beartrap_place(ply, ent)
 	local beartrap_pos = ply:GetEyeTrace().HitPos
 	local beartrap_angle = ply:GetEyeTrace().HitNormal:Angle()
-	if SERVER then
-		beartrap_pos.z = beartrap_pos.z + 5
-	end 
+
 	ent:SetPos(beartrap_pos)
 	beartrap_angle.pitch = beartrap_angle.pitch + 90
 	ent:SetAngles(beartrap_angle)

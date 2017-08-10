@@ -2,18 +2,14 @@
 --
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
--- @Last Modified by:   Guilhem PECH
+-- @Last Modified by:   Garrus2142
 -- @Last Modified time: 2017-07-26T22:29:36+02:00
 
-
-
-AddCSLuaFile()
-
-
 net.Receive( "objectiveSlasher", function()
-	 local NotifText = net.ReadString()
+	 local NotifText = net.ReadTable()
 	 local NotifType = net.ReadString()
-	 objectivePanel(NotifText,NotifType)
+
+	 objectivePanel(#NotifText > 0 and GAMEMODE.LANG:GetString(unpack(NotifText)) or "",NotifType)
 
 end )
 ---
@@ -28,7 +24,7 @@ end )
 
 net.Receive( "modifyObjectiveSlasher", function()
 	if objText then
-		objText:SetText( net.ReadString() )
+		objText:SetText( GAMEMODE.LANG:GetString(unpack(net.ReadTable())) )
 	end
 end )
 
