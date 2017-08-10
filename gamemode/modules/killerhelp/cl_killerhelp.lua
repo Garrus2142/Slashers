@@ -3,7 +3,7 @@
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:50
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-07T18:37:28+02:00
+-- @Last Modified time: 2017-08-09T20:01:34+02:00
 
 local GM = GM or GAMEMODE
 local doors = {}
@@ -15,6 +15,7 @@ local ICON_DOOR = Material("icons/icon_door.png")
 local ICON_STEP = Material("icons/footsteps.png")
 local ICON_VICTIM = Material("icons/icon_target.png")
 local ICON_EXITHELP = Material("icons/icon_exit.png")
+
 
 sound.Add({
 	name = "killerhelp.heartbeat",
@@ -109,7 +110,6 @@ local function HUDPaintBackground()
 		surface.SetDrawColor(Color(255, 255, 255))
 		surface.SetMaterial(ICON_VICTIM)
 		surface.DrawTexturedRect(pos2.x - 64, pos2.y - 64, 128, 128)
-		surface.DrawTexturedRect(ScrW()-110,10,100,100)
 	end
 end
 hook.Add("HUDPaintBackground", "sls_killerhelp_HUDPaintBackground", HUDPaintBackground)
@@ -296,3 +296,35 @@ local function CheckKillerInSight()
 	end
 end
 hook.Add ("Think","sls_IHaveTheKillerInView",CheckKillerInSight)
+
+
+-- Shy girl proxy
+local proxyPos
+local showProxy
+local function receiveProxyPos()
+	proxyPos = net.ReadVector()
+	showProxy = net.ReadBool()
+
+end
+net.Receive("sls_proxy_sendpos",receiveProxyPos)
+
+local function drawIconOnProxy()
+	if !showProxy or !proxyPos  then return end
+	local pos = proxyPos:ToScreen()
+	surface.SetDrawColor(Color(255, 255, 255))
+	surface.SetMaterial(GM.CLASS.Killers[CLASS_KILL_PROXY].icon)
+	surface.DrawTexturedRect(pos.x - 64, pos.y - 64, 64, 64)
+end
+hook.Add("HUDPaintBackground","sls_proxyicon_draw",drawIconOnProxy)
+
+-- Shy girl traps
+local trapsEntity = {}
+local function getEntityToDrawHalo()
+	trapsEntity = net.ReadTable()
+end
+net.Receive("sls_trapspos",getEntityToDrawHalo)
+
+hook.Add( "PreDrawHalos", "AddHalos", function()
+	if LocalPlayer().ClassID != CLASS_SURV_SHY then return end
+	halo.Add( trapsEntity, Color( 255, 0, 0 ), 5, 5, 2 )
+end )

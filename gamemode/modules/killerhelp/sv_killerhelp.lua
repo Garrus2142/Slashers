@@ -3,7 +3,7 @@
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:50
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-07T19:54:09+02:00
+-- @Last Modified time: 2017-08-09T20:09:47+02:00
 
 local GM = GM or GAMEMODE
 
@@ -341,3 +341,50 @@ local function ResetVisibility()
 end
 hook.Add("PostPlayerDeath","sls_ResetViewKiller",ResetVisibility)
 hook.Add("sls_round_PostStart","ResetViewKillerAfterEnd",ResetVisibility)
+
+-- Shy Girl Proxy
+util.AddNetworkString("sls_proxy_sendpos")
+local timerSend = 0
+local function sendPosWhenInvisible()
+	if IsValid(GM.ROUND.Killer) and GM.ROUND.Killer.ClassID == CLASS_KILL_PROXY &&   GM.ROUND.Active && timerSend < CurTime()  then
+		timerSend = CurTime() + 0.5
+		local shygirl = getSurvivorByClass(CLASS_SURV_SHY)
+		if !shygirl then return end
+		if !shygirl:IsLineOfSightClear(GM.ROUND.Killer) or  GM.ROUND.Killer.InvisibleActive then
+			net.Start("sls_proxy_sendpos")
+			net.WriteVector(Vector(0,0,0))
+			net.WriteBool(false)
+			net.Send(shygirl)
+			return
+		end
+
+		net.Start("sls_proxy_sendpos")
+		net.WriteVector(GM.ROUND.Killer:GetPos())
+		net.WriteBool(true)
+		net.Send(shygirl)
+	end
+end
+hook.Add("Think","sls_sendposkillerwheninvisible",sendPosWhenInvisible)
+
+
+-- Shy girl traps
+util.AddNetworkString("sls_trapspos")
+local timerTrap = 0
+local function sendTrapProximity()
+		if IsValid(GM.ROUND.Killer) and GM.ROUND.Killer.ClassID == CLASS_KILL_INTRUDER &&   GM.ROUND.Active && timerTrap < CurTime()  then
+		timerTrap = CurTime() + 1
+		local shygirl = getSurvivorByClass(CLASS_SURV_SHY)
+		if !shygirl then return end
+		local entsAround = ents.FindInSphere( shygirl:GetPos(), 700 )
+		local trapsAround = {}
+		for k,v in pairs(entsAround) do
+			if v:GetClass() == "beartrap" or  v:GetClass() == "alertropes" or  v.trapeddoor == 1 then
+					table.insert( trapsAround, v )
+			end
+		end
+		net.Start("sls_trapspos")
+			net.WriteTable(trapsAround)
+		net.Send(shygirl)
+	end
+end
+hook.Add("Think","sls_detectProximityTraps",sendTrapProximity)
