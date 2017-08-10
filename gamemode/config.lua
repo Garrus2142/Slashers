@@ -25,8 +25,6 @@ GM.CONFIG["survivors_weapons"] = {
 }
 -- Points ajoutés de choosekiller ajoutés à chaque manche terminée
 GM.CONFIG["round_choosekiller_add"] = 10
--- Temps avant de démarrer une manche (secondes)
-GM.CONFIG["round_timer_start"] = 10
 -- Temps de démarrage de la manche (secondes)
 GM.CONFIG["round_freeze_start"] = 10
 -- Durée d'attente lors d'une fin de manche
