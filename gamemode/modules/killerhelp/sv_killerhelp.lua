@@ -2,48 +2,23 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:50
+<<<<<<< HEAD
 -- @Last Modified by:   Daryl_Winters
 -- @Last Modified time: 2017-08-09T20:09:47+02:00
+=======
+-- @Last Modified by:   Garrus2142
+-- @Last Modified time: 2017-08-07T18:52:38+02:00
+>>>>>>> dbb4416ea1ad7e8b6f1f214c6c763e0a0888ca08
 
 local GM = GM or GAMEMODE
 
-util.AddNetworkString("sls_killerhelp_AddDoor")
-util.AddNetworkString("sls_killerhelp_AddStep")
-util.AddNetworkString("sls_killerhelp_Wallhack")
 util.AddNetworkString("sls_popularhelp_AddExit")
-util.AddNetworkString("sls_EnableInvisibility")
-util.AddNetworkString("sls_myers_request")
-util.AddNetworkString("sls_update_myersability")
-
-local VictimMyers
-local Timer1 = 0
-
-local function AddDoor(pos, endtime)
-	if !GM.ROUND.Active || !IsValid(GM.ROUND.Killer) then return end
-	if GM.CONFIG["ghostface_ability_radius"] != 0 then
-		local entsNerby = ents.FindInSphere( pos, GM.CONFIG["ghostface_ability_radius"]	 )
-		local isKillerNerby = table.HasValue( entsNerby, GM.ROUND.Killer )
-		if !isKillerNerby then return end
-	end
-	net.Start("sls_killerhelp_AddDoor")
-		net.WriteVector(pos)
-		net.WriteInt(endtime, 16)
-	net.Send(GM.ROUND.Killer)
-end
 
 local function AddExit(pos)
 	if !GM.ROUND.Active || !IsValid(GM.ROUND.Killer) then return end
 	net.Start("sls_popularhelp_AddExit")
 		net.WriteVector(pos)
 	net.Send(GM.ROUND.Survivors)
-end
-
-local function findVictim()
-	for _, v in ipairs(GM.ROUND:GetSurvivorsAlive()) do
-		if v.ClassID != CLASS_SURV_SHY then
-			return v
-		end
-	end
 end
 
 function FindNearestEntity( Name, pos, range )
@@ -87,62 +62,6 @@ local function ExitAppear()
 end
 hook.Add("sls_round_StartEscape", "sls_round_exitIcon", ExitAppear)
 
-local function PlayerUse(ply, ent)
-	if !GM.ROUND.Active || !IsValid(GM.ROUND.Killer) || GM.ROUND.Killer.ClassID != CLASS_KILL_GHOSTFACE then return end
-	if ply:Team() != TEAM_SURVIVORS then return end
-	if GAMEMODE.CLASS.Survivors[ply.ClassID].name == "Shy girl" then return end
-	if !table.HasValue(GM.CONFIG["killerhelp_door_entities"], ent:GetClass()) then return end
-	if ply.kh_use && ply.kh_use[ent:EntIndex()] && CurTime() <= ply.kh_use[ent:EntIndex()] then return end
-
-	ply.kh_use = ply.kh_use or {}
-	ply.kh_use[ent:EntIndex()] = CurTime() + GM.CONFIG["killerhelp_door_duration"]
-
-	AddDoor(ent:GetPos(), CurTime() + GM.CONFIG["killerhelp_door_duration"])
-end
-hook.Add("PlayerUse", "sls_killerhelp_PlayerUse", PlayerUse)
-
-local function PlayerFootstep(ply, pos, foot, sound, volume, filter)
-	if ply:GetColor() == Color(255,255,255,0) then return true end
-	if !GM.ROUND.Active || !IsValid(GM.ROUND.Killer) || GM.ROUND.Killer.ClassID != CLASS_KILL_JASON  then return end
-	if ply:Team() != TEAM_SURVIVORS then return end
-	if GAMEMODE.CLASS.Survivors[ply.ClassID].name == "Shy girl" then return end
-
-	net.Start("sls_killerhelp_AddStep")
-		net.WriteEntity(ply)
-		net.WriteVector(pos)
-		net.WriteAngle(ply:GetAimVector():Angle())
-		net.WriteInt(CurTime() + GM.CONFIG["killerhelp_step_duration"], 16)
-	net.Send(GM.ROUND.Killer)
-end
-hook.Add("PlayerFootstep", "sls_killerhelp_PlayerFootstep", PlayerFootstep)
-
-local lastRequestMyers = 0
-local myersAbilityActivated = false
-local function receiveRequestMyers()
-	if !IsFirstTimePredicted() then return end
-	if CurTime() - lastRequestMyers < GM.CONFIG["myers_cooldown"]  then
-		net.Start( "notificationSlasher" )
-			net.WriteTable({"killerhelp_cant_use_ability"})
-			net.WriteString("cross")
-			net.Send(GM.ROUND.Killer)
-		return
-	end
-	if myersAbilityActivated then return end
-	net.Start("sls_update_myersability")
-	net.WriteInt(1,2)
-	net.Send(GM.ROUND.Killer)
-	myersAbilityActivated = true
-	timer.Simple(GM.CONFIG["myers_abilitytime"],function ()
-		myersAbilityActivated = false
-		lastRequestMyers = CurTime()
-		net.Start("sls_update_myersability")
-		net.WriteInt(0,2)
-		net.Send(GM.ROUND.Killer)
-	end)
-end
-net.Receive("sls_myers_request",receiveRequestMyers)
-
-
 local DIST_RESET = 350 ^ 2
 local CAMP_DELAY = 15
 local function Think()
@@ -170,27 +89,6 @@ local function Think()
 		end
 	end
 
-	-- Help Myers
-	local curtime = CurTime()
-	if !GM.ROUND.Active || !IsValid(GM.ROUND.Killer) || !GM.ROUND.Survivors  then return end
-	if GM.ROUND.Killer.ClassID == CLASS_KILL_MYERS && Timer1 < curtime && IsValid(VictimMyers) && VictimMyers.ClassID != CLASS_SURV_SHY  then
-		if myersAbilityActivated then
-			net.Start("sls_killerhelp_Wallhack")
-				net.WriteVector(VictimMyers:GetPos() + Vector(0, 0, 50))
-			net.Send(GM.ROUND.Killer)
-		else
-			net.Start("sls_killerhelp_Wallhack")
-				net.WriteVector(Vector(42, 42, 42))
-			net.Send(GM.ROUND.Killer)
-		end
-		Timer1 = curtime + 0.5
-	end
-	if  CurTime() - lastRequestMyers == GM.CONFIG["myers_cooldown"] then
-		net.Start("sls_update_myersability") --Send a message if the ability is available again
-		net.WriteInt(2,2)
-		net.Send(GM.ROUND.Killer)
-	end
-
 end
 hook.Add("Think", "sls_killerhelp_Think", Think)
 
@@ -198,19 +96,6 @@ local function PlayerDeath(ply)
 	ply:SetNWBool("killerhelp_camp", false)
 end
 hook.Add("PlayerDeath", "sls_killerhelp_PlayerDeath", PlayerDeath)
-
-local function PostPlayerDeath(ply)
-	-- Help Myers
-	if GM.ROUND.Active && IsValid(GM.ROUND.Killer) && GM.ROUND.Killer.ClassID == CLASS_KILL_MYERS && ply == VictimMyers then
-		VictimMyers = findVictim()
-		if !IsValid(VictimMyers) then
-			net.Start("sls_killerhelp_Wallhack")
-				net.WriteVector(Vector(42, 42, 42))
-			net.Send(GM.ROUND.Killer)
-		end
-	end
-end
-hook.Add("PostPlayerDeath", "sls_killerhelp_PostPlayerDeath", PostPlayerDeath)
 
 local function PreStart()
 	for _, v in ipairs(player.GetAll()) do
@@ -222,6 +107,7 @@ local function PreStart()
 	end
 end
 hook.Add("sls_round_PreStart", "sls_killerhelp_PreStart", PreStart)
+<<<<<<< HEAD
 
 local function PostStart()
 	if !GM.ROUND.Killer then return end
@@ -388,3 +274,5 @@ local function sendTrapProximity()
 	end
 end
 hook.Add("Think","sls_detectProximityTraps",sendTrapProximity)
+=======
+>>>>>>> dbb4416ea1ad7e8b6f1f214c6c763e0a0888ca08

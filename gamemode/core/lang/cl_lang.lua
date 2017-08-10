@@ -2,7 +2,7 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-08-01 17:14:14
--- @Last Modified by:
+-- @Last Modified by:   Garrus2142
 -- @Last Modified time: 2017-08-01 17:14:14
 
 local GM = GM or GAMEMODE
@@ -18,7 +18,7 @@ local function LoadLanguage(lang)
 	local languagesPath = "slashers/gamemode/languages"
 	local files, _ = file.Find(languagesPath .. "/*.lua", "LUA")
 
-	LANG = include(languagesPath .. "/" .. GM.CONFIG["lang_default"] .. ".lua")
+	LANG = include(languagesPath .. "/" .. GetConVar("slashers_lang_default"):GetString() .. ".lua")
 
 	for _, v in ipairs(files) do
 		if v == lang .. ".lua" then

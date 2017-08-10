@@ -2,18 +2,17 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:50
+<<<<<<< HEAD
 -- @Last Modified by:   Daryl_Winters
 -- @Last Modified time: 2017-08-09T20:01:34+02:00
+=======
+-- @Last Modified by:   Garrus2142
+-- @Last Modified time: 2017-08-07T18:37:28+02:00
+>>>>>>> dbb4416ea1ad7e8b6f1f214c6c763e0a0888ca08
 
 local GM = GM or GAMEMODE
-local doors = {}
 local exit_police
-local steps = {}
-local victimPos
 
-local ICON_DOOR = Material("icons/icon_door.png")
-local ICON_STEP = Material("icons/footsteps.png")
-local ICON_VICTIM = Material("icons/icon_target.png")
 local ICON_EXITHELP = Material("icons/icon_exit.png")
 
 
@@ -22,18 +21,6 @@ sound.Add({
 	channel = CHAN_STATIC,
 	sound = "slashers/effects/heartbeat_loop.wav"
 })
-
-local function AddDoor()
-	local pos, endtime
-	pos = net.ReadVector()
-	endtime = net.ReadInt(16)
-
-	table.insert(doors, {
-		pos = pos,
-		endtime = endtime
-	})
-end
-net.Receive("sls_killerhelp_AddDoor", AddDoor)
 
 local function AddExit()
 	local pos, endtime
@@ -45,52 +32,8 @@ local function AddExit()
 end
 net.Receive("sls_popularhelp_AddExit", AddExit)
 
-local function getMenuKey()
-	local cpt = 0
-	while input.LookupKeyBinding( cpt ) ~= "+menu" && cpt < 159 do
-		 cpt = cpt + 1
-	end
-	return  cpt
-end
-
-
-local function requestPosSurvivor(ply, button)
-	if !IsFirstTimePredicted() then return end
-	 if GM.ROUND.Active && GM.ROUND.Survivors && ply:Team() == TEAM_KILLER &&  button == getMenuKey() then
-		net.Start("sls_myers_request")
-		net.SendToServer()
-	end
-end
-hook.Add("PlayerButtonDown","sls_killerhelp_myersRequest",requestPosSurvivor)
-
-local function updateMyersAbility()
-		local status = net.ReadInt(2)
-		if status == 2 then
-			-- Available !
-		elseif status == 1 then
-			-- Activated !
-		elseif status == 0 then
-			-- Deactivated !
-		end
-end
-net.Receive("sls_update_myersability",updateMyersAbility)
-
 local function HUDPaintBackground()
 	local curtime = CurTime()
-
-	-- Killerhelp
-	if LocalPlayer():Team() == TEAM_KILLER then
-		for k, v in ipairs(doors) do
-			if curtime > v.endtime then
-				table.remove(doors, k)
-				continue
-			end
-			local pos1 = v.pos:ToScreen()
-			surface.SetDrawColor(Color(255, 255, 255))
-			surface.SetMaterial(ICON_DOOR)
-			surface.DrawTexturedRect(pos1.x - 64, pos1.y - 64, 128, 128)
-		end
-	end
 
 	-- Popularhelp
 	if  LocalPlayer():Team() != TEAM_KILLER && exit_police then
@@ -103,6 +46,7 @@ local function HUDPaintBackground()
 			surface.DrawTexturedRect(pos1.x - 64, pos1.y - 64, 128, 128)
 		end
 	end
+<<<<<<< HEAD
 
 	-- Victim Myers
 	if LocalPlayer():Team() == TEAM_KILLER && LocalPlayer().ClassID == CLASS_KILL_MYERS && GM.ROUND.Active && victimPos then
@@ -111,66 +55,10 @@ local function HUDPaintBackground()
 		surface.SetMaterial(ICON_VICTIM)
 		surface.DrawTexturedRect(pos2.x - 64, pos2.y - 64, 128, 128)
 	end
+=======
+>>>>>>> dbb4416ea1ad7e8b6f1f214c6c763e0a0888ca08
 end
 hook.Add("HUDPaintBackground", "sls_killerhelp_HUDPaintBackground", HUDPaintBackground)
-
-local function AddStep()
-	local ply, pos, ang, endtime
-
-	ply = net.ReadEntity()
-	pos = net.ReadVector()
-	ang = net.ReadAngle()
-	endtime = net.ReadInt(16)
-
-	ang.p = 0
-	ang.r = 0
-
-	local fpos = pos
-	if ply.LastFoot then
-		fpos = fpos + ang:Right() * 5
-	else
-		fpos = fpos + ang:Right() * -5
-	end
-	ply.LastFoot = !ply.LastFoot
-
-	local trace = {}
-	trace.start = fpos
-	trace.endpos = trace.start + Vector(0, 0, -10)
-	trace.filter = ply
-	local tr = util.TraceLine(trace)
-
-	if tr.Hit then
-		local tbl = {}
-		tbl.pos = tr.HitPos
-		tbl.foot = foot
-		tbl.endtime = endtime
-		tbl.angle = ang.y
-		tbl.normal = Vector(0, 0, 1)
-		table.insert(steps, tbl)
-	end
-end
-net.Receive("sls_killerhelp_AddStep", AddStep)
-
-local maxDistance = 600 ^ 2
-local function PostDrawTranslucentRenderables()
-	if LocalPlayer().ClassID != CLASS_KILL_JASON then return end
-
-	local pos = EyePos()
-
-	cam.Start3D(pos, EyeAngles())
-		render.SetMaterial(ICON_STEP)
-		for k, v in ipairs(steps) do
-			if CurTime() > v.endtime then
-				table.remove(steps, k)
-				continue
-			end
-			if (v.pos - pos):LengthSqr() < maxDistance then
-				render.DrawQuadEasy(v.pos + v.normal, v.normal, 10, 20, Color(255, 255, 255), v.angle)
-			end
-		end
-	cam.End3D()
-end
-hook.Add("PostDrawTranslucentRenderables", "sls_killerhelp_PostDrawTranslucentRenderables", PostDrawTranslucentRenderables)
 
 
 local function Think()
@@ -201,6 +89,7 @@ local function Reset()
 end
 hook.Add("sls_round_PreStart", "sls_killerhelp_PreStart", Reset)
 hook.Add("sls_round_End", "sls_killerhelp_End", Reset)
+<<<<<<< HEAD
 
 local function Wallhack()
 	local tempPos = net.ReadVector()
@@ -328,3 +217,5 @@ hook.Add( "PreDrawHalos", "AddHalos", function()
 	if LocalPlayer().ClassID != CLASS_SURV_SHY then return end
 	halo.Add( trapsEntity, Color( 255, 0, 0 ), 5, 5, 2 )
 end )
+=======
+>>>>>>> dbb4416ea1ad7e8b6f1f214c6c763e0a0888ca08

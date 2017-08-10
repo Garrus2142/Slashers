@@ -72,7 +72,7 @@ local function StartAmbient(level)
 			station:Play()
 			timer.Create("sls_sambient", station:GetLength() + 0.1, 0, function()
 				local percent = GetPercentSurvivorDead()
-				
+
 				if level != percent then
 					timer.Remove("sls_sambient")
 					StartAmbient(percent)
@@ -87,9 +87,9 @@ end
 local function StartRound()
 	-- Suppression du timer sambient
 	if timer.Exists("sls_sambient") then timer.Remove("sls_sambient") end
-	
+
 	-- Start round sound
-	sound.PlayFile("sound/slashers/ambient/" .. GAMEMODE.CONFIG["round_start_music"][game.GetMap()], "noplay", function(station)
+	sound.PlayFile("sound/slashers/ambient/" .. GAMEMODE.MAP.StartMusic, "noplay", function(station)
 		if IsValid(station) then
 			station:SetVolume(0.5)
 			station:Play()
