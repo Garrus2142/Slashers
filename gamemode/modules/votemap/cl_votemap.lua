@@ -133,11 +133,11 @@ local function openVotemap()
   backVote:SetPos( (ScrW() - backVote:GetWide())/2, (ScrH() - backVote:GetTall())/2 ) -- Set the position of the panel
 
   net.Start("slash_summitvote")
+  	net.WriteString("")
   net.SendToServer()
 end
 net.Receive("slash_openvotemap",function ()
-
-if IsValid(backVote) then
+	if IsValid(backVote) then
 		backVote.isOpen = false
 		backVote:Remove()
 		gui.EnableScreenClicker( backVote.isOpen )
