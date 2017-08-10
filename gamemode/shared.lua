@@ -7,6 +7,9 @@
 
 GM.Name = "Slashers";
 GM.Author = "Garrus2142";
+GM.Version = "1.1.0"
+GM.Github = "https://github.com/Garrus2142/Slashers/"
+GM.Workshop = "http://steamcommunity.com/sharedfiles/filedetails/?id=1092007703"
 
 TEAM_KILLER = 1;
 TEAM_SURVIVORS = 2;
@@ -25,3 +28,10 @@ CLASS_SURV_SHERIF = 9
 
 team.SetUp(TEAM_KILLER, "Murderer", Color(255, 0, 0), false);
 team.SetUp(TEAM_SURVIVORS, "Survivors", Color(0, 0, 255), false);
+
+-- Header message
+print("\n### This server run Slashers Gamemode by Utopia-Games ###\n")
+print("Version: " .. GM.Version)
+print("Workshop: " .. GM.Workshop)
+print("Github: " .. GM.Github)
+print("\n###                 Thanks for playing                ###\n")
