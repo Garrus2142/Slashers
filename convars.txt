@@ -1,0 +1,43 @@
+"slashers_antiafk_afkmsgtime" = "15"
+ game server_can_execute lua_server
+ - Set afk message duration before being kick
+
+"slashers_antiafk_afktime" = "60"
+ game server_can_execute lua_server
+ - Set afktime duration in seconds
+
+"slashers_antiafk_enable" = "0" ( def. "1" )
+ game server_can_execute lua_server
+ - Enable / Disable antiafk
+
+"slashers_round_max" = "5"
+ game replicated server_can_execute lua_server
+ - Max round before change map.
+
+"slashers_duration_waitingpolice_addsurv" = "22.500000" ( def. "22.5" )
+ game replicated server_can_execute lua_server
+ - Added duration per each survivors before police arrived. (in seconds)
+
+"slashers_duration_waitingpolice_base" = "32.500000" ( def. "32.5" )
+ game replicated server_can_execute lua_server
+ - Initial duration before police arrived. (in seconds)
+
+"slashers_duration_addobj" = "120"
+ game replicated server_can_execute lua_server
+ - Added duration per each objective completed. (in seconds)
+
+"slashers_duration_addsurv" = "52.500000" ( def. "52.5" )
+ game replicated server_can_execute lua_server
+ - Added duration per each survivors. (in seconds)
+
+"slashers_duration_base" = "67.500000" ( def. "67.5" )
+ game replicated server_can_execute lua_server
+ - Initial round duration. (in seconds)
+
+"slashers_round_min_player" = "3"
+ game replicated server_can_execute lua_server
+ - Set minimum players required to start a round.
+
+"slashers_lang_default" = "en"
+ game replicated server_can_execute lua_server
+ - Set default language of gamemode.
