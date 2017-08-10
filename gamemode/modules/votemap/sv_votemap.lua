@@ -2,8 +2,8 @@
 --
 -- @Author: Guilhem PECH <Daryl_Winters>
 -- @Date:   2017-08-06T09:44:00+02:00
--- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-08-06T19:49:23+02:00
+-- @Last Modified by:   Daryl_Winters
+-- @Last Modified time: 2017-08-10T16:25:03+02:00
 
 util.AddNetworkString("slash_sendvotedata")
 util.AddNetworkString("slash_summitvote")
@@ -68,7 +68,7 @@ end
 hook.Add("Think", "sls_votemap_Think", changeMap)
 
 local function autoOpen()
-  if GM.ROUND.Count == GM.CONFIG["round_count_nextmap"] then
+  if GM.ROUND.Count == GetConVar("round_count_nextmap") then
     net.Start("slash_openvotemap")
     net.Broadcast()
   end
