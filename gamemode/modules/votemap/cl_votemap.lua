@@ -69,7 +69,6 @@ local function openVotemap()
   oneMapImage.DoClick = function()
     net.Start("slash_summitvote")
     net.WriteString("extend")
-    net.WriteEntity(LocalPlayer())
     net.SendToServer()
   end
 
@@ -98,7 +97,6 @@ local function openVotemap()
       oneMapImage.DoClick = function()
         net.Start("slash_summitvote")
         net.WriteString(v)
-        net.WriteEntity(LocalPlayer())
         net.SendToServer()
       end
 
@@ -124,7 +122,6 @@ local function openVotemap()
   oneMapImage.DoClick = function()
     net.Start("slash_summitvote")
     net.WriteString("random")
-    net.WriteEntity(LocalPlayer())
     net.SendToServer()
   end
 
