@@ -2,8 +2,8 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-08-09 16:33:11
--- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-08-09 16:33:11
+-- @Last Modified by:   Daryl_Winters
+-- @Last Modified time: 2017-08-12T19:27:38+02:00
 
 local GM = GM or GAMEMODE
 
@@ -222,4 +222,10 @@ else
 		VictimMyers = findVictim()
 	end
 	hook.Add("sls_round_PostStart", "sls_kability_PostStart", PostStart)
+
+	local function resetEndRound()
+		myersAbilityActivated = false
+		lastRequestMyers = 0
+	end
+	hook.Add("sls_round_End","sls_kreset_myersamility",resetEnRound)
 end

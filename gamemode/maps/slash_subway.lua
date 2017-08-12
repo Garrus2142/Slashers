@@ -3,7 +3,7 @@
 -- @Author: Garrus2142
 -- @Date:   2017-08-09 14:19:18
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-10T16:22:35+02:00
+-- @Last Modified time: 2017-08-12T19:20:11+02:00
 
 local GM = GM or GAMEMODE
 
@@ -146,7 +146,7 @@ if CLIENT then
 	local proxyPos
 	local showProxy
 	local function receiveProxyPos()
-		
+
 		proxyPos = net.ReadVector()
 		showProxy = net.ReadBool()
 
@@ -290,6 +290,13 @@ local function sendPosWhenInvisible()
 		net.WriteVector(GM.ROUND.Killer:GetPos())
 		net.WriteBool(true)
 		net.Send(shygirl)
+	end
+	if !GM.ROUND.Active & timerSend < CurTime() then
+			timerSend = CurTime() + 1
+			net.Start("sls_proxy_sendpos")
+			net.WriteVector(Vector(0,0,0))
+			net.WriteBool(false)
+			net.Broadcast()
 	end
 end
 hook.Add("Think","sls_sendposkillerwheninvisible",sendPosWhenInvisible)
