@@ -99,7 +99,7 @@ end
 
 if CLIENT then
     function SWEP:Ping()
-        surface.PlaySound("effects/detector_ping.wav")
+        surface.PlaySound("slashers/effects/detector_ping.wav")
         self.startPing = true
         self.startEcho = CurTime() + 0.2
         self.drawPingY = 0
@@ -123,7 +123,7 @@ if CLIENT then
             end
         end
         if found then
-            surface.PlaySound("effects/detector_echo.wav")
+            surface.PlaySound("slashers/effects/detector_echo.wav")
         end
     end
 
@@ -151,7 +151,7 @@ if CLIENT then
         ang:RotateAroundAxis(ang:Right(), 270)
         cam.Start3D2D(pos, ang, 0.01)
             // Canvas: width(325) height(246)
-            
+
             // Draw Ping
             if self.startPing then
                 for i = 0, 10 do
