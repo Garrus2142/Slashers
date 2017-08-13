@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH <Daryl_Winters>
 -- @Date:   2017-08-06T09:44:00+02:00
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-12T19:31:08+02:00
+-- @Last Modified time: 2017-08-13T14:48:19+02:00
 
 util.AddNetworkString("slash_sendvotedata")
 util.AddNetworkString("slash_summitvote")
@@ -14,10 +14,12 @@ local GM = GAMEMODE or GM
 
 local currentVote = {}
 local countVote = {}
+local allMaps = table.Copy(GM.MAPS)
 
 local function sendCurrentVoteStat(ply)
+  table.RemoveByValue(allMaps,game.GetMap())
   net.Start("slash_sendmaplist")
-    net.WriteTable(GM.MAPS)
+    net.WriteTable(allMaps)
   net.Send(ply)
 end
 hook.Add("PlayerInitialSpawn", "slash_sendmaplist", sendCurrentVoteStat)
@@ -52,7 +54,7 @@ local function changeMap()
 		local winner = table.GetWinningKey( countVote )
     countVote = {}
     currentVote = {}
-    if winner == "extend" then
+    if winner == "extend" or #countVote == 0  then
       winner = game.GetMap()
       GM.ROUND.Count = 0
       PrintMessage( HUD_PRINTTALK, "Map extended !" )
