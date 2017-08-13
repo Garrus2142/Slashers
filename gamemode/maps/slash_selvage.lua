@@ -3,7 +3,7 @@
 -- @Author: Garrus2142
 -- @Date:   2017-08-09 16:33:11
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-12T19:27:38+02:00
+-- @Last Modified time: 2017-08-13T14:28:37+02:00
 
 local GM = GM or GAMEMODE
 
@@ -167,10 +167,10 @@ else
 		net.Send(ply)
 		myersAbilityActivated = true
 		timer.Simple(GetConVar("slashers_myers_wallhack_duration"):GetFloat(),function ()
-			if !GM.ROUND.Active then return end
 
 			myersAbilityActivated = false
 			lastRequestMyers = CurTime()
+			if !GM.ROUND.Active then return end
 			net.Start("sls_kability_update_myersability")
 			net.WriteInt(0,2)
 			net.Send(GM.ROUND.Killer)
@@ -180,7 +180,10 @@ else
 	local function Think()
 		local curtime = CurTime()
 
-		if !GM.ROUND.Active || !IsValid(GM.ROUND.Killer) then return end
+		if !GM.ROUND.Active || !IsValid(GM.ROUND.Killer) then
+			myersAbilityActivated = false
+			return
+		end
 
 		if Timer1 < curtime && IsValid(VictimMyers) && VictimMyers.ClassID != CLASS_SURV_SHY  then
 			if myersAbilityActivated then
@@ -226,6 +229,9 @@ else
 	local function resetEndRound()
 		myersAbilityActivated = false
 		lastRequestMyers = 0
+		net.Start("sls_kability_update_myersability")
+		net.WriteInt(0,2)
+		net.Send(GM.ROUND.Killer)
 	end
 	hook.Add("sls_round_End","sls_kreset_myersamility",resetEnRound)
 end

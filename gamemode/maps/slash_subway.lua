@@ -3,7 +3,7 @@
 -- @Author: Garrus2142
 -- @Date:   2017-08-09 14:19:18
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-12T19:20:11+02:00
+-- @Last Modified time: 2017-08-13T14:30:13+02:00
 
 local GM = GM or GAMEMODE
 
@@ -291,7 +291,7 @@ local function sendPosWhenInvisible()
 		net.WriteBool(true)
 		net.Send(shygirl)
 	end
-	if !GM.ROUND.Active & timerSend < CurTime() then
+	if !GM.ROUND.Active && timerSend < CurTime() then
 			timerSend = CurTime() + 1
 			net.Start("sls_proxy_sendpos")
 			net.WriteVector(Vector(0,0,0))
