@@ -3,7 +3,7 @@
 -- @Author: Guilhem PECH <Daryl_Winters>
 -- @Date:   2017-08-06T09:44:00+02:00
 -- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-13T14:48:19+02:00
+-- @Last Modified time: 2017-08-13T16:51:13+02:00
 
 util.AddNetworkString("slash_sendvotedata")
 util.AddNetworkString("slash_summitvote")
@@ -54,7 +54,7 @@ local function changeMap()
 		local winner = table.GetWinningKey( countVote )
     countVote = {}
     currentVote = {}
-    if winner == "extend" or #countVote == 0  then
+    if winner == "extend" then
       winner = game.GetMap()
       GM.ROUND.Count = 0
       PrintMessage( HUD_PRINTTALK, "Map extended !" )
