@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2017-08-13
+### Added
+- Polish translation by @danx91
+
+### Changed
+- Change objectives spawn positions on slash_highschool.
+
+### Fixed
+- Fixed shy ability on slash_subway
+- Fixed shy ability on slash_selvage
+- Fixed votemap
+
 ## [1.1.0] - 2017-08-10
 ### Added
 - Language support system. (Make your own in gamemode/languages/xx.lua)
