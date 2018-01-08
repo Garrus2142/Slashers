@@ -2,13 +2,12 @@
 --
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
--- @Last Modified by:   Garrus2142
+-- @Last modified by:   Guilhem PECH
 
 
 
 local Timer1 = 0
 local GM = GM or GAMEMODE
-
 
 local function HaveASurvivorInSight()
 
@@ -20,16 +19,16 @@ local function HaveASurvivorInSight()
 	local SurvivorsPly = player.GetAll()
 	for k,v in pairs(SurvivorsPly) do
 
-		if GM.ROUND.Killer:GetPos():Distance(v:GetPos()) < 1000 && LocalPlayer():IsLineOfSightClear( v )  and v:IsValid() and v ~= LocalPlayer()  then
+		if GM.ROUND.Killer:GetPos():Distance(v:GetPos()) < 1000 && LocalPlayer():IsLineOfSightClear( v )  && v:IsValid() && v != LocalPlayer()  then
 
-			local TargetPosMax= v:GetPos()+ v:OBBMaxs() - Vector(10,0,0)
-			local TargetPosMin = v:GetPos()+ v:OBBMins() + Vector(10,0,0)
+			local TargetPosMax = v:GetPos() + v:OBBMaxs() - Vector(10,0,0)
+			local TargetPosMin = v:GetPos() + v:OBBMins() + Vector(10,0,0)
 
 			local ScreenPosMax = TargetPosMax:ToScreen()
 			local ScreenPosMin = TargetPosMin:ToScreen()
 
 
-			if (ScreenPosMax.x < ScrW() and ScreenPosMax.y < ScrH() and ScreenPosMin.x > 0 and ScreenPosMin.y > 0) then
+			if (ScreenPosMax.x < ScrW() && ScreenPosMax.y < ScrH() && ScreenPosMin.x > 0 && ScreenPosMin.y > 0) then
 
 				net.Start( "sls_killerseesurvivor" )
 					net.WriteEntity( v )
@@ -64,14 +63,14 @@ net.Receive( "sls_chaseactivated", LastViewByKiller)
 
 
 local function chaseMusic()
-	curtime= CurTime()
+	curtime = CurTime()
 
-	if (!LocalPlayer():Alive() and LocalPlayer().ChaseSoundPlaying) then ChaseSound:FadeOut(1.2) end
+	if (!LocalPlayer():Alive() && LocalPlayer().ChaseSoundPlaying) then ChaseSound:FadeOut(1.2) end
 
 	if (!LocalPlayer():Alive()) then return end
-	if !(LocalPlayer().LastViewByKillerTime) then return end
+	if !LocalPlayer().LastViewByKillerTime then return end
 
-		if (LocalPlayer().LastViewByKillerTime > curtime - 3 and !LocalPlayer().ChaseSoundPlaying) then
+		if (LocalPlayer().LastViewByKillerTime > curtime - 3 && !LocalPlayer().ChaseSoundPlaying) then
 
 		timer.Simple(3, function()
 			if LocalPlayer().LastViewByKillerTime > curtime - 3 then
@@ -80,7 +79,7 @@ local function chaseMusic()
 			end
 		end)
 		LocalPlayer().ChaseSoundPlaying = true
-	elseif LocalPlayer().ChaseSoundPlaying and LocalPlayer().LastViewByKillerTime < curtime - 5  then
+	elseif LocalPlayer().ChaseSoundPlaying && LocalPlayer().LastViewByKillerTime < curtime - 5  then
 		ChaseSound:FadeOut(1.2)
 		LocalPlayer().ChaseSoundPlaying = false
 	end
