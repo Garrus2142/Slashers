@@ -2,8 +2,8 @@
 --
 -- @Author: Guilhem PECH <Daryl_Winters>
 -- @Date:   2017-08-06T09:44:00+02:00
--- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-13T16:51:13+02:00
+-- @Last modified by:   Guilhem PECH
+-- @Last modified time: 2018-01-01T18:45:28+01:00
 
 util.AddNetworkString("slash_sendvotedata")
 util.AddNetworkString("slash_summitvote")
@@ -15,6 +15,13 @@ local GM = GAMEMODE or GM
 local currentVote = {}
 local countVote = {}
 local allMaps = table.Copy(GM.MAPS)
+
+local function getRandomMaps(numbers,blacklist)
+  res = {}
+  for i=1,numbers do
+    table.Random(allMaps)
+  end
+end
 
 local function sendCurrentVoteStat(ply)
   table.RemoveByValue(allMaps,game.GetMap())
