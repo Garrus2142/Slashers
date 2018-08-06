@@ -24,6 +24,7 @@ LANG["class_desc_ghostface"] = "У вас есть возможность вид
 LANG["class_desc_myers"] = "Вы самый медленный убийца и имеете возможность видеть позицию одного выжившего. Используйте его осторожно, чтобы удивить выживших и убить его быстро. Слушайте внимательно, вы можете услышать сердцебиение выживших."
 LANG["class_desc_proxy"] = "У вас есть способность появляться и исчезать, когда не видно выжившим. Используйте его, чтобы прокрасться и удивить своих жертв. Нажмите клавишу меню (по умолчанию «A»), чтобы использовать способность. Слушайте внимательно, вы можете услышать сердцебиение выживших."
 LANG["class_desc_intruder"] = "У вас есть возможность разместить ловушки, чтобы помочь вам убить оставшихся в живых. Используйте сигнальную веревку для выявления выживших и ваши медвежьи ловушеки чтобы нейтрализовать их и убить их топором в врасплох. Слушайте внимательно, вы можете услышать сердцебиение выживших."
+LANG["class_desc_bates"] = "Use the corpse of your dead mother to help you locate the survivors. The more a survivor is near the body, the more your speed will increase but be careful, if someone finds it, the police will be called immediately. Listen carefully, you may hear survivors' heartbeat."
 
 LANG["round_mission_police"] = "Полиция приедет в %s"
 LANG["round_mission_police_killer"] = "Убейте их всех за %s минут."

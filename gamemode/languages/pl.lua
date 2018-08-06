@@ -24,6 +24,7 @@ LANG["class_desc_ghostface"] = "Masz zdolność, dzięki której możesz zobaczy
 LANG["class_desc_myers"] = "Jesteś najwolniejszym zabójcą, a także masz zdolność skupienia się na jednym graczu. Używaj jej, aby ich zaskoczyć. Słuchaj uważnie - możesz usłyszeć bicie serc ludzi w pobliżu."
 LANG["class_desc_proxy"] = "Masz umiejętność do pojawiania się i znikania, gdy nikt nie widzi. Używaj jej aby zakraść się i zaskoczyć swoje ofiary. Naciśnij przycisk menu ( domyślnie 'Q' ) aby jej użyć. Słuchaj uważnie - możesz usłyszeć bicie serc ludzi w pobliżu."
 LANG["class_desc_intruder"] = "Masz możliwość umieszczania pułapek aby zaskoczyć swoje ofiary. Używaj lin aby wykrywać ludzi, pułapek na misie aby ich zneutralizować oraz siekiery, którą możesz zamontować do drzwi, aby zabić ich z zaskoczenia. Słuchaj uważnie - możesz usłyszeć bicie serc ludzi w pobliżu."
+LANG["class_desc_bates"] = "Use the corpse of your dead mother to help you locate the survivors. The more a survivor is near the body, the more your speed will increase but be careful, if someone finds it, the police will be called immediately. Listen carefully, you may hear survivors' heartbeat."
 
 LANG["round_mission_police"] = "Policja przybędzie za %s"
 LANG["round_mission_police_killer"] = "Zabij ich wszystkich %s"

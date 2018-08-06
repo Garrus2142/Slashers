@@ -24,7 +24,7 @@ LANG["class_desc_ghostface"] = "Vous avez la capaciter de voir quand un survivan
 LANG["class_desc_myers"] = "Vous êtes le tueur le plus lent et vous avez la capacité de voir un survivant en permanence. Utilisez la intelligemment pour surprendre vos victimes. Ecoutez bien, vous pouvez peut être entendre le coeur des survivants battre."
 LANG["class_desc_proxy"] = "Vous avez la capacité de disparaitre ou de réaparaitre quand vous êtes hors du chap de vision d'un survivant. Utilisez la pour surprendre vos victimes ! Appuyez sur votre menu des objets ('A' par défaut) pour l'utiliser. Ecoutez bien, vous pouvez peut être entendre le coeur des survivants battre."
 LANG["class_desc_intruder"] = "Vous avez la capacité de placer des pièges pour vous aider dans vos meurtre. Utilisez l'Alert Rope pour repérer vos victimes, les Bear Trap pour les ralentir ou la Door Trap pour les tuer. Ecoutez bien, vous pouvez peut être entendre le coeur des survivants battre."
-LANG["class_desc_bates"] = "J'aime les trains"
+LANG["class_desc_bates"] = "Utilisez le corps de votre défunte mère pour vous aidez à localiser les survivants. Plus un survivant est proche du corps, plus vous vous déplacerez rapidement mais attention, si quelqu'un le découvre, la police sera immédiatement appelée. Ecoutez bien, vous pouvez peut être entendre le coeur des survivants battre."
 
 LANG["round_mission_police"] = "La Police arrive dans %s"
 LANG["round_mission_police_killer"] = "Tuez les tous %s"

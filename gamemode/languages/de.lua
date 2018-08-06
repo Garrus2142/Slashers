@@ -21,6 +21,7 @@ LANG["class_desc_ghostface"] = "Du hast die Fähigkeit zu sehen, wenn ein Überl
 LANG["class_desc_myers"] = "Du bist der langsamste Killer und hast die Fähigkeit, dich auf einen Überlebenden zu fokussieren. Nutze diese Fähigkeit vorsichtig, um den Überlebenden zu überraschen und schnell zu töten. Höre genau hin, du kannst manchmal den Herzschlag der Überlebenden hören."
 LANG["class_desc_proxy"] = "Du hast die Fähigkeit, dich unsichtbar und wieder sichtbar zu machen, wenn dich kein Überlebender sieht. Nutze dies, um dem Überlebenden unauffällig zu folgen und ihn zu überraschen. Drücke deine Menü Taste (Standardmäßig 'Q'), um diese Fähigkeit zu nutzen. Höre genau hin, du kannst manchmal den Herzschlag der Überlebenden hören."
 LANG["class_desc_intruder"] = "Du hast die Fähigkeit Fallen zu platzieren, welche die Überlebenden töten können. Nutze deine Alert Ropes, um einen Überlebenden zu hören, die Bärenfalle, um ihn zu neutralisieren und die Door Axt, um ihn überraschend zu töten. Höre genau hin, du kannst manchmal den Herzschlag der Überlebenden hören."
+LANG["class_desc_bates"] = "Use the corpse of your dead mother to help you locate the survivors. The more a survivor is near the body, the more your speed will increase but be careful, if someone finds it, the police will be called immediately. Listen carefully, you may hear survivors' heartbeat."
 
 LANG["round_mission_police"] = "Die Polizei kommt in %s"
 LANG["round_mission_police_killer"] = "Töte sie alle %s"
