@@ -2,13 +2,14 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:50
--- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-10T14:37:09+02:00
+-- @Last modified by:   Guilhem PECH
+-- @Last modified time: 21-Oct-2018
 
 
 local GM = GM or GAMEMODE
 
 util.AddNetworkString("sls_popularhelp_AddExit")
+util.AddNetworkString("sls_killerseesurvivor")
 
 local function AddExit(pos)
 	if !GM.ROUND.Active || !IsValid(GM.ROUND.Killer) then return end

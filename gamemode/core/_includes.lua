@@ -2,8 +2,8 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:45
--- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-07-27 13:32:59
+-- @Last modified by:   Guilhem PECH
+-- @Last modified time: 21-Oct-2018
 
 if SERVER then
 	-- Convars
@@ -69,4 +69,5 @@ else
 	include("rounds/sh_rounds.lua")
 	include("rounds/cl_network.lua")
 	include("rounds/cl_rounds.lua")
+	include("network.lua")
 end

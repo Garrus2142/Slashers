@@ -66,7 +66,6 @@ local function chaseMusic()
 	curtime = CurTime()
 
 	if (!LocalPlayer():Alive() && LocalPlayer().ChaseSoundPlaying) then ChaseSound:FadeOut(1.2) end
-
 	if (!LocalPlayer():Alive()) then return end
 	if !LocalPlayer().LastViewByKillerTime then return end
 

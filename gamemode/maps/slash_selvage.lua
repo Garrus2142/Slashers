@@ -2,8 +2,8 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-08-09 16:33:11
--- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-13T14:28:37+02:00
+-- @Last modified by:   Guilhem PECH
+-- @Last modified time: 21-Oct-2018
 
 local GM = GM or GAMEMODE
 
@@ -108,10 +108,9 @@ if CLIENT then
 	end
 	net.Receive("sls_kability_update_myersability",updateMyersAbility)
 
-	local function HUDPaintBackground()
+	local function HUDPaintBackground()		
 		if LocalPlayer():Team() != TEAM_KILLER || !GM.ROUND.Active || !victimPos then return end
 		local curtime = CurTime()
-
 		local pos = victimPos:ToScreen()
 		surface.SetDrawColor(Color(255, 255, 255))
 		surface.SetMaterial(ICON_VICTIM)

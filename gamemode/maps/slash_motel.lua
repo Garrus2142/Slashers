@@ -3,12 +3,10 @@
 -- @Email:  guilhempech@gmail.com
 -- @Project: Slashers
 -- @Last modified by:   Guilhem PECH
--- @Last modified time: 2018-01-11 16:57:16
+-- @Last modified time: 21-Oct-2018
 local GM = GM or GAMEMODE
 
-if SERVER then
-	util.AddNetworkString("sls_killerseesurvivor")
-end
+
 
 GM.MAP.Name = "Motel"
 GM.MAP.EscapeDuration = 90
@@ -174,7 +172,7 @@ if CLIENT then
 			GM.SoundPlayed:Stop()
 		end
 		sound.PlayFile( file, "", function( station,num,err )
-			if ( IsValid( station ) ) then 
+			if ( IsValid( station ) ) then
 				station:Play()
 				station:EnableLooping(true)
 				GM.SoundPlayed = station
@@ -196,7 +194,7 @@ if CLIENT then
 			GM:playSoundMother("sound/slashers/effects/whisper_loop_high.wav")
 		elseif level == 2 then
 			GM:playSoundMother("sound/slashers/effects/whisper_loop_medium.wav")
-		elseif level == 1 then 
+		elseif level == 1 then
 			GM:playSoundMother("sound/slashers/effects/whisper_loop_small.wav")
 		else
 			if GM.SoundPlayed then
@@ -206,7 +204,7 @@ if CLIENT then
 	end
 
 	net.Receive( "sls_motherradar", function( len, ply )
-		local distLevel = net.ReadUInt(2)	
+		local distLevel = net.ReadUInt(2)
 		if GM.oldLevel != distLevel then
 			GM.oldLevel = distLevel
 			GM:SoundToPlay(distLevel)

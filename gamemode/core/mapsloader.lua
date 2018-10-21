@@ -2,8 +2,8 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-08-07T19:23:20+02:00
--- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-08-07T19:23:20+02:00
+-- @Last modified by:   Guilhem PECH
+-- @Last modified time: 21-Oct-2018
 
 local GM = GM or GAMEMODE
 
@@ -26,18 +26,35 @@ for _, v in ipairs(mapsLua) do
 	end
 end
 
-if SERVER then
-	util.AddNetworkString("sls_mapsloader_useability")
 
-	if !table.HasValue(GM.MAPS, game.GetMap()) then
-		timer.Create("sls_error_map", 5, 0, function()
-			print("ERROR: The current map isn't supported by gamemode.")
-		end)
+local function loadMapsData()
+	if SERVER then
+		util.AddNetworkString("sls_mapsloader_useability")
+
+		if !table.HasValue(GM.MAPS, game.GetMap()) then
+			timer.Create("sls_error_map", 5, 0, function()
+				print("ERROR: The current map isn't supported by gamemode.")
+			end)
+		else
+			print("Loading Slashers map data " .. game.GetMap())
+			AddCSLuaFile(mapsLuaPath .. "/" .. game.GetMap() .. ".lua")
+			include(mapsLuaPath .. "/" .. game.GetMap() .. ".lua")
+		end
 	else
-		print("Loading Slashers map data " .. game.GetMap())
-		AddCSLuaFile(mapsLuaPath .. "/" .. game.GetMap() .. ".lua")
-		include(mapsLuaPath .. "/" .. game.GetMap() .. ".lua")
+
+		if !table.HasValue(GM.MAPS, game.GetMap()) then
+			timer.Create("sls_error_map", 5, 0, function()
+				print("ERROR: The current map isn't supported by gamemode.")
+			end)
+		else
+			print("Loading Slashers map data " .. game.GetMap())
+			include(mapsLuaPath .. "/" .. game.GetMap() .. ".lua")
+		end
 	end
+end
+hook.Add("PostGamemodeLoaded","sls_mapsloadData",loadMapsData)
+
+if SERVER then
 
 	local function UseAbility(len, ply)
 		GM.MAP.Killer:UseAbility( ply )
@@ -45,15 +62,6 @@ if SERVER then
 	net.Receive("sls_mapsloader_UseAbility", UseAbility)
 
 else
-
-	if !table.HasValue(GM.MAPS, game.GetMap()) then
-		timer.Create("sls_error_map", 5, 0, function()
-			print("ERROR: The current map isn't supported by gamemode.")
-		end)
-	else
-		print("Loading Slashers map data " .. game.GetMap())
-		include(mapsLuaPath .. "/" .. game.GetMap() .. ".lua")
-	end
 
 	local function getMenuKey()
 		local cpt = 0
