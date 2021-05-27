@@ -2,11 +2,11 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-27 17:07:04
--- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-07-27 17:07:59
-
+-- @Last modified by:   Guilhem PECH
+-- @Last modified time: 21-Oct-2018
 local modulesPath = "slashers/gamemode/modules"
 local _, directories = file.Find(modulesPath .. "/*", "LUA")
+
 
 if SERVER then print("--- MODULES ---") end
 for _, mod in ipairs(directories) do
