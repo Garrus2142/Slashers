@@ -20,7 +20,7 @@ function endMusic(victim)
 		net.WriteUInt(0,2)
 	net.Send(victim)
 end
-hook.Add("PlayerDeath","slash_deathmusicend",'endMusic')
+hook.Add("PlayerDeath","slash_deathmusicend",endMusic)
 
 function ENT:Initialize()
 
