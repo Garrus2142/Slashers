@@ -32,6 +32,7 @@ function playermeta:SetSurvClass(class)
 	self:SetWalkSpeed(GM.CLASS.Survivors[class].walkspeed)
 	self:SetRunSpeed(GM.CLASS.Survivors[class].runspeed)
 	self:SetMaxHealth(GM.CLASS.Survivors[class].life)
+	self:SetHealth(GM.CLASS.Survivors[class].life)
 	self:GodDisable()
 	--self:SetNWInt("ClassID", class)
 	self.ClassID = class
