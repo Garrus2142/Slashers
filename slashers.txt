@@ -2,7 +2,7 @@
 {
 	"base"		"base"
 	"title"		"Slashers"
-    "category"  "rp"
+    "category"  "pvp"
 	"maps"		"^slash_"
 	"menusystem"	"1"
 	"workshopid"	"1092007703"
