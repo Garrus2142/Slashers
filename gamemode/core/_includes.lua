@@ -69,5 +69,4 @@ else
 	include("rounds/sh_rounds.lua")
 	include("rounds/cl_network.lua")
 	include("rounds/cl_rounds.lua")
-	include("network.lua")
 end
