@@ -57,13 +57,13 @@ local function PostStart()
 
 			TeamName = GM.LANG:GetString("round_team_name_survivor")
 			TeamText = GM.LANG:GetString("round_team_desc_survivor")
-			ImageCharac = "/characteres/"..string.lower(GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].name)..".png"
+			ImageCharac = "materials/characteres/"..string.lower(GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].name)..".png"
 			CharacName = GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].dispname
 			CharacText = GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].description
 		elseif LocalPlayer():Team() == TEAM_KILLER then
 			TeamName = GM.LANG:GetString("round_team_name_killer")
 			TeamText = GM.LANG:GetString("round_team_desc_killer")
-			ImageCharac = "/characteres/"..string.lower(GAMEMODE.MAP.Killer.Name)..".png"
+			ImageCharac = "materials/characteres/"..string.lower(GAMEMODE.MAP.Killer.Name)..".png"
 			CharacName = GAMEMODE.MAP.Killer.Name
 			CharacText = GAMEMODE.MAP.Killer.Desc
 		end
