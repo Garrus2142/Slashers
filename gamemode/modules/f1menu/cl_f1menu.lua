@@ -158,7 +158,7 @@ function ShowTitle(Title,Second)
 	BackGroundPanel:SetDrawBackground( true )
 	BackGroundPanel:SetBackgroundColor(Color( 0, 0, 0, 250 ))
 	BackGroundPanel:SetTerm( 5.5 )
-	surface.PlaySound( "/slashers/effects/notif_2.wav" )
+	surface.PlaySound( "slashers/effects/notif_2.wav" )
 	BackGroundPanel:Center()
 
 	local titleLabel = vgui.Create("DLabel",BackGroundPanel)
