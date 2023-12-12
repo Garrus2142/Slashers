@@ -2,8 +2,8 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-08-01 16:53:54
--- @Last Modified by:   Daryl_Winters
--- @Last Modified time: 2017-08-06T16:17:17+02:00
+-- @Last modified by:   Guilhem PECH
+-- @Last modified time: 05-Jan-2018
 
 local LANG = {}
 
@@ -24,6 +24,7 @@ LANG["class_desc_ghostface"] = "You have the ability to see when a survivor open
 LANG["class_desc_myers"] = "You're the slowest killer and have the ability to focus one survivor at the time. Use it carefully to surprise the survivors and kill them quickly. Listen carefully, you may heard survivors' hearbeat."
 LANG["class_desc_proxy"] = "You have the ability to appear and disappear when not visible by a survivor. Use it to sneak and surprise your victims. Press your menu key ('A' by default) to use it. Listen carefully, you may hear survivors' heartbeat."
 LANG["class_desc_intruder"] = "You have the ability to place traps to help you killing the survivors. Use your alert ropes to spot the survivors, your bear traps to neutralize them and the door axe to kill them by surprise.Listen carefully, you may hear survivors' heartbeat."
+LANG["class_desc_bates"] = "Use the corpse of your dead mother to help you locate the survivors. The more a survivor is near the body, the more your speed will increase but be careful, if someone finds it, the police will be called immediately. Listen carefully, you may hear survivors' heartbeat."
 
 LANG["round_mission_police"] = "Police arrives in %s"
 LANG["round_mission_police_killer"] = "Kill them all %s"

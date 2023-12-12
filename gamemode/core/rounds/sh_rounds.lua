@@ -2,8 +2,8 @@
 --
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:47
--- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-07-26 14:45:38
+-- @Last Modified by:   Daryl_Winters
+-- @Last Modified time: 2017-08-09T17:20:35+02:00
 
 local GM = GM or GAMEMODE
 
@@ -25,4 +25,15 @@ function GM.ROUND:GetSurvivorsAlive()
 		end
 	end
 	return alive
+end
+
+function getSurvivorByClass(class)
+	if GM.ROUND.Survivors then
+		for _, v in ipairs(GM.ROUND.Survivors) do
+			if IsValid(v) && v:Alive() && v.ClassID == class then
+				return v
+			end
+		end
+	end
+	return nil
 end

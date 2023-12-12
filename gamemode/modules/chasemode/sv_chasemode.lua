@@ -1,10 +1,9 @@
--- Utopia Games - Slashers
---
 -- @Author: Guilhem PECH
--- @Date:   2017-07-26T15:18:58+02:00
--- @Last Modified by:   Guilhem PECH
--- @Last Modified time: 2017-07-26T17:52:15+02:00
-
+-- @Date:   21-Oct-2018
+-- @Email:  guilhempech@gmail.com
+-- @Project: Slashers
+-- @Last modified by:   Guilhem PECH
+-- @Last modified time: 21-Oct-2018
 
 
 util.AddNetworkString( "sls_killerseesurvivor" )
@@ -16,7 +15,7 @@ local function relayChase()
 	local time = CurTime()
 	if !IsValid(GAMEMODE.ROUND.Killer) then return end
 	if color != 0 then
-	
+
 	net.Start( "sls_chaseactivated" )
 		net.WriteFloat(time)
 	net.Send(ply)

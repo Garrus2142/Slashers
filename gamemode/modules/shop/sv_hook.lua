@@ -13,4 +13,5 @@ local function OpenShop(ply)
 		net.Send(ply)
 	end
 end
+
 hook.Add("ShowSpare2", "shop_ShowSpare2", OpenShop)
