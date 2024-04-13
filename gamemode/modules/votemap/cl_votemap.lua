@@ -49,12 +49,12 @@ local function openVotemap()
   end
 
   horizonBar = vgui.Create("DPanel",backVote,"horBar")
-  horizonBar:SetDrawBackground(false)
+  horizonBar:SetPaintBackground(false)
 
   local index
 
   local oneMap = vgui.Create("DPanel",horizonBar,"extend")
-  oneMap:SetDrawBackground(false)
+  oneMap:SetPaintBackground(false)
   local oneMapImage = vgui.Create("DImageButton",oneMap,"extend_button")
   oneMapImage:SetImage("votemap/votemap_extend.png","vgui/avatar_default")
   oneMapImage:SetSize(192,512)
@@ -76,7 +76,7 @@ local function openVotemap()
 
   local voteCountPanel = vgui.Create("DPanel",oneMap)
   voteCountPanel:SetTall(120)
-  voteCountPanel:SetDrawBackground(false)
+  voteCountPanel:SetPaintBackground(false)
   voteCountPanel:MoveBelow(oneMap:GetChildren()[2], -30)
   voteCountPanel:CenterHorizontal(0.5)
 
@@ -86,7 +86,7 @@ local function openVotemap()
 
     if v != game.GetMap()..".bsp" then
       oneMap = vgui.Create("DPanel",horizonBar,v)
-      oneMap:SetDrawBackground(false)
+      oneMap:SetPaintBackground(false)
       oneMapImage = vgui.Create("DImageButton",oneMap,v.."_button")
       local indexToSplit = string.find( v, "_")
       oneMapImage:SetImage("votemap/votemap"..string.StripExtension( string.sub( v, indexToSplit ) )..".png","vgui/avatar_default")
@@ -113,7 +113,7 @@ local function openVotemap()
       oneMap:SizeToChildren(true,true)
       voteCountPanel = vgui.Create("DPanel",oneMap)
       voteCountPanel:SetTall(120)
-      voteCountPanel:SetDrawBackground(false)
+      voteCountPanel:SetPaintBackground(false)
       voteCountPanel:MoveBelow(oneMap:GetChildren()[2], -30)
       voteCountPanel:CenterHorizontal(0.5)
       table.insert( oneMaps, oneMap )
@@ -121,7 +121,7 @@ local function openVotemap()
   end
 
   oneMap = vgui.Create("DPanel",horizonBar,"random")
-  oneMap:SetDrawBackground(false)
+  oneMap:SetPaintBackground(false)
   oneMapImage = vgui.Create("DImageButton",oneMap,"random_button")
   oneMapImage:SetImage("votemap/votemap_random.png","vgui/avatar_default")
   oneMapImage:SetSize(192,512)
@@ -141,7 +141,7 @@ local function openVotemap()
   end
   voteCountPanel = vgui.Create("DPanel",oneMap)
   voteCountPanel:SetTall(120)
-  voteCountPanel:SetDrawBackground(true)
+  voteCountPanel:SetPaintBackground(true)
   voteCountPanel:MoveBelow(oneMap:GetChildren()[2], -30)
 
   table.insert( oneMaps, oneMap )
@@ -165,7 +165,7 @@ local function openVotemap()
 
 
     votePanelCount:SizeToChildren(true,false)
-    votePanelCount:SetDrawBackground(false)
+    votePanelCount:SetPaintBackground(false)
     count1:Hide()
     count:Hide()
   end

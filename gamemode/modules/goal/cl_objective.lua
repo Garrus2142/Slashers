@@ -116,7 +116,7 @@ end
 	OBJPanel:SetSize( 512, 128 )
 	OBJPanel:AlignTop(-128)
 	OBJPanel:AlignRight(100)
-	OBJPanel:SetDrawBackground( false )
+	OBJPanel:SetPaintBackground( false )
 
 
 	-- Blood background

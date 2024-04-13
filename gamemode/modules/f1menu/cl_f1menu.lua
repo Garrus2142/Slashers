@@ -17,7 +17,7 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 	BackGroundPanel = vgui.Create( "DPanel" )
 	BackGroundPanel:SetSize( ScrW(),ScrH() )
 	BackGroundPanel:Dock(FILL)
-	BackGroundPanel:SetDrawBackground( true )
+	BackGroundPanel:SetPaintBackground( true )
 
 	local PersoPANEL = vgui.Create("DPanel",BackGroundPanel)
 	PersoPANEL:SetPaintBackground( true )
@@ -29,8 +29,10 @@ function ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,Ti
 	local img_charac = vgui.Create( "DImage", PersoPANEL )
 
 	if !ImageCharac then
-		ImageCharac = "/characteres/default.png"
+		ImageCharac = "materials/characteres/default.png"
 	end
+
+	local tryCacheMaterial = Material( ImageCharac )
 	img_charac:SetImage( ImageCharac )
 	img_charac:SetTall((1/1.5)*ScrH())
 	img_charac:SetWide((1/1.5)*ScrH()/1080*987)
@@ -150,18 +152,25 @@ net.Receive( "sls_f1_menu", function ()
 	ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,0)
 end)
 
+function RemoveMenuIfExist()
+	if IsValid(BackGroundPanel) then
+		BackGroundPanel:Remove()
+	end
+end
+hook.Add("sls_round_End","removeScreenWhenRoundEnd",RemoveMenuIfExist)
+
 function ShowTitle(Title,Second)
-	local BackGroundPanel = vgui.Create( "DPanel" )
-	BackGroundPanel:SetSize( ScrW(),ScrH() )
+	local BackPanel = vgui.Create( "DPanel" )
+	BackPanel:SetSize( ScrW(),ScrH() )
 
-	BackGroundPanel:Dock(FILL)
-	BackGroundPanel:SetDrawBackground( true )
-	BackGroundPanel:SetBackgroundColor(Color( 0, 0, 0, 250 ))
-	BackGroundPanel:SetTerm( 5.5 )
+	BackPanel:Dock(FILL)
+	BackPanel:SetPaintBackground( true )
+	BackPanel:SetBackgroundColor(Color( 0, 0, 0, 250 ))
+	BackPanel:SetTerm( 5.5 )
 	surface.PlaySound( "slashers/effects/notif_2.wav" )
-	BackGroundPanel:Center()
+	BackPanel:Center()
 
-	local titleLabel = vgui.Create("DLabel",BackGroundPanel)
+	local titleLabel = vgui.Create("DLabel", BackPanel ,"Title")
 	titleLabel:Center()
 	titleLabel:SetFont( "Friday13" )
 	titleLabel:Dock(FILL)
@@ -173,7 +182,7 @@ function ShowTitle(Title,Second)
 
 		titleLabel:SlideUp( 0.2 )
 		timer.Simple( 0.3, function()
-			BackGroundPanel:Remove()
+			BackPanel:Remove()
 		end)
 	end )
 end
