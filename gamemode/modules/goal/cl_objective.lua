@@ -2,13 +2,8 @@
 --
 -- @Author: Guilhem PECH
 -- @Date:   2017-07-26T13:54:42+02:00
--- @Last Modified by:
+-- @Last Modified by:   Garrus2142
 -- @Last Modified time: 2017-07-26T22:29:36+02:00
-
-
-
-AddCSLuaFile()
-
 
 net.Receive( "objectiveSlasher", function()
 	 local NotifText = net.ReadTable()
@@ -121,7 +116,7 @@ end
 	OBJPanel:SetSize( 512, 128 )
 	OBJPanel:AlignTop(-128)
 	OBJPanel:AlignRight(100)
-	OBJPanel:SetDrawBackground( false )
+	OBJPanel:SetPaintBackground( false )
 
 
 	-- Blood background

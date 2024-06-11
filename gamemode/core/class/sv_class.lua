@@ -17,7 +17,7 @@ function playermeta:SetSurvClass(class)
 	self:SetTeam(TEAM_SURVIVORS)
 	self:AllowFlashlight(false)
 	self:SetNoCollideWithTeammates(true)
-	if GM.CLASS.Survivors[class].model then 
+	if GM.CLASS.Survivors[class].model then
 		self:SetModel(GM.CLASS.Survivors[class].model)
 	else
 		self:SetModel("models/player/eli.mdl")
@@ -32,6 +32,7 @@ function playermeta:SetSurvClass(class)
 	self:SetWalkSpeed(GM.CLASS.Survivors[class].walkspeed)
 	self:SetRunSpeed(GM.CLASS.Survivors[class].runspeed)
 	self:SetMaxHealth(GM.CLASS.Survivors[class].life)
+	self:SetHealth(GM.CLASS.Survivors[class].life)
 	self:GodDisable()
 	--self:SetNWInt("ClassID", class)
 	self.ClassID = class
@@ -39,30 +40,27 @@ end
 
 
 
-function playermeta:SetKillClass(class)
-	if !GM.CLASS.Killers[class] then return false end
-
+function playermeta:SetupKiller()
 	self:StripWeapons()
 	self:SetTeam(TEAM_KILLER)
 	self:AllowFlashlight(false)
 	self.InitialWeapon = table.Random(GM.CONFIG["killer_weapons"])
 	self:Give(self.InitialWeapon)
 	self:SetNoCollideWithTeammates(false)
-	self:SetModel(GM.CLASS.Killers[class].model)
+	self:SetModel(GM.MAP.Killer.Model)
 	self:SetupHands()
 
-	if GM.CLASS.Killers[class].weapons then
-		for _, v in ipairs(GM.CLASS.Killers[class].weapons) do
+	if GM.MAP.Killer.ExtraWeapons then
+		for _, v in ipairs(GM.MAP.Killer.ExtraWeapons) do
 			self:Give(v)
 		end
 	end
 
-	self:SetWalkSpeed(GM.CLASS.Killers[class].walkspeed)
-	self:SetRunSpeed(GM.CLASS.Killers[class].runspeed)
-	self:SetMaxHealth(GM.CLASS.Killers[class].life)
+	self:SetWalkSpeed(GM.MAP.Killer.WalkSpeed)
+	self:SetRunSpeed(GM.MAP.Killer.RunSpeed)
+	self:SetMaxHealth(100)
 	self:GodEnable()
-	-- self:SetNWInt("ClassID", class)
-	self.ClassID = class
+	self.ClassID = CLASS_KILLER
 end
 
 function GM.CLASS:SetupSurvivors()

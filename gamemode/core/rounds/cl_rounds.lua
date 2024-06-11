@@ -32,7 +32,7 @@ local function HUDPaint()
 
 	-- Waiting for player
 	if GM.ROUND.WaitingPlayers then
-		local text = GM.LANG:GetString("round_wait_players", #player.GetAll(), GM.CONFIG["round_min_player"])
+		local text = GM.LANG:GetString("round_wait_players", #player.GetAll(), GetConVar("slashers_round_min_player"):GetInt())
 		surface.SetFont("horror1")
 		local tw = surface.GetTextSize(text)
 		surface.SetTextColor(Color(255, 255, 255))
@@ -46,7 +46,6 @@ hook.Add("HUDPaint", "sls_round_HUDPaint", HUDPaint)
 local function PostStart()
 	ShowTitle("SLASHERS",4)
 	timer.Simple(4, function()
-
 		local TeamName
 		local TeamText
 		local ImageCharac
@@ -57,15 +56,15 @@ local function PostStart()
 
 			TeamName = GM.LANG:GetString("round_team_name_survivor")
 			TeamText = GM.LANG:GetString("round_team_desc_survivor")
-			ImageCharac = "/characteres/"..string.lower(GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].name)..".png"
+			ImageCharac = "materials/characteres/"..string.lower(GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].name)..".png"
 			CharacName = GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].dispname
 			CharacText = GAMEMODE.CLASS.Survivors[LocalPlayer().ClassID].description
 		elseif LocalPlayer():Team() == TEAM_KILLER then
 			TeamName = GM.LANG:GetString("round_team_name_killer")
 			TeamText = GM.LANG:GetString("round_team_desc_killer")
-			ImageCharac = "/characteres/"..string.lower(GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].name)..".png"
-			CharacName = GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].name
-			CharacText = GAMEMODE.CLASS.Killers[LocalPlayer().ClassID].description
+			ImageCharac = "materials/characteres/"..string.lower(GAMEMODE.MAP.Killer.Name)..".png"
+			CharacName = GAMEMODE.MAP.Killer.Name
+			CharacText = GAMEMODE.MAP.Killer.Desc
 		end
 
 		ShowPlayerScreen(TeamName,TeamText,CharacName,CharacText,ImageCharac,GM.CONFIG["round_freeze_start"]-3)

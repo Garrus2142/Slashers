@@ -36,7 +36,7 @@ function notificationPanel(notifText,notificationType)
 	BackGroundPanel:SetSize( 512, 128 )
 	BackGroundPanel:AlignBottom(-128)
 	BackGroundPanel:AlignRight(250)
-	BackGroundPanel:SetDrawBackground( false )
+	BackGroundPanel:SetPaintBackground( false )
 	BackGroundPanel:SetTerm( 4.7 )
 	if (!CounterActiveNotif || CounterActiveNotif == 0)  then
 		CounterActiveNotif = 1

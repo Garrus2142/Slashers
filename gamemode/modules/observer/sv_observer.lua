@@ -3,7 +3,7 @@
 -- @Author: Garrus2142
 -- @Date:   2017-07-25 16:15:50
 -- @Last Modified by:   Garrus2142
--- @Last Modified time: 2017-07-27 18:08:05
+-- @Last Modified time: 2017-08-09T15:57:36+02:00
 
 local GM = GM or GAMEMODE
 
@@ -128,3 +128,11 @@ local function PlayerInitialSpawn(ply)
 	end)
 end
 hook.Add("PlayerInitialSpawn", "sls_round_PlayerInitialSpawn", PlayerInitialSpawn)
+
+
+local function DeadChat(rext,teamOnly,listener,speaker)
+	if speaker:IsPlayer() and !speaker:Alive() and listener:Alive() then
+		return false
+	end
+end
+hook.Add("PlayerCanSeePlayersChat","sls_observer_chat",DeadChat)
